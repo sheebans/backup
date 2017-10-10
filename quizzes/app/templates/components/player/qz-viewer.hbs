@@ -1,0 +1,21 @@
+<div class="qz-content {{if resource.isQuestion 'question' 'resource'}}">
+  {{#if resource.isQuestion}}
+    {{player.qz-question-viewer
+      buttonTextKey=buttonTextKey
+      instructionsActionTextKey=instructionsActionTextKey
+      collection=collection
+      question=resource
+      questionResult=resourceResult
+      role=role
+      submitted=submitted
+      onSubmitQuestion="submitQuestion"
+    }}
+  {{else}}
+    {{player.qz-resource-viewer
+      resource=resource
+      sendEvents=false
+      collection=collection
+      isNotIframeUrl=isNotIframeUrl
+    }}
+  {{/if}}
+</div>

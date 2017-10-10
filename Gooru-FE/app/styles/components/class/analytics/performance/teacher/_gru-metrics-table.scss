@@ -1,0 +1,211 @@
+.gru-metrics-table {
+  margin: 10px 0;
+  width: inherit;
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  .metrics-table-wrapper {
+    width: auto;
+    overflow-x: auto;
+    padding-bottom: 1px;
+    margin-left: 64px;
+    @media (max-width: $screen-xs-max) {
+      margin-left: 105px;
+    }
+  }
+
+  .table {
+    margin: 0;
+    width: auto;
+    font-size: $font-size-h6;
+    background: $white;
+    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.07);
+    border-top: 3px solid $dark-400;
+    border-radius: 0 5px 5px 0;
+    border-collapse: inherit;
+    display: table-cell;
+
+    thead {
+      tr {
+        th,
+        td {
+          background-color: $dark-300;
+          color: $white;
+          border-right: 1px solid $light-300;
+          &:first-child {
+            border-right: 0;
+          }
+        }
+      }
+      .headers {
+        td,
+        th {
+          background-color: $dark-400;
+        }
+        > td {
+          border-top: 15px solid $dark-400 !important;
+          border-radius: 5px 0 0 0;
+          top: 10px;
+          height: 54px !important;
+        }
+        .header-title {
+          @include flexbox;
+          @include flex-direction(row);
+          @include align-items(center);
+          text-align: left;
+          div {
+            line-height: $font-size-lead;
+          }
+          .title {
+            width: inherit;
+            @include text-overflow();
+          }
+          .column {
+            @include flexbox;
+            @include flex-direction(column);
+          }
+          .small-icon {
+            i {
+              font-size: 0.8em;
+              padding-right: 0.2em;
+            }
+          }
+        }
+      }
+      .headers,
+      .sub-header {
+        th,
+        td {
+          height: 26px;
+          padding: 0 0 0 2px;
+        }
+      }
+      .average {
+        th {
+          background-color: $white;
+          border-bottom: 2px solid $light-300;
+          color: $gray;
+          height: 50px;
+          .class-average {
+            font-weight: bold;
+          }
+        }
+        .header {
+          @include flexbox;
+          @include align-items(center);
+          border-left: 1px solid $light-300;
+        }
+      }
+    }
+    tbody {
+      tr {
+        &:last-child {
+          th.fixed {
+            box-shadow: 0px 1px 0px 0px rgba(0, 0, 0, 0.07);
+          }
+        }
+      }
+      .even {
+        td,
+        th {
+          background-color: $gray-lighter;
+        }
+      }
+      .odd {
+        td,
+        th {
+          background-color: $white;
+        }
+      }
+      th {
+        width: 140px;
+        border: 0;
+        span {
+          display: block;
+          width: inherit;
+          @include text-overflow();
+        }
+        &.header.fixed {
+          border-left: 1px solid $light-300;
+        }
+      }
+    }
+    td,
+    th {
+      width: 57px;
+      min-width: 57px;
+      height: 32px;
+      vertical-align: middle;
+      font-weight: normal;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      border: 0;
+      border-right: 1px solid $light-300;
+      padding: 2px;
+      div:last-child {
+        border: 0;
+      }
+    }
+    .table-cell {
+      width: 57px;
+      min-width: 57px;
+      display: table-cell;
+      vertical-align: middle;
+    }
+    .gru-metrics-sub-header {
+      font-size: $font-size-base;
+      .metrics-sub-header {
+        a {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          max-width: 47px;
+          display: inline-block;
+          vertical-align: middle;
+        }
+        .material-icons {
+          font-size: $font-size-base;
+          margin: 0 0 0 -5px;
+        }
+      }
+    }
+    .performance-information {
+      .box {
+        border-radius: 4px;
+        width: 42px;
+        height: 25px;
+        display: inline-table;
+        color: $white;
+        text-align: center;
+        &.completion {
+          background-color: $blue-400;
+        }
+      }
+      .charts.gru-completion-chart {
+        width: 55px;
+        height: 25px;
+        display: inline-table;
+        vertical-align: middle;
+        > span {
+          line-height: 25px;
+        }
+        .charts.gru-x-bar-chart {
+          height: inherit;
+        }
+      }
+      .report {
+        text-align: center;
+        i {
+          vertical-align: bottom;
+        }
+      }
+    }
+    .fixed {
+      position: absolute;
+      left: 10px;
+      min-height: 25px;
+      width: 111px;
+    }
+  }
+}

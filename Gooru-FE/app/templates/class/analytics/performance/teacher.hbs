@@ -1,0 +1,68 @@
+<div class="controller analytics-performance-teacher container-fluid">
+    <div class="row">
+      <div class="better-experience visible-xs alert alert-warning alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <span class="better-experience-message">{{t 'class.analytics.performance.better-experience-message'}}</span>
+      </div>
+    </div>
+    <div class="row navigation out-of-scope {{if isFullScreen 'hide' 'show'}}">
+      <div class="col-xs-12">
+        <ul class="nav nav-tabs nav-tabs-lg">
+          <li role="presentation" class="performance active"><a href="#">{{t 'class.analytics.performance.title'}}</a></li>
+          <li role="presentation" class="mastery"><a href="#">{{t 'class.analytics.mastery.title'}}</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="row controls">
+      <div class="teacher-breadcrumb col-lg-4 col-md-3 col-sm-5 col-xs-12">
+        {{gru-breadcrumb items=breadcrumb onSelectedItem="selectBreadcrumbItem"}}
+      </div>
+      <div class="teacher-actions col-lg-8 col-md-9 col-sm-7 col-xs-12">
+        {{class.analytics.performance.gru-actions-bar
+          mode='teacher'
+          onFilterSelected="selectFilterBy"
+          selectedFilterBy=filterBy
+          onToggleFullScreen=(action 'toggleFullScreen')
+          onEditContent=(action 'editContent')
+          isFullScreen=isFullScreen
+          collectionLevel=collectionLevel
+          onDownload="download"
+          enableEdit=enableEdit
+        }}
+      </div>
+   </div>
+  {{#if showFilters}}
+    <div class="row gru-filters col-xs-12">
+      <div class="data-picker hidden-xs">
+          {{#if (eq filterBy 'assessment')}}
+            {{class.analytics.performance.gru-data-picker
+            onOptionsChange="optionsChange" options=optionsTeacher max=3}}
+          {{else}}
+            {{class.analytics.performance.gru-data-picker
+            onOptionsChange="optionsChange" options=optionsCollectionsTeacher max=3}}
+          {{/if}}
+      </div>
+      <div class="data-picker visible-xs">
+        {{#if (eq filterBy 'assessment')}}
+          {{class.analytics.performance.gru-data-picker
+          onOptionsChange="optionsChange" options=mobileOptionsTeacher max=1 }}
+        {{else}}
+          {{class.analytics.performance.gru-data-picker
+          onOptionsChange="optionsChange" options=mobileOptionsCollectionsTeacher max=1 }}
+        {{/if}}
+      </div>
+      <div class="performance-scale">
+        <div class="scale-indicator">
+          <div class="grading-scale">
+            {{grading-scale-legend}}
+          </div>
+        </div>
+      </div>
+    </div>
+  {{/if}}
+  <div class="row gru-content">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      {{outlet}}
+    </div>
+  </div>
+</div>

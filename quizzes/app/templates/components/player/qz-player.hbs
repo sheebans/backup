@@ -1,0 +1,43 @@
+{{#if showConfirmation}}
+  {{player.qz-player-confirmation attempts=attempts collection=collection context=context onStartPlayer='openPlayer' onClosePlayer="closePlayer" onRemixCollection="remixCollection"}}
+{{else}}
+    <div class="component player">
+      {{#unless showReport}}
+          <div class="qz-aside">
+            {{player.qz-navigator
+              isTeacher=isTeacher
+              collection=collection
+              unit=unit
+              lesson=lesson
+              classId=classId
+              course=course
+            }}
+          </div>
+      {{/unless}}
+        <div class="qz-main {{if showFinishConfirmation 'submission-confirm'}}" role="main">
+          {{#if collection.hasResources }}
+            {{#if showFinishConfirmation}}
+              {{player.qz-submit-confirmation onConfirmFinish='finishCollection'}}
+            {{else}}
+              {{#if resource}}
+                {{player.qz-viewer
+                isNotIframeUrl=isNotIframeUrl
+                collection=collection
+                resource=resource
+                resourceResult=resourceResult
+                role=role
+                showPrevious=showPrevious
+                submitted=contextResult.submitted
+                onPreviousResource="previousResource"
+                onSubmitQuestion="submitQuestion"}}
+                {{player.qz-player-footer
+                  collection=collection
+                }}
+              {{/if}}
+            {{/if}}
+          {{else}}
+          {{! TODO add the not found component here}}
+          {{/if}}
+        </div>
+    </div>
+{{/if}}

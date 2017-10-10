@@ -1,0 +1,68 @@
+<div class="resources-header">
+    <div class="title">
+        <h4>{{t "common.resources"}}</h4>
+    </div>
+</div>
+<table class="hidden-xs">
+    <thead>
+    <tr>
+        <th class="header number">
+          {{t "common.number"}}
+        </th>
+        <th class="header resource-type">
+        </th>
+        <th class="header resource top-left">
+          {{t "common.resource"}}
+        </th>
+        <th class="header timeSpent">
+          {{t "common.timeSpent"}}
+        </th>
+        {{#if showReactionBar}}
+          <th class="header reaction">
+            {{t "common.reaction"}}
+          </th>
+        {{/if}}
+    </tr>
+    </thead>
+    <tbody>
+    {{#each results as |result index|}}
+        <tr id="resource-{{result.resource.order}}">
+            <td class="number-resource top-left">
+              {{result.resource.order}}
+            </td>
+            <td class="resource-type-icon">
+                <div class="image">
+                    <i class="{{result.resource.format}}-icon"></i>
+                </div>
+            </td>
+            <td class="resource-text top-left">
+                <div class="title-content">
+                    <span>{{result.resource.title}}</span>
+                </div>
+            </td>
+            <td class="time-spent">
+              {{format-time result.timeSpent}}
+            </td>
+            {{#if showReactionBar}}
+              <td class="reaction">
+                {{reaction-icon result.reaction appRootPath}}
+              </td>
+            {{/if}}
+        </tr>
+    {{/each}}
+    </tbody>
+</table>
+<div class="resource-cards cards visible-xs">
+    <div class="header">
+        <span class="resource-number">{{t "common.number"}}</span>
+        <span class="resource-text">{{t "common.resource"}}</span>
+    </div>
+    <ul class="resource-cards-list">
+      {{#each results as |result|}}
+          <li id="mobile-resource-{{result.resource.order}}">
+            {{reports.assessment.gru-resources-xs resource=result}}
+          </li>
+      {{/each}}
+    </ul>
+</div>
+

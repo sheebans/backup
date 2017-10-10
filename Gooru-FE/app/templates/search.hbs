@@ -1,0 +1,62 @@
+<div class="controller search">
+  <div class="content-navigation">
+    <div class="category-menu">
+      <ul class="nav nav-tabs category-options">
+        {{#link-to "search.courses" (query-params term=term) tagName="li" class='courses'}}
+          <a href='{{view.href}}' class="btn btn-category">
+            <i class="icon"></i>
+            <span>{{t "search-filter.courses"}}</span>
+          </a>
+        {{/link-to}}
+        {{#link-to "search.collections" (query-params term=term) tagName="li" class='collections'}}
+          <a href='{{view.href}}' class="btn btn-category">
+            <i class="icon"></i>
+            <span>{{t "search-filter.collections"}}</span>
+          </a>
+        {{/link-to}}
+        {{#link-to "search.assessments" (query-params term=term) tagName="li" class='assessments'}}
+          <a href='{{view.href}}' class="btn btn-category">
+            <i class="icon"></i>
+            <span>{{t "search-filter.assessments"}}</span>
+          </a>
+        {{/link-to}}
+        {{#link-to "search.resources" (query-params term=term) tagName="li" class='resources'}}
+          <a href='{{view.href}}' class="btn btn-category">
+            <i class="icon"></i>
+            <span>{{t "search-filter.resources"}}</span>
+          </a>
+        {{/link-to}}
+        {{#link-to "search.questions" (query-params term=term) tagName="li" class='questions'}}
+          <a href='{{view.href}}' class="btn btn-category">
+            {{gru-icon name='help_outline'}}
+            <span>{{t "search-filter.questions"}}</span>
+          </a>
+        {{/link-to}}
+        <li class="rubrics out-of-scope">
+          <a href='#' class="btn btn-category">
+            <i></i>
+            <span>{{t "search-filter.rubrics"}}</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="hidden-xs standards">
+    {{#if standardFilterEnabled}}
+      {{search.gru-search-filter
+        categories=categories
+        subjects=subjects
+        categoriesPlaceholderLabelKey='common.categories'
+        subjectsPlaceholderLabelKey='common.standards'
+        onCategorySelected='setCategory'
+        onSubjectSelected='setSubject'
+        onlySubjectsWithStandards=true
+        alignment='left'
+        disableSubjects=disableSubjects
+      }}
+    {{/if}}
+    </div>
+  </div>
+  <div class="content">
+    {{outlet}}
+  </div>
+</div>

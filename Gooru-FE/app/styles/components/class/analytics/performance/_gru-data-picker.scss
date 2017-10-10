@@ -1,0 +1,87 @@
+.gru-data-picker {
+  margin: 0 auto;
+  text-align: center;
+  .list-inline {
+    @include flexbox;
+    @include flex-direction(row);
+    @include flex-wrap(nowrap);
+    @include justify-content(space-around);
+    @include align-items(center);
+    @include align-content(stretch);
+  }
+  li.disabled {
+    opacity: 0.5;
+  }
+  .checkbox {
+    @include flexbox;
+    @include flex-direction(column);
+    @include flex-wrap(nowrap);
+    @include justify-content(center);
+    @include align-items(center);
+    @include align-content(center);
+    input {
+      color: $white;
+      margin: 0;
+      @media (max-width: $screen-xs-max) {
+        background-color: transparent;
+      }
+    }
+    input[type="checkbox"]:checked:after {
+      background-color: $blue-400;
+      border-color: $blue-400;
+    }
+    input[type="checkbox"]:after {
+      border: 2px solid $gray;
+      border-radius: 3px;
+      background-color: transparent;
+      @media (max-width: $screen-xs-max) {
+        border-radius: 50%;
+        border-color: $gray-light;
+        background-color: $gray-light;
+      }
+    }
+    input[type="checkbox"]:disabled:checked:after {
+      background-color: $blue-400 !important;
+      border-color: $blue-400 !important;
+      color: $white !important;
+    }
+    label {
+      padding: 0;
+    }
+  }
+}
+.analytics-performance-student {
+  .gru-data-picker .checkbox {
+    input[type="checkbox"]:checked:before {
+      top: 3px;
+      content: none;
+    }
+    input[type="checkbox"]:after {
+      margin: 0;
+      width: 15px;
+      height: 15px;
+    }
+  }
+}
+.analytics-performance-teacher {
+  .gru-data-picker {
+    .checkbox {
+      @media (min-width: $screen-xs-max) {
+        padding: 0;
+        -webkit-flex-direction: row;
+        flex-direction: row;
+      }
+      input {
+        width: 18px;
+        height: 16px;
+        margin: 0 5px 0 0;
+      }
+    }
+    input[type="checkbox"]:checked:before {
+      @media (max-width: $screen-xs-max) {
+        top: 3px;
+        content: none;
+      }
+    }
+  }
+}

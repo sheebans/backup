@@ -1,0 +1,242 @@
+.container-fluid {
+  .teacher-landing {
+    padding-top: 30px;
+    width: 100vw;
+    > * {
+      margin: 0 auto;
+      width: 97%;
+      @media (min-width: $screen-sm) {
+        width: 90%;
+      }
+      @media (min-width: $screen-md) {
+        width: 90%;
+      }
+    }
+    .title {
+      > * {
+        display: inline-block;
+      }
+    }
+  }
+  .filter-date-asc {
+    padding-top: 25px;
+    bottom: 5px;
+    float: right;
+
+    button.filter-date,
+    button.filter-asc {
+      margin: 1px;
+      padding: 5px 18px;
+      i {
+        font-size: $font-size-h4;
+      }
+      .arrow {
+        position: absolute;
+        top: 50%;
+        border-left: 4px solid transparent;
+        border-right: 4px solid transparent;
+        height: 0;
+        width: 0;
+      }
+      .arrow-down {
+        border-top: 4px solid $white;
+      }
+      .arrow-up {
+        border-bottom: 4px solid $white;
+      }
+    }
+    button.filter-asc {
+      .arrow-up,
+      .arrow-down {
+        right: 8px;
+        margin-left: 5px;
+      }
+    }
+
+    button.filter-date {
+      .arrow-up,
+      .arrow-down {
+        left: 8px;
+        margin-right: 5px;
+      }
+    }
+  }
+}
+
+.teacher-landing {
+  .greetings {
+    span {
+      color: $gray-base;
+      font-size: $font-size-h4;
+      line-height: $font-size-h4;
+    }
+    p {
+      font-weight: lighter;
+      @media (min-width: $screen-sm) {
+        font-size: $font-navigator;
+      }
+    }
+  }
+  .panels {
+    .panel {
+      &.featured-courses,
+      &.create-class {
+        min-height: 235px;
+      }
+      &.featured-courses {
+        .panel-body {
+          .courses {
+            height: 80px;
+            overflow-y: auto;
+          }
+        }
+      }
+      &.create-class {
+        .panel-body {
+          .legend {
+            height: 115px;
+          }
+        }
+      }
+      .panel-heading {
+        padding: 10px 18px 0;
+        font-size: $font-size-lead;
+        color: $gray-base;
+      }
+      .panel-body {
+        padding: 0 15px 10px 18px;
+        .legend {
+          font-size: $font-size-lead;
+        }
+        .courses {
+          @media (min-width: $screen-lg) {
+            @include flexbox;
+          }
+          .gru-course-card.small {
+            padding: 0;
+            margin: 12px 20px 0 0;
+            width: 230px;
+            float: left;
+            @media (max-width: $screen-lg) {
+              width: 100%;
+              float: none;
+            }
+            .panel {
+              padding: 0;
+              overflow: hidden;
+              box-shadow: none;
+              border: 1px solid $light-400;
+              min-height: 65px;
+              .panel-body {
+                padding: 0;
+                .card-header {
+                  .header-content {
+                    @media (max-width: $screen-lg) {
+                      width: 100%;
+                    }
+                    .course-title {
+                      width: 100%;
+                    }
+                    .subject {
+                      margin: 15px 0 0;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        .actions {
+          margin: 22px 0 0;
+          button {
+            font-size: $font-size-base;
+          }
+        }
+        .will-disappear {
+          color: $light-400;
+          line-height: $font-size-base;
+        }
+      }
+    }
+  }
+  .tab-content {
+    padding: 10px 0 0;
+    clear: both;
+    @include transition(width .3s ease-out);
+    @media (min-width: $screen-sm) {
+      width: 100%;
+    }
+    @media (min-width: $screen-md) {
+      width: 100%;
+    }
+    .tab-pane {
+      margin: -10px;
+    }
+    #archived-classes {
+      padding: 16px;
+      span.no-archived {
+        font-size: $font-size-lead;
+      }
+    }
+  }
+}
+.teacher-navigator {
+  .nav-tabs {
+    @media (min-width: $screen-sm) {
+      box-shadow: inset 0 -1px 0 $gray-light;
+    }
+    li {
+      margin-right: 15px;
+      a {
+        padding: 10px 0 5px;
+      }
+    }
+  }
+  li {
+    display: none;
+    height: 46px;
+    margin-bottom: 0;
+    @media (min-width: $screen-sm) {
+      display: block;
+    }
+    &.active {
+      display: block;
+      a {
+        box-shadow: inset 0 -4px 0 $gray;
+        padding-left: 0;
+        padding-right: 0;
+        &:focus {
+          box-shadow: inset 0 -4px 0 $gray;
+        }
+        &:active {
+          box-shadow: inset 0 -4px 0 $gray;
+        }
+      }
+    }
+    &:not(.active) {
+      a {
+        box-shadow: none;
+      }
+    }
+    a {
+      &:hover {
+        color: initial;
+      }
+      span {
+        font-weight: bold;
+      }
+    }
+  }
+  .no-classes-found {
+    font-size: $font-navigator;
+    line-height: $font-size-h5;
+    margin: 15px 0;
+  }
+  .actions {
+    @include flexbox;
+    @include align-items(flex-end);
+    @include justify-content(space-between);
+    height: 35px;
+    margin: 8px 0 0;
+  }
+}

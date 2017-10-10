@@ -1,0 +1,43 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="title">{{t "qz-assessment-confirmation.title"}}</h3>
+  </div>
+  <div class="panel-body">
+    <span class="lead description">{{t 'qz-assessment-confirmation.description'}} {{context.title}}</span>
+    {{#unless noMoreAttempts}}
+      <div class="setting info">
+        {{#if collection.bidirectional}}
+          {{gru-icon name='swap_horiz'}}
+          <p class="lead bidirectional">
+            {{t "qz-assessment-confirmation.setting-forward-backward"}}
+          </p>
+        {{else}}
+          {{gru-icon name='trending_flat'}}
+          <p class="lead not-bidirectional">
+            {{t "qz-assessment-confirmation.setting-forward"}}
+          </p>
+        {{/if}}
+      </div>
+    {{/unless}}
+    <div class="attempts info">
+      {{gru-icon name='history'}}
+      <p class="lead">
+        {{#if unlimited}}
+          {{t "qz-assessment-confirmation.unlimited-attempts-left"}}
+        {{else}}
+          {{#if noMoreAttempts}}
+            <span class="no-more-attempts">{{t "qz-assessment-confirmation.attempts-left.no-attempts"}}</span>
+          {{else}}
+            {{t "qz-assessment-confirmation.attempts-left" count=attemptsLeft}}
+          {{/if}}
+        {{/if}}
+      </p>
+    </div>
+    <div class="actions">
+      <button type="button" class="btn btn-default {{if noMoreAttempts "back" "cancel"}}" {{action 'cancel'}} > {{if noMoreAttempts (t 'common.back') (t 'common.cancel')}}</button>
+      {{#unless noMoreAttempts}}
+        <button type="button" class="btn btn-primary {{if context.hasStarted "continue" "start"}}" {{action 'start'}} disabled={{disableStart}}>{{if context.hasStarted (t 'qz-assessment-confirmation.continue') (t 'qz-assessment-confirmation.start')}}</button>
+      {{/unless}}
+    </div>
+  </div>
+</div>

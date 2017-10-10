@@ -1,0 +1,100 @@
+<header>
+  <a {{action "courseEditBackButton"}} class="back-to">
+    <div>
+      {{gru-icon name="keyboard_arrow_left"}}{{t 'common.course'}}: {{course.title}}
+    </div>
+  </a>
+
+  <h1>{{t "common.edit-course"}}</h1>
+  <div class="actions">
+    <button class="btn btn-default btn-icon" title="{{t 'common.delete'}}" {{action "deleteCourse"}}>{{gru-icon name="delete"}}</button>
+    <button class="btn btn-default btn-icon out-of-scope" title="{{t 'common.add-collaborator'}}">{{gru-icon name="person_add"}}</button>
+    {{#gru-share-pop-over tagName="button" type="course"}}
+      {{gru-icon name="insert_link"}}
+    {{/gru-share-pop-over}}
+    <button class="btn btn-default out-of-scope">{{t "content.courses.edit.assign-to-class"}}</button>
+    {{#link-to 'content.courses.play' course.id class="btn btn-default preview" tagName="button"}}{{t "common.preview"}}{{/link-to}}
+  </div>
+
+  <nav>
+    {{#gru-scroll to="#information" class="selected" offset='article > header'}}{{t "common.information"}}{{/gru-scroll}}
+    {{#gru-scroll to="#builder" offset='article > header'}}{{t "common.builder"}}{{/gru-scroll}}
+    {{#gru-scroll to="#settings" offset='article > header'}}{{t "common.settings"}}{{/gru-scroll}}
+  </nav>
+
+</header>
+
+<section id="information">
+  <div class="header">
+    <h2>{{t "common.information"}}</h2>
+
+    {{partial 'content/partials/information-actions'}}
+
+  </div>
+  <div class="content">
+
+    {{content.gru-image isEditing=isEditing srcImage=course.thumbnailUrl editImage=tempCourse.thumbnailUrl}}
+
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="title">
+          <label>
+            <span class="required">{{t "content.courses.edit.information.course-title"}}</span>
+            {{#if isEditing}}
+              {{validation.gru-input model=tempCourse valuePath='title' maxLength=50 didValidate=didValidate}}
+            {{else}}
+              <b>{{course.title}}</b>
+            {{/if}}
+          </label>
+        </div>
+        <div class="description">
+            <label>
+                <span>{{t "content.courses.edit.information.description"}}</span>
+              {{#if isEditing}}
+                {{validation.gru-textarea rawTextareaValue=tempCourse.description model=tempCourse valuePath='description' maxLength=500 rows=2 didValidate=didValidate}}
+              {{else}}
+                {{#if course.description}}
+                {{textarea class="text-description" value=course.description class="form-control" rows=2 readonly=true}}
+                {{/if}}
+              {{/if}}
+            </label>
+        </div>
+
+        {{taxonomy.gru-taxonomy-selector
+          isEditing=isEditing
+          onSubjectSelected="selectSubject"
+          onTaxonomySelected="selectTaxonomy"
+          selectedSubject=(if isEditing tempCourse.mainSubject course.mainSubject)
+          selectedTaxonomy=(if isEditing tempCourse.taxonomy course.taxonomy)
+          showCourses=true
+        }}
+
+        {{content.gru-audience isEditing=isEditing srcSelectedAudiences=course.audience editSelectedAudiences=tempCourse.audience}}
+
+        <div class="use-case">
+          <label>
+            <span>{{t "common.use-case"}}</span>
+            {{#if isEditing}}
+              {{validation.gru-textarea rawTextareaValue=tempCourse.useCase model=tempCourse valuePath='useCase' maxLength=500 rows=2 didValidate=didValidate}}
+            {{else}}
+              {{#if course.useCase}}
+                {{textarea class="text-useCase" value=course.useCase class="form-control" rows=2 readonly=true}}
+              {{/if}}
+            {{/if}}
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="builder">
+  {{content.courses.edit.gru-accordion-course
+  model=course
+  items=course.children
+  selectedLessonId=selectedLessonId
+  onLocationChange='setLocation'
+  }}
+</section>
+
+{{content.gru-settings-edit id="settings" action='publishToProfile' model=course}}

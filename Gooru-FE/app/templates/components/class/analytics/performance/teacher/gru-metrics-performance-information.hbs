@@ -1,0 +1,51 @@
+{{#if performanceData}}
+  {{#if showScore}}
+    <div class="table-cell">
+      {{#if performanceData.hideScore}}
+        <div class="not-applicable" title="{{performanceData.headerTitle}}" data-toggle="tooltip" data-placement="auto">
+          {{t 'common.not-applicable'}}
+        </div>
+      {{else}}
+        <div class="box score" style={{safe-html (concat "background-color:" (grade-color (if performanceData.hasStarted performanceData.score 'NA'))) }}>
+          {{{if (and performanceData.hasStarted performanceData.hasScore) performanceData.score '--'}}}%
+        </div>
+      {{/if}}
+    </div>
+  {{/if}}
+  {{#if showReport}}
+    {{#if isAverage}}
+      <div class="table-cell">
+        <span title="{{performanceData.headerTitle}}"></span>
+      </div>
+    {{else}}
+      {{#if performanceData.hasStarted}}
+        <div class="table-cell report pointer">
+          <span {{action 'clickReport' performanceData}} title="{{performanceData.headerTitle}}" data-toggle="tooltip" data-placement="auto">{{gru-icon name='library_books'}}</span>
+        </div>
+      {{/if}}
+    {{/if}}
+  {{/if}}
+  {{#if showCompletion}}
+    <div class="table-cell">
+      {{ charts/gru-completion-chart
+      completed=performanceData.completionDone
+      total=performanceData.completionTotal }}
+  </div>
+  {{/if}}
+  {{#if showStudyTime}}
+    <div class="table-cell study-time">{{{performanceData.timeSpent}}}</div>
+  {{/if}}
+{{else}}
+  {{#if showScore}}
+    <div class="table-cell score"></div>
+  {{/if}}
+  {{#if showReport}}
+    <div class="table-cell report"></div>
+  {{/if}}
+  {{#if showCompletion}}
+    <div class="table-cell completion"></div>
+  {{/if}}
+  {{#if showStudyTime}}
+    <div class="table-cell study-time"></div>
+  {{/if}}
+{{/if}}

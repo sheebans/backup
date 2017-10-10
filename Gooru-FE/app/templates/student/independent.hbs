@@ -1,0 +1,39 @@
+<div class="student-independent-container">
+  <div class="header clearfix">
+    <div class="go-back-container">
+      {{#link-to 'student-independent-learning.courses' class="back-to"}}
+        {{gru-icon name='arrow_back'}}
+        {{t 'student-landing.class.back-to-independent'}}
+      {{/link-to}}
+    </div>
+    <h1>{{course.title}}</h1>
+    <div class="panel panel-default panel-primary">
+      <div class="panel-heading">{{t 'common.overall-performance'}}</div>
+      <div class="panel-body">
+        <div class="graphics">
+          <div class="graphic performance">
+            {{charts.gru-bubble-chart
+              content=percentageToShow
+              color=(grade-color performance.scoreInPercentage)}}
+            <span class="legend">{{t 'teacher-landing.class.performance'}}</span>
+          </div>
+          <div class="graphic completed">
+            {{charts.gru-radial-chart
+              value=performance.completedCount
+              minValue=0
+              maxValue=performance.totalCount}}
+            <span class="legend">{{t "common.completion"}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{student.class.gru-class-navigation
+    onItemSelected="selectMenuItem"
+    onCollapseExpandClicked="toggleHeader"
+    selectedMenuItem=menuItem
+    expand=true}}
+  <div class="content">
+    {{outlet}}
+  </div>
+</div>

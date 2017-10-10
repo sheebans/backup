@@ -1,0 +1,17 @@
+.controller.student.class.class-activities {
+  padding: 0;
+  margin: 35px 0 0 0;
+
+  .today {
+    border-bottom: 1px solid #cdd2d6;
+    padding: 0 0 15px 0;
+    font-size: $font-size-lead;
+  }
+
+  .collections {
+    padding: 0;
+    .gru-student-class-activity-panel {
+      margin: 10px 0 0 0;
+    }
+  }
+}

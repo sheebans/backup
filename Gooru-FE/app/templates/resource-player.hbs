@@ -1,0 +1,19 @@
+{{player.gru-study-header
+  onToggleHeader='toggleHeader'
+  classId=classId
+  collection=collection
+  courseId=course.id
+  courseTitle=course.title
+  resource=resource
+  resourceSequence=resource.sequence
+  breadcrumbs=breadcrumbs
+  collectionUrl=collectionUrl
+  courseVersion=courseVersion
+}}
+<div class="resource-player {{if toggleState 'expanded' 'collapsed'}}">
+  {{#if isDone}}
+    {{player.gru-player-done classId=classId}}
+  {{else}}
+    {{partial 'partials/qz-resource-player'}}
+  {{/if}}
+</div>

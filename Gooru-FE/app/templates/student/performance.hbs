@@ -1,0 +1,45 @@
+{{gru-take-tour steps=steps containerClass='performance-tour'}}
+<div class="student performance container-fluid">
+  <div class="row">
+    {{student.gru-performance-filter-panel
+      courses=courses
+      selectedCourse=course
+      filterCriteria=filterCriteria
+      onSelectCourse="selectCourse"
+      onSelectUnit="selectUnit"
+      onSelectLesson="selectLesson"
+      onUpdateReport="updateReport"
+    }}
+
+    <div class="performance-content col-md-10 col-sm-8 col-xs-12">
+      <div class="panel-header">
+        <h1>{{t 'student-landing.my-performance.title'}}</h1>
+        <p>{{t 'student-landing.my-performance.primary-text'}}</p>
+        <button class="btn btn-primary download"  {{action 'download'}}>
+          {{gru-icon name='file_download'}}
+          <span>{{t 'common.download-print'}}</span>
+        </button>
+      </div>
+
+      <div class="filters">
+        <div class="radios-container">
+            <input id="assessment-content-type" type="radio" name="contentTypeOption"
+                   checked="{{if (eq collectionType 'assessment') 'checked'}}"
+              {{action 'selectContentType' 'assessment' preventDefault=false}}/> <label for="assessment-content-type" >{{t 'student-landing.my-performance.assessments'}}</label>
+            <input id="collection-content-type" type="radio" name="contentTypeOption"
+                   checked="{{if (eq collectionType 'collection') 'checked'}}"
+              {{action 'selectContentType' 'collection' preventDefault=false}}/> <label for="collection-content-type" >{{t 'student-landing.my-performance.collections'}}</label>
+        </div>
+        <div class="performance-scale">
+          {{grading-scale-legend}}
+        </div>
+      </div>
+      {{student.class.analytics.gru-performance-table
+        metrics=metrics
+        contentTitle=contentTitle
+        assessments=collections
+        collectionPerformanceSummaryItems=collectionPerformanceSummaryItems
+      }}
+    </div>
+  </div>
+</div>

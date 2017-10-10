@@ -1,0 +1,75 @@
+<div class="summary-container">
+  {{#if collection.isAssessment}}
+    <div class="grade" style={{gradeStyle}}>
+      <span class="percentage">{{round-number contextResult.correctPercentage}}%</span>
+    <span class="attempts">
+      <span class="fractional fraction"> {{{fractional numerator=contextResult.correctAnswers denominator=contextResult.totalNonOpenEndedQuestions}}}</span>
+      <span class="text">{{t 'common.correct'}}</span>
+    </span>
+    </div>
+  {{else}}
+    {{#if hasQuestionScore}}
+      <div class="grade" style={{gradeStyle}}>
+        <span class="percentage">{{round-number contextResult.reportEvent.averageScore}}%</span>
+        <span class="attempts">
+          <span class="fractional fraction">
+            {{{fractional numerator=contextResult.reportEvent.totalCorrect denominator=contextResult.reportEvent.totalAnswered}}}
+          </span>
+          <span class="text">{{t 'common.correct'}}</span>
+        </span>
+      </div>
+    {{else}}
+      <div class="thumbnail">
+        <span class="title">{{t "qz-assessment-report.qz-summary.total-time-spent"}}</span>
+        <span class="time-spent">{{gru-icon name='av_timer'}}<span>{{format-time contextResult.totalTimeSpent}}</span></span>
+      </div>
+    {{/if}}
+  {{/if}}
+  <div class="overview">
+    <h5>{{contextResult.title}}</h5>
+    <div class="information">
+      {{#if collection.isAssessment}}
+          <span class="attempt">
+          {{#if showAttempts}}
+              <span class="title">{{t "common.attempt"}}</span>
+              <span class="attempt-selector">
+                <span class="dropdown current-attempt">
+                <button class="btn btn-default dropdown-toggle" type="button"
+                    data-toggle="dropdown">{{selectedAttempt}}<span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                  {{#each attempts as |attempt|}}
+                    <li><a {{action 'selectAttempt' attempt.value}}>{{attempt.label}}</a></li>
+                  {{/each}}
+                </ul>
+              </span>
+              <span>{{t "common.of"}}</span>
+              <span class="total-attempts">{{contextResult.totalAttempts}}</span>
+              </span>
+            {{else}}
+                {{#if isRealTime}}
+                    <span class="title current">{{t "common.current-attempt"}}</span>
+                  {{else}}
+                    <span class="title latest">{{t "common.latest-attempt"}}</span>
+                {{/if}}
+          {{/if}}
+           </span>
+      {{/if}}
+      {{#if contextResult.submittedAt}}
+        <span class="date">
+          {{gru-icon name='event'}}<span>{{format-date contextResult.submittedAt 'h:mm a MMM. Do, YYYY'}}</span>
+        </span>
+      {{/if}}
+      <span class="time">
+        {{gru-icon name='av_timer'}}<span>{{format-time contextResult.totalTimeSpent}}</span>
+      </span>
+      <span class="reaction">
+        {{qz-reaction-icon contextResult.averageReaction}}
+      </span>
+    </div>
+    <div class="bubbles">
+      {{#if (not areQuestionLinksHidden)}}
+        {{gru-bubbles bubbleOptions=resourceLinks onBubbleSelect='bubbleSelect'}}
+      {{/if}}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,83 @@
+{{gru-take-tour steps=steps containerClass='class-view-tour'}}
+<div class="teacher class">
+  <div class="header clearfix">
+    <div class="go-back-container">
+      {{#if class.isArchived}}
+        {{#link-to 'teacher-home' (query-params showArchivedClasses="true" showActiveClasses="false") class="back-to"}}
+          {{gru-icon name='arrow_back'}}
+          {{t 'teacher-landing.class.back-to-archived'}}
+        {{/link-to}}
+      {{else}}
+        {{#link-to 'teacher-home' class="back-to"}}
+          {{gru-icon name='arrow_back'}}
+          {{t 'teacher-landing.class.back-to'}}
+        {{/link-to}}
+      {{/if}}
+    </div>
+    <h1>{{class.title}}</h1>
+    <div class="code">
+      <span class="class-code">{{class.code}}</span>
+      {{gru-copy-value value=class.code tooltipCode="teacher-landing.class.click-to-copy"}}
+    </div>
+
+    <div class="panel panel-default panel-primary classroom-information">
+      <div class="panel-heading">{{t 'student-landing.class.classroom'}}</div>
+      <div class="panel-body">
+        <div class="course-info">
+          <span class="legend">{{t 'student-landing.class.assigned-course'}}</span>
+          {{#if course}}
+            {{cards.gru-course-card course=course isSmall=true tagsVisible=3}}
+          {{/if}}
+        </div>
+        <div class="graphics">
+          <div class="graphic performance">
+            <span class="legend">{{t 'teacher-landing.class.performance'}}</span>
+            {{charts.gru-bubble-chart
+            content= (if class.performanceSummary (concat class.performanceSummary.score '%') '--')
+            color=(grade-color class.performanceSummary.score)
+            }}
+          </div>
+          <div class="graphic completed">
+            <span class="legend">{{t "common.completion"}}</span>
+            {{charts.gru-radial-chart
+            value=class.performanceSummary.totalCompleted
+            minValue=0
+            maxValue=class.performanceSummary.total}}
+          </div>
+        </div>
+        <div class="students">
+          <div class="row">
+            <div class="col-md-6 instructor">
+              <span class="legend">{{t "common.instructor"}}</span>
+              {{#if class.owner}}
+                <img class="img-responsive" src="{{class.owner.avatarUrl}}">
+                <div class="owner">
+                  {{#if class.owner.firstName}}
+                    {{truncate text=class.owner.firstName maxLength=10}}&nbsp;{{truncate text=class.owner.lastName maxLength=10}}
+                  {{else}}
+                    {{class.owner.username}}
+                  {{/if}}
+                </div>
+              {{/if}}
+            </div>
+            <div class="col-md-6 members">
+              <span class="legend">{{t "common.enrolled-students"}}</span>
+              {{gru-icon name="people"}}
+              <span>{{class.countMembers}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {{teacher.class.gru-class-navigation
+    class=class
+    onItemSelected="selectMenuItem"
+    onCollapseExpandClicked="toggleHeader"
+    selectedMenuItem=menuItem}}
+
+  <div class="content">
+    {{outlet}}
+  </div>
+</div>

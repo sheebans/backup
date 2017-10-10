@@ -1,0 +1,25 @@
+<div class="collection-results-resources pa-4">
+    <p class="pa-left-6 ma-bottom-0 quantity-resources">
+      {{#if hasResources}}
+        {{collection.resourceCount}} {{#if hasSeveralResources}} {{t "search-result.resources"}} {{else}} {{t "search-result.resource"}} {{/if}}
+        {{#if hasQuestions}}
+          {{t "search-result.and"}}
+        {{/if}}
+      {{/if}}
+      {{#if hasQuestions}}
+        {{collection.questionCount}}
+        {{#if hasSeveralQuestions}} {{t "search-result.questions"}} {{else}} {{t "search-result.question"}} {{/if}}
+      {{/if}}
+      {{t "search-result.in-this-collection"}}
+    </p>
+    <div class="col-md-12 col-sm-12 col-center-block pa-0">
+    {{#each resources as |resource|}}
+        <div class="resource-image col-md-4 col-sm-4">
+            <a data-toggle="tooltip" data-html ="true" data-placement="bottom" title="<strong>{{unbound resource.name }}</strong><p>{{unbound resource.type }}</p>">
+                <img class="gwt-image" src="{{ resource.thumbnailUrl }}">
+                <div class="resource-image-type {{unbound resource.resourceFormat }}-icon"> </div>
+            </a>
+        </div>
+    {{/each}}
+    </div>
+</div>

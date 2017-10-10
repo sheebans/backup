@@ -1,0 +1,101 @@
+<div class="profile-content content-navigation">
+  <div class="category-menu">
+    <ul class="nav nav-tabs category-options">
+      {{#link-to "profile.content.courses" tagName="li" class='courses'}}
+        <a href='{{view.href}}' class="btn btn-category">
+          {{gru-icon name='chrome_reader_mode'}}
+          <span>{{t "common.courses"}}</span>
+        </a>
+      {{/link-to}}
+      {{#link-to "profile.content.collections" tagName="li" class='collections'}}
+        <a href='{{view.href}}' class="btn btn-category">
+          <i class="icon"></i>
+          <span>{{t "common.collections"}}</span>
+        </a>
+      {{/link-to}}
+      {{#link-to "profile.content.assessments" tagName="li" class='assessments'}}
+        <a href='{{view.href}}' class="btn btn-category">
+          <i class="icon"></i>
+          <span>{{t "common.assessments"}}</span>
+        </a>
+      {{/link-to}}
+      {{#link-to "profile.content.resources" tagName="li" class='resources'}}
+        <a href='{{view.href}}' class="btn btn-category">
+          <i class="icon"></i>
+          <span>{{t "common.resources"}}</span>
+        </a>
+      {{/link-to}}
+      {{#link-to "profile.content.questions" tagName="li" class='questions'}}
+        <a href='{{view.href}}' class="btn btn-category">
+          {{gru-icon name='help_outline '}}
+          <span>{{t "common.questions"}}</span>
+        </a>
+      {{/link-to}}
+      {{#link-to "profile.content.rubrics" tagName="li" class='rubrics'}}
+        <a href='{{view.href}}' class="btn btn-category">
+          <i class="icon"></i>
+          <span>{{t "common.rubrics"}}</span>
+        </a>
+      {{/link-to}}
+    </ul>
+
+  </div>
+  {{#if isMyProfile}}
+    <div class="btn-group hidden-xs">
+      <a href="#" class="btn btn-success" data-toggle="dropdown"><span class="hidden-sm">{{t "common.create"}}</span>{{gru-icon name="add" class="visible-sm-inline symbol"}}</a>
+      <a href="#" class="btn btn-success dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
+      <ul class="dropdown-menu dropdown-menu-right">
+        <li><a class="course" href="#" {{action "showModal" "content.modals.gru-course-new"}}><i></i>{{t "common.course"}}</a></li>
+        <li><a class="collection" href="#" {{action "showModal" "content.modals.gru-collection-new"}}><i></i>{{t "common.collection"}}</a></li>
+        <li><a class="assessment" href="#" {{action "showModal" "content.modals.gru-assessment-new"}}><i></i>{{t "common.assessment"}}</a></li>
+        <li><a class="resource" href="#" {{action "showModal" "content.modals.gru-resource-new"}}><i></i>{{t "common.resource"}}</a></li>
+        <li><a class="question" href="#" {{action "showModal" "content.modals.gru-question-new"}}><i></i>{{t "common.question"}}</a></li>
+        <li><a class="rubric" href="#" {{action "showModal" "content.modals.gru-rubric-new"}}><i></i>{{t "common.rubric"}}</a></li>
+      </ul>
+    </div>
+  {{/if}}
+</div>
+{{#unless disableSearch}}
+  <div class="container-fluid filters">
+    <div class="col-md-4 col-sm-4 col-xs-12">
+      <div class="search-navigation">
+        <div class="search-keyword">
+          <span class="search-icon">
+            {{gru-icon name='search'}}
+          </span>
+          {{validation.gru-input model=searchObject valuePath='term' placeholder=(t "common.search-placeholder") hasClearButton=true onEnter=(action "searchByTerm" value=searchObject.term) onClearContent='clearContent'}}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 col-sm-4 col-xs-12">
+      <!--TODO IN COURSE AND NOT IN COURSE FILTERS-->
+    </div>
+    <div class="col-md-4 col-sm-4 hidden-xs sort">
+      <div class="filter-date-asc btn-group" role="group">
+        <button type="button" title="Sort by Most Recently Updated" data-toggle="tooltip" {{action 'filterByDate'}} class="filter-date btn {{if (eq sortOn 'updated_at') 'btn-primary' 'btn-info'}}">
+          {{#if (eq sortOn 'updated_at')}}
+            {{#if (eq order 'asc')}}
+              <div class="arrow arrow-up"></div>
+            {{else}}
+              <div class="arrow arrow-down"></div>
+            {{/if}}
+          {{/if}}
+          {{gru-icon name='timer'}}
+        </button>
+        <button type="button" title="Sort Alphabetically" data-toggle="tooltip" {{action 'filterByTitle'}} class="filter-asc btn {{if (eq sortOn 'title') 'btn-primary' 'btn-info'}}">
+          {{gru-icon name='sort_by_alpha'}}
+          {{#if (eq sortOn 'title')}}
+            {{#if (eq order 'desc')}}
+              <div class="arrow arrow-up"></div>
+            {{else}}
+              <div class="arrow arrow-down"></div>
+            {{/if}}
+          {{/if}}
+        </button>
+      </div>
+    </div>
+  </div>
+{{/unless}}
+<div class="content_outlet">
+  {{outlet}}
+</div>

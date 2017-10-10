@@ -1,0 +1,25 @@
+
+{{reports.class-assessment.qz-summary
+  reportData=reportData
+  onSelectQuestion=(action 'viewQuestionDetail')
+}}
+
+<div class="view-container {{if isTableView 'student-view' 'table-view'}}">
+
+  {{gru-view-layout-picker onViewLayoutChange='changeView'}}
+
+  {{reports.class-assessment.qz-table-view
+    reportData=reportData
+    onSelectQuestion=(action 'viewQuestionDetail')
+    onSelectStudent=(action 'viewAssessmentReport')
+    anonymous=anonymous
+  }}
+
+  {{reports.class-assessment.qz-student-view
+    anonymous=anonymous
+    reportData=reportData
+    onSelectQuestion=(action 'viewQuestionDetail')
+    onSelectStudent=(action 'viewAssessmentReport')
+  }}
+
+</div>

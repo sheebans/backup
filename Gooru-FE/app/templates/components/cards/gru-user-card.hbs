@@ -1,0 +1,27 @@
+{{#if isStudentCard}}
+  {{#link-to "profile.content.courses" user.id tagName="span"}}
+    <img class="avatar" src="{{user.avatarUrl}}">
+  {{/link-to}}
+  {{#link-to "profile.content.courses" user.id tagName="span" class="user-name display-name"}}
+    {{#if user.firstName}}
+      {{truncate text=user.firstName maxLength=10}} <br> {{truncate text=user.lastName maxLength=10}}
+    {{else}}
+      {{user.username}}
+    {{/if}}
+  {{/link-to}}
+{{else}}
+  <span>
+    <img class="avatar" src="{{user.avatarUrl}}">
+  </span>
+  {{#if user.firstName}}
+    <span class="display-name user-name">{{truncate text=user.firstName maxLength=10}} <br> {{truncate text=user.lastName maxLength=10}}</span>
+  {{else}}
+    <span class="display-name user-name">{{user.username}}</span>
+  {{/if}}
+{{/if}}
+
+{{#if isTeacherAndStudentCard}}
+  <span class="remove" {{action 'removeStudent'}}>
+      {{t 'common.remove'}}
+  </span>
+{{/if}}

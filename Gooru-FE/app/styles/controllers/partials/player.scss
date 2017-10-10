@@ -1,0 +1,45 @@
+.player,
+.context-player,
+.study-player {
+  overflow: hidden;
+
+  .gru-header,
+  .gru-footer {
+    display: none;
+  }
+
+  .app-container {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+
+    .aside {
+      // temporary for GG-92
+      background: #eeeeee;
+
+      @include translate-hide(-100%);
+      @include position(absolute, 0, null, 0, 0);
+      z-index: 20;
+      width: 260px;
+
+      @media (min-width: $screen-md) {
+        @include translate-show();
+      }
+    }
+
+    &.navigator-on .aside {
+      @include translate-show();
+    }
+  }
+
+  .report-navigation {
+    padding: 10px 15px;
+  }
+  .reports.gru-assessment-report {
+    overflow: auto;
+    height: 100vh;
+    width: 100%;
+    float: right;
+    padding: 10px 15px;
+  }
+}

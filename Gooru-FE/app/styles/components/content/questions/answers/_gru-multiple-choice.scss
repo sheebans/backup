@@ -1,0 +1,105 @@
+.questions.answers.gru-multiple-choice {
+  padding: 10px 0;
+
+  .panel {
+    margin-bottom: 15px;
+
+    div.answer-content {
+      @include flexbox();
+
+      > div,
+      button {
+        display: inline-block;
+      }
+
+      .delete {
+        outline: none;
+        padding: 10px;
+        cursor: pointer;
+        border: 0;
+        background: $white;
+      }
+
+      .letter-container {
+        margin: 0 20px 0 0;
+        min-width: 4em;
+        text-align: center;
+        @include align-self(center);
+        border-right: 1px solid $gray-light;
+
+        h3 {
+          padding: 0;
+        }
+      }
+
+      .text-area-container {
+        @include flex();
+        width: auto;
+        margin-top: 5px;
+        overflow: auto;
+        word-wrap: break-word;
+        .gru-rich-text-editor {
+          .btn-toolbar {
+            max-width: 59em;
+          }
+          .rich-editor {
+            min-height: 3.2em;
+            max-height: 6.9em;
+            margin: 10px 20px 10px 0;
+            border-left: 0;
+            border-right: 0;
+            border-top: 0;
+            overflow: auto;
+            word-wrap: break-word;
+            max-width: 49em;
+            &.editable {
+              max-width: 59em;
+            }
+          }
+        }
+        p {
+          margin: 10px 0 10px 10px;
+        }
+      }
+      .check {
+        min-height: 4.9em;
+        width: 4.1em;
+        text-align: center;
+        height: auto;
+      }
+      button.check {
+        outline: none;
+        border: 0;
+        background-color: $light-200;
+        color: $light-400;
+        border-bottom-right-radius: 6px;
+        border-top-right-radius: 6px;
+        cursor: pointer;
+      }
+      button.check.correct {
+        background-color: $green-300;
+        color: $dark-200;
+      }
+      div.check.correct {
+        padding: 10px 0 10px 0;
+        margin: auto 0;
+        color: $green-300;
+        line-height: 3.4;
+      }
+    }
+  }
+  .add-answer {
+    margin-bottom: 30px;
+    a {
+      cursor: pointer;
+      border: 2px dashed $gray-light;
+      border-radius: 6px;
+      margin-top: 10px;
+      color: $gray;
+      display: block;
+      width: 100%;
+      padding: 20px;
+      text-align: center;
+    }
+  }
+}

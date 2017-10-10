@@ -1,0 +1,30 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{t "common.add-new-question"}}</h4>
+</div>
+<div class="modal-body">
+    <form>
+        <label class="type">
+            <span class="required">{{t 'common.add-type-question'}}</span>
+        </label>
+        <div class="question-types text-center">
+          {{#each questionTypes as |questionType|}}
+              <div class="panel panel-default {{if (eq questionType 'T/F') 'question-type-T_F' (concat 'question-type-' questionType)}} {{set-if-equal 'active' questionType selectedType}}" {{action 'selectType' questionType}}>
+                  <div class="panel-body">
+                      <i class="question-type-icon"></i>
+                  </div>
+                  <div class="panel-footer">
+                    {{t (concat 'common.question-type.' questionType) }}
+                  </div>
+              </div>
+          {{/each}}
+        </div>
+        <div class="actions question-new">
+            <button type="button" class="btn btn-default cancel" data-dismiss="modal" aria-label="{{t 'common.close'}}">
+                <span aria-hidden="true">{{t 'common.cancel'}}</span>
+            </button>
+          {{#gru-spinner-button classes='btn btn-primary' text=(t 'common.loading') isLoading=isLoading}}
+              <button class="btn btn-primary add" {{action "createQuestion" }}>{{t 'common.create'}}</button>
+          {{/gru-spinner-button}}
+        </div>
+    </form>
+</div>

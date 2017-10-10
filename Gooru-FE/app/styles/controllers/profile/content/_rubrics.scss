@@ -1,0 +1,16 @@
+.controller.content-rubrics {
+  padding: 20px 0px;
+  .rubrics {
+    @include flexbox;
+    @include flex-wrap(wrap);
+    @include justify-content(center);
+
+    .card {
+      margin: 12px 12px;
+      float: left;
+    }
+  }
+  .show-more-results {
+    margin-top: 20px;
+  }
+}

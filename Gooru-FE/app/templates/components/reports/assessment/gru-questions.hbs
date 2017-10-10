@@ -1,0 +1,117 @@
+<div class="questions-header">
+  <div class="title">
+    <h4>{{if isOpenEnded (t "common.questions-OE") (t "common.questions")}}</h4>
+  </div>
+  {{#unless isOpenEnded}}
+    {{#if isAnswerKeyHidden}}
+      <em>{{t "common.answer-key-was-hidden"}}</em>
+    {{else}}
+      <div class="btn-group" role="group">
+        <button type="button" {{action 'selectPerformanceOption' true}} class="performance btn {{if showPerformance 'btn-primary' 'btn-info'}}">{{t "common.performance"}}</button>
+        <button type="button" {{action 'selectPerformanceOption' false}} class="correct-answer btn {{unless showPerformance 'btn-primary' 'btn-info' }}">{{t "common.show-correct-answer"}}</button>
+      </div>
+    {{/if}}
+  {{/unless}}
+</div>
+<table class="hidden-xs">
+  <thead>
+  <tr>
+    <th class="header number">
+      {{t "common.number"}}
+    </th>
+    <th class="header {{if result.question.isOpenEnded 'open-ended-question' 'question'}} top-left">
+      {{t "common.question"}}
+    </th>
+    <th class="header answer top-left">
+      {{t "common.answer"}}
+    </th>
+    {{#unless isOpenEnded}}
+      <th class="header score {{if showPerformance 'visible' 'hide'}}">
+        {{t "common.score"}}
+      </th>
+    {{/unless}}
+    <th class="header time-spent {{if showPerformance 'visible' 'hide'}}">
+      {{t "common.timeSpent"}}
+     </th>
+    {{#if showReactionBar}}
+      <th class="header reaction {{if showPerformance 'visible' 'hide'}}">
+        {{t "common.reaction"}}
+      </th>
+    {{/if}}
+    {{#if isOpenEnded}}
+      <th class="header report">
+        {{t "common.report"}}
+      </th>
+    {{/if}}
+    {{#unless isAnswerKeyHidden}}
+      <th class="header correct-answer top-left {{if showPerformance 'hide' 'visible'}}">
+        {{t "common.correct-answer"}}
+      </th>
+    {{/unless}}
+  </tr>
+  </thead>
+  <tbody>
+  {{#each results as |result index|}}
+    <tr id="resource-{{result.resource.order}}">
+      <td class="number-question top-left">
+        {{result.resource.order}}
+      </td>
+      <td class="question-text top-left">
+        <div class="text">
+          {{gru-math-text text=(if result.question.isFIB result.question.fibText result.question.text)}}
+          {{#if result.question.hasMedia}}
+            <img class="img-responsive" src="{{result.question.mediaUrl}}"/>
+          {{/if}}
+        </div>
+      </td>
+      <td class="question-answer top-left">
+        {{#if result.answered}}
+          {{{component (question-config result.question.questionType 'component.answer') question=result.question userAnswer=result.userAnswer}}}
+        {{/if}}
+      </td>
+      {{#unless result.question.isOpenEnded}}
+        <td class="question-score {{if showPerformance 'visible' 'hide'}}">
+          <span class="{{if result.correct 'correct' 'incorrect'}}">
+            {{gru-icon name='radio_button_checked'}}
+          </span>
+        </td>
+      {{/unless}}
+      <td class="question-time {{if showPerformance 'visible' 'hide'}}">
+        {{format-time result.timeSpent}}
+      </td>
+      {{#if showReactionBar}}
+        <td class="question-reaction {{if showPerformance 'visible' 'hide'}}">
+          {{reaction-icon result.reaction appRootPath}}
+        </td>
+      {{/if}}
+      {{#if result.question.isOpenEnded}}
+        <td class="question-report">
+          {{#if result.isGraded}}
+            <a {{action 'viewOEReport' result.question.id}}>
+              <span class="report-icon">{{gru-icon name='library_books'}}</span>
+            </a>
+          {{/if}}
+        </td>
+      {{/if}}
+      {{#unless isAnswerKeyHidden}}
+        <td class="correct-answer top-left {{if showPerformance 'hide' 'visible'}}">
+          {{{component (question-config result.question.questionType 'component.answer') question=result.question showCorrect=true}}}
+        </td>
+      {{/unless}}
+    </tr>
+  {{/each}}
+  </tbody>
+</table>
+<div class="question-cards cards visible-xs">
+  <div class="header">
+    <span class="question-number">{{t "common.number"}}</span>
+    <span class="question-text">{{t "common.question"}}</span>
+  </div>
+  <ul class="question-cards-list">
+    {{#each results as |result|}}
+      <li id="mobile-resource-{{result.resource.order}}">
+        {{reports.assessment.gru-questions-xs result=result showPerformance=showPerformance}}
+      </li>
+    {{/each}}
+  </ul>
+</div>

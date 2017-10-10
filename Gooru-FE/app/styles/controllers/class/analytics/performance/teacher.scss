@@ -1,0 +1,93 @@
+.controller.analytics-performance-teacher {
+  .better-experience {
+    margin-bottom: 0;
+  }
+
+  .row {
+    > [class*='col-']:first-child {
+      padding-left: 56px;
+      margin: 0 0 10px 0;
+      @media (max-width: $screen-xs-max) {
+        padding-left: 15px;
+      }
+    }
+    > [class*='col-']:last-child {
+      padding-left: 56px;
+      @media (max-width: $screen-xs-max) {
+        padding-left: 15px;
+      }
+    }
+  }
+
+  .nav {
+    margin-top: 37px;
+  }
+
+  .controls,
+  .gru-filters {
+    margin-top: 15px;
+  }
+
+  .controls {
+    .teacher-actions {
+      .gru-actions-bar {
+        @media (min-width: $screen-sm) {
+          text-align: right;
+        }
+        .drop-menu {
+          @media (max-width: $screen-xs-max) {
+            margin: 10px 0 0 0;
+          }
+          button {
+            @media (max-width: $screen-xs-max) {
+              margin: 0 0 5px 0;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .gru-filters {
+    width: 100%;
+    display: table;
+    padding: 0;
+    .data-picker {
+      float: left;
+      padding-left: 56px;
+      height: 50px;
+      @media (max-width: $screen-xs-max) {
+        width: 100vw;
+        padding: 0;
+        height: auto;
+        .list-inline {
+          background: $white;
+        }
+      }
+    }
+    .performance-scale {
+      height: 50px;
+      display: table;
+      float: right;
+      @media (max-width: $screen-xs-max) {
+        padding-left: 15px;
+        margin: 10px 0 0 0;
+        float: left;
+      }
+      .scale-indicator {
+        vertical-align: middle;
+        display: table-cell;
+        .grading-scale {
+          float: right;
+          @media (max-width: $screen-xs-max) {
+            float: left;
+          }
+        }
+      }
+    }
+  }
+
+  .gru-content {
+    min-height: 400px; /* This is temporal for layout */
+  }
+}

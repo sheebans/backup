@@ -1,0 +1,278 @@
+<header>
+  {{#if collection}}
+    {{#link-to 'content.collections.edit' collection.id class="back-to"}}
+        <div>
+          {{gru-icon name="keyboard_arrow_left"}}{{t 'common.collection'}}: {{collection.title}}
+        </div>
+    {{/link-to}}
+  {{/if}}
+  <h1>{{t "common.edit-resource"}}</h1>
+
+  <div class="actions">
+    <button class="btn btn-default btn-icon delete" title="{{t 'common.delete'}}" {{action 'deleteResource' resource}}>{{gru-icon name="delete"}}</button>
+    {{#gru-share-pop-over tagName="button" type="resource"}}
+      {{gru-icon name="insert_link"}}
+    {{/gru-share-pop-over}}
+    <button class="btn btn-default copy" title="{{t 'common.copy-to'}}" {{action "addToCollection"}}>{{t "common.copy-to"}}</button>
+    {{#link-to 'content.resources.play' resource.id class="btn btn-default preview" tagName="button"}}{{t "common.preview"}}{{/link-to}}
+  </div>
+
+  <nav>
+    {{#gru-scroll to="#resource" class="selected" offset='article > header'}}{{t "common.resource"}}{{/gru-scroll}}
+    {{#gru-scroll to="#information" offset='article > header'}}{{t "common.information"}}{{/gru-scroll}}
+    {{#gru-scroll to="#settings" offset='article > header'}}{{t "common.settings"}}{{/gru-scroll}}
+  </nav>
+
+</header>
+
+<section id="resource">
+  <div class="header">
+    <h2>{{t "common.resource"}}</h2>
+  </div>
+  <div class="content">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <p>{{t "common.resource-url"}}*</p>
+        <p>{{clean-file-name resource.url}}</p>
+      </div>
+    </div>
+    {{#if (and (not isVideo) (not sameProtocol))}}
+      <div class="panel panel-default placeholder {{if resourceComponent 'preview'}}">
+        <div class="panel-body">
+          <div class="external-https">
+            {{cards.gru-resource-card resource=resource addEnabled=false isLinkOut=true}}
+          </div>
+        </div>
+      </div>
+    {{else}}
+      <div class="panel panel-default placeholder {{if resourceComponent 'preview'}}">
+        <div class="panel-body">
+          {{#if isNotIframeUrl}}
+            <div class="panel panel-default not-iframe">
+              <div class="panel-header">
+                <p class="title">
+                  {{t 'player.gru-viewer.not-iframe-url.header_1'}}
+                  <br>
+                  {{t 'player.gru-viewer.not-iframe-url.header_2'}}
+                </p>
+              </div>
+              <div class="panel-body">
+                {{cards.gru-resource-card resource=resource editEnabled=false isLinkOut=true}}
+              </div>
+              <div class="panel-footer">
+                <p class="title">
+                  {{t 'player.gru-viewer.not-iframe-url.footer_1'}}
+                </p>
+                <p class="description">
+                  {{t 'player.gru-viewer.not-iframe-url.footer_2'}}<br>
+                  {{t 'player.gru-viewer.not-iframe-url.footer_3'}}<br>
+                  {{t 'player.gru-viewer.not-iframe-url.footer_4'}}
+                </p>
+              </div>
+            </div>
+          {{else}}
+            {{#if resourceComponent}}
+              {{component resourceComponent resource=resource}}
+            {{else}}
+              <h2 class="resource-message">
+                {{t "content.resources.edit.not-implemented"}}
+              </h2>
+            {{/if}}
+          {{/if}}
+        </div>
+      </div>
+    {{/if}}
+  </div>
+</section>
+
+<section id="information">
+  <div class="header">
+    <h2>{{t "common.information"}}</h2>
+    {{partial 'content/partials/information-actions'}}
+  </div>
+  <div class="content">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-sm-12 col-md-6 form-field title">
+            <label>
+              <span class="required">{{t "common.resource-title"}}</span>
+              {{#if isEditing}}
+                {{validation.gru-input model=tempResource valuePath='title' maxLength=50 didValidate=didValidate}}
+              {{else}}
+                <b>{{resource.title}}</b>
+              {{/if}}
+            </label>
+          </div>
+          <div class="col-sm-12 col-md-6 form-field publisher">
+            <label>
+              <span>{{t "common.publisher"}}</span>
+              {{#if isEditing}}
+                <div class="form-group inline">
+                  {{#if tempResource.amIThePublisher}}
+                    {{validation.gru-input model=session valuePath='userData.username' class='publisher' maxLength=50 disabled=true didValidate=didValidate}}
+                  {{else}}
+                    {{validation.gru-input model=tempResource valuePath='publisher' maxLength=50 didValidate=didValidate}}
+                  {{/if}}
+                </div>
+                <div class="checkbox-inline">
+                  {{input id="im-publisher" type="checkbox" checked=tempResource.amIThePublisher change=(action 'setPublisher' value="target.checked")}}
+                  <label for="im-publisher">{{t "content.resources.edit.information.im-publisher"}}</label>
+                </div>
+              {{else}}
+                {{#if resource.publisher}}
+                  <b>{{resource.publisher}}</b>
+                {{else}}
+                  <b>{{t 'common.not-provided'}}</b>
+                {{/if}}
+              {{/if}}
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6 form-field type">
+            <label>
+              <span class="required">{{t "common.type"}}</span>
+              {{#if isEditing}}
+                <div class="btn-group clearfix">
+                  <button type="button" class="btn btn-primary btn-sm {{if disableTypeEdition 'disabled'}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{#if tempResource.format}}
+                      {{t (concat 'common.resource-format.' tempResource.format) }}
+                    {{else}}
+                      {{t 'common.select-resource-type'}}
+                    {{/if}}
+                  </button>
+                  <button type="button" class="btn btn-primary btn-sm dropdown-toggle {{if disableTypeEdition 'disabled'}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="caret"></span>
+                    <span class="sr-only">Toggle Dropdown</span>
+                  </button>
+                  <ul class="dropdown-menu">
+                    {{#each resourceTypes as |resourceType|}}
+                      <li><a {{action 'selectType' resourceType }}>{{t (concat 'common.resource-format.' resourceType) }}</a></li>
+                    {{/each}}
+                  </ul>
+                </div>
+              {{else}}
+                <b>{{t (concat 'common.resource-format.' resource.format) }}</b>
+              {{/if}}
+            </label>
+          </div>
+          <div class="col-sm-6 form-field link-out">
+            <label>
+                <span>{{t "common.link-out"}}</span>
+              {{#if isEditing}}
+                    {{gru-switch switchOptions=switchOptions onOptionSwitch='linkSwitch' isChecked=tempResource.displayGuide}}
+                    <span>{{t "common.link-out-message"}}</span>
+                {{else}}
+                  {{#if resource.displayGuide}}
+                      <b>{{t "common.on"}}</b>
+                    {{else}}
+                      <b>{{t "common.off"}}</b>
+                  {{/if}}
+              {{/if}}
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6 form-field license out-of-scope">
+            <label>
+              <span>{{t "common.license"}}</span>
+              {{#if isEditing}}
+                <select onchange={{action (mut tempResource.license) value="target.value"}}>
+                  <option value="">{{t 'content.resources.edit.information.select-a-license'}}</option>
+                </select>
+              {{else}}
+                {{#if resource.license}}
+                  <b>{{resource.license}}</b>
+                {{else}}
+                  <b>{{t 'common.not-provided'}}</b>
+                {{/if}}
+              {{/if}}
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6 form-field description">
+            <label>
+              <span>{{t "common.description"}}</span>
+              {{#if isEditing}}
+                {{validation.gru-textarea model=tempResource valuePath='description' rows=2 maxLength=500 didValidate=didValidate}}
+              {{else}}
+                {{#if resource.description}}
+                  <b>{{resource.description}}</b>
+                {{else}}
+                  <b>{{t 'common.not-provided'}}</b>
+                {{/if}}
+              {{/if}}
+            </label>
+          </div>
+          <div class="col-sm-6 form-field century-skills">
+            <label>
+              <span>{{t "common.century-skills"}}</span>
+              {{#if isEditing}}
+                <button type="button" class="btn btn-primary choose"
+                  {{action 'openSkillsModal'}}>
+                  {{gru-icon name="open_in_new"}} {{t "common.choose"}}
+                </button>
+                <div class="skills-buttons">
+                  {{#each tempSelectedSkills as |skill|}}
+                    {{century-skills.gru-century-skill-tag skill=skill isReadOnly=false onRemove=(action 'removeSkill')}}
+                  {{/each}}
+                </div>
+              {{else}}
+                <div class="skills">
+                  {{#if selectedSkills.length}}
+                    {{#each selectedSkills as |skill|}}
+                      {{century-skills.gru-century-skill-tag skill=skill}}
+                    {{/each}}
+                  {{else}}
+                    {{t "common.not-specified"}}
+                  {{/if}}
+                </div>
+              {{/if}}
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12 form-field standards">
+            {{#if isEditing}}
+              {{taxonomy.gru-taxonomy-selector
+              isEditing=isEditing
+              onSubjectSelected="selectSubject"
+              onCategorySelected="selectCategory"
+              selectedSubject=selectedSubject
+              subjectLabelKey='common.subject-and-framework'
+              onlySubjectsWithStandards=true
+              }}
+            {{/if}}
+            <div class="standards">
+              <label>
+                <span>{{t standardLabelKey}}</span>
+              </label>
+              {{#if isEditing}}
+                <button type="button" class="btn btn-primary"
+                  {{action 'openTaxonomyModal'}}
+                        disabled={{standardDisabled}}>
+                  {{gru-icon name="open_in_new"}} {{t "common.select"}}
+                </button>
+                <div class="tags">
+                  {{taxonomy.gru-taxonomy-tag-list tags=editableTags onRemove=(action 'removeTag')}}
+                </div>
+              {{else}}
+                <div class="tags">
+                  {{#if tags.length}}
+                    {{taxonomy.gru-taxonomy-tag-list tags=tags}}
+                  {{else}}
+                    {{t "common.not-specified"}}
+                  {{/if}}
+                </div>
+              {{/if}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{content.gru-settings-edit id="settings" action='publishToProfile' model=resource}}

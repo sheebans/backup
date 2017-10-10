@@ -1,0 +1,23 @@
+{{#if class.courseId}}
+  <div class="controller teacher class course-map">
+    <button {{action "editContent" course.id class.id}} class="btn btn-default edit-content">
+      {{t "class.overview.edit-content"}}
+    </button>
+
+    {{class.overview.gru-accordion-course
+    currentClass=class
+    classMembers=classMembers
+    onSelectResource="playResource"
+    onLocationUpdate=(action 'updateLocation')
+    onLaunchOnAir="launchOnAir"
+    location=location
+    units=units
+    contentVisibility=contentVisibility
+    onUpdateContentVisibility="updateContentVisibility"
+    isTeacher=true
+    isNUCourse=isNUCourse}}
+
+  </div>
+{{else}}
+  <div class="no-content">This classroom does not have a related course and it has no content</div>
+{{/if}}

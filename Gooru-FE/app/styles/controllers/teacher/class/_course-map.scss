@@ -1,0 +1,15 @@
+.teacher.course-map {
+  .gru-accordion {
+    .panel-heading {
+      padding: 8px 0;
+      margin: 0;
+      background-color: $white;
+      @media (min-width: $screen-md-min) {
+        padding: 8px 10px;
+      }
+    }
+    .panel-group .panel + .panel {
+      margin-top: 10px;
+    }
+  }
+}

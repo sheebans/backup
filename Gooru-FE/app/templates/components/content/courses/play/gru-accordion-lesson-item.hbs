@@ -1,0 +1,36 @@
+<div class="panel panel-default view collapsed">
+  <div class="panel-heading">
+    <h3>{{plus-one index}}</h3>
+    {{#if model.isExternalAssessment}}
+      <a href="{{model.url}}" target="_blank" class="title">
+        <img class="img-rounded" src="{{model.thumbnailUrl}}" />
+        <div>
+          <strong>{{model.title}}</strong>
+          <span>{{model.format}}</span>
+        </div>
+      </a>
+    {{else}}
+      {{#link-to 'player' model.id (query-params type=model.collectionType role='student') class="title"}}
+        <img class="img-rounded" src="{{model.thumbnailUrl}}" />
+        <div>
+          <strong>{{model.title}}</strong>
+          <span>{{model.format}}</span>
+        </div>
+      {{/link-to}}
+    {{/if}}
+    <div class="detail">
+      {{#if model.isCollection}}
+      <div class="{{if model.questionCount 'mixed'}}">
+        <span><b>{{model.resourceCount}}</b> {{t "common.resource-pl" count=model.resourceCount}}</span>
+        {{#if model.questionCount}}
+          <span><b>{{model.questionCount}}</b> {{t "common.question-pl" count=model.questionCount}}</span>
+        {{/if}}
+      </div>
+      {{else}}
+      <div>
+        <span><b>{{model.questionCount}}</b> {{t "common.question-pl" count=model.questionCount}}</span>
+      </div>
+      {{/if}}
+    </div>
+  </div>
+</div>

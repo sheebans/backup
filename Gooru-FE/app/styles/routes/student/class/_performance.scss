@@ -1,0 +1,81 @@
+.student.class.performance {
+  margin: 20px 0;
+  @include flexbox;
+  @include flex-direction(column);
+
+  @media (min-width: $screen-sm) {
+    @include flex-direction(row);
+  }
+  .navigation {
+    @include flex-shrink(0);
+    background-color: $dark-400;
+    height: auto;
+    max-height: 890px;
+    color: #949a9f;
+    padding: 0;
+    font-size: 19px;
+    width: 100%;
+    @media (min-width: $screen-sm) {
+      width: 20%;
+    }
+  }
+  .content {
+    padding: 20px;
+    width: 100%;
+    .panel-header {
+      height: 45px;
+      h1 {
+        float: left;
+        font-size: $font-size-h4;
+        margin: 2px 0 0 0;
+        width: auto;
+      }
+      button {
+        float: right;
+        padding: 6px 10px 6px 8px;
+        &.download {
+          @media (max-width: $screen-xs) {
+            float: left;
+            display: block;
+            margin: 10px 0;
+          }
+        }
+      }
+      p {
+        float: left;
+        font-size: 18px;
+        margin: 15px 0 0 0;
+        line-height: 20px;
+        width: 100%;
+      }
+    }
+    .filters {
+      @include flexbox;
+      @include justify-content(space-between);
+      height: auto;
+      width: 100%;
+      padding: 6px 0 0 0;
+      margin: 0 0 10px;
+      .radios-container {
+        @include flexbox;
+        @include align-items(end);
+        input[type=radio] {
+          height: 25px;
+          margin-left: 20px;
+        }
+        label {
+          padding-left: 0;
+        }
+        & > :last-child {
+          margin-right: 0;
+        }
+      }
+      .performance-scale {
+        float: right;
+        margin: 5px 0 0 0;
+        right: 15px;
+        position: absolute;
+      }
+    }
+  }
+}

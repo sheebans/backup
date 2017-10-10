@@ -1,0 +1,88 @@
+.cards.gru-user-network-card {
+  .truncate {
+    width: 90%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .panel {
+    width: 220px;
+    height: 180px;
+    border-radius: 6px;
+    .panel-heading {
+      background-color: $white;
+      border-bottom: 1px solid $gray-lighter;
+      border-top-right-radius: 6px;
+      border-top-left-radius: 6px;
+      padding: 10px 15px 0px 15px;
+      .image {
+        display: inline-block;
+        width: 60px;
+        img {
+          width: 60px;
+          height: 60px;
+          border-radius: 50%;
+        }
+      }
+      .user-info {
+        display: inline-block;
+        color: $text-color;
+        vertical-align: top;
+        margin-left: 15px;
+        width: 110px;
+        h6 {
+          margin: 5px 0 5px 0;
+        }
+      }
+    }
+    .panel-body {
+      padding: 15px 0 0 0;
+      .following-followers {
+        > * {
+          width: 49%;
+          display: inline-block;
+        }
+      }
+      .followers {
+        border-right: 1px solid $gray-lighter;
+      }
+      .count {
+        font-weight: bold;
+      }
+    }
+    .panel-footer {
+      padding: 0;
+      height: 43px;
+      background-color: $white;
+      border-bottom-right-radius: 6px;
+      border-bottom-left-radius: 6px;
+      .follow-btn {
+        padding-top: 15px;
+        button {
+          width: 100%;
+          border-top-left-radius: 0;
+          border-top-right-radius: 0;
+        }
+        .btn-unfollow {
+          background-color: $light-300;
+          .unfollow {
+            display: none;
+          }
+          .following {
+            display: inline;
+          }
+          &:hover,
+          &:focus {
+            @extend .btn-info;
+            .unfollow {
+              display: inline;
+            }
+            .following {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}

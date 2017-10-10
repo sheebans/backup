@@ -1,0 +1,26 @@
+{{player.gru-study-header
+  classId=classId
+  collection=collection
+  courseId=course.id
+  courseTitle=course.title
+  breadcrumbs=breadcrumbs
+  showConfirmation=showConfirmation
+  onToggleHeader='toggleHeader'
+  resourceSequence=resource.sequence
+  actualResource=resource
+  isPreTest=(and hasPreTestSuggestions showSuggestion)
+  courseVersion=courseVersion
+}}
+<div class="player-container {{if showConfirmation 'show-confirmation' 'no-confirmation'}}">
+  {{#unless showConfirmation}}
+    {{#if toggleState}}
+      {{gru-take-tour steps=steps containerClass='study-player-tour'}}
+    {{/if}}
+  {{/unless}}
+
+  {{#if (and hasPreTestSuggestions showSuggestion)}}
+      {{player.gru-suggest-test type=typeSuggestion onPlayCollection='playActualCollection' onPlaySuggestion='playSuggestion'}}
+  {{else}}
+    {{partial 'partials/qz-player'}}
+  {{/if}}
+</div>

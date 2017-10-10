@@ -1,0 +1,58 @@
+<div class="controller home row">
+  <iframe id="download_iframe" style="display:none;"></iframe>
+  <div class="greetings">
+    <div class="title">
+        <span>Hi {{profile.firstName}}!</span>
+        {{gru-tour steps=steps containerClass='home-tour'}}
+    </div>
+    <p>
+      {{t 'user.joined-classes' count=totalJoinedClasses}}{{t 'user.teaching-classes' count=totalTeachingClasses}}.
+    </p>
+  </div>
+  <div class="home-navigator">
+      <ul class="nav nav-tabs" role="tablist">
+          <li role="presentation" class="active active-classes tab hidden-xs">
+            <a href="#active-classes" aria-controls="activeClasses" role="tab" data-toggle="tab" {{action 'showClasses' 'active'}}>
+              <span class="lead">{{t 'user.active-classrooms'}}</span>
+            </a>
+          </li>
+          <li role="presentation" class="archived-classes tab hidden-xs">
+            <a href="#archived-classes" aria-controls="archivedClasses" role="tab" data-toggle="tab" {{action 'showClasses' 'archived'}}>
+              <span class="lead">{{t 'user.archived-classrooms'}}</span>
+            </a>
+          </li>
+          <li class="pull-right actions">
+            {{#link-to 'content.classes.create' class="btn btn-success create-class-cta" tagName='button'}}
+              {{t 'user.create-class'}}
+            {{/link-to}}
+            {{#link-to 'content.classes.join' class="btn btn-success join-class-cta" tagName='button'}}
+              {{t 'user.join-class'}}
+            {{/link-to}}
+          </li>
+      </ul>
+  </div>
+  <div class="content tab-content">
+    <div role="tabpanel" class="tab-pane row {{if showActiveClasses 'active'}}" id="active-classes">
+      {{#if hasClasses}}
+        {{#each activeClasses as |class|}}
+          {{cards.gru-class-card
+          class=class
+          profile=profile
+          classStudentCount=myClasses.memberCount}}
+        {{/each}}
+        {{else}}
+        {{partial 'partials/no-classes-found'}}
+      {{/if}}
+    </div>
+    <div role="tabpanel" class="tab-pane row {{if showArchivedClasses 'active'}}" id="archived-classes">
+      {{#each archivedClasses as |class|}}
+          {{cards.gru-class-card
+          class=class
+          profile=profile
+          onDownloadReport="downloadReport"
+          onRequestReport="requestReport"
+          classStudentCount=myClasses.memberCount}}
+      {{/each}}
+    </div>
+  </div>
+</div>

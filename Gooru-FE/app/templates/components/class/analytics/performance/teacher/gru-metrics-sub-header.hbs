@@ -1,0 +1,27 @@
+{{#each visibleMetrics as |metric index|}}
+  {{#if showReport}}
+    {{#if (eq index 1)}}
+      <div class="metrics-sub-header table-cell report">
+          <span class="metric-sub-header report">
+            {{t 'gru-metrics-sub-header.report'}}
+          </span>
+      </div>
+    {{/if}}
+  {{/if}}
+  {{#if metric.visible}}
+    <div class="metrics-sub-header table-cell">
+      <a class="metric-sub-header {{metric.value}}" {{action 'sort' metric}}>
+        {{t (concat 'gru-metrics-sub-header.' metric.value) }}
+      </a>
+      {{#if metric.sorted}}
+        {{#if metric.isAsc}}
+          <span>{{gru-icon name='arrow_upward'}}</span>
+        {{else}}
+          <span>{{gru-icon name='arrow_downward'}}</span>
+        {{/if}}
+      {{else}}
+        <span>{{gru-icon name='swap_vert'}}</span>
+      {{/if}}
+    </div>
+  {{/if}}
+{{/each}}

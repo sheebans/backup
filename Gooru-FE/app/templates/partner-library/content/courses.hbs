@@ -1,0 +1,24 @@
+<div class="controller profile-courses">
+  <div class="course-content">
+    {{#each courses as |course|}}
+      {{new-cards.gru-collection-card
+        profile=sessionProfile
+        isCourse=true
+        isOnProfile=true
+        content=course
+        onOpenIndependentPlayer="playIndependentContent"
+        onBookmarkContent="onBookmarkCourse"
+      }}
+    {{else}}
+      <div class="no-content panel add-content panel-default">
+        <div class="panel-body">
+          {{gru-icon name='explore'}}
+          <p>{{{t "common.no-courses-to-display"}}}</p>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+  {{#if showMoreResultsButton}}
+    <span class="show-more-results" {{action 'showMoreResults'}}>{{t "common.show-more-results"}}</span>
+  {{/if}}
+</div>

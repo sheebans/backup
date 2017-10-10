@@ -1,0 +1,21 @@
+{{#if tenant}}
+  {{tenant.gru-tenant-theme tenant=tenant}}
+{{/if}}
+<div class="gooru {{if configuration.embedded 'embedded'}}">
+    {{#if features.header.enabled}}
+    {{gru-header
+      term=term
+      onLogout="logout"
+      onSearch="searchTerm"
+      isInvalidSearchTerm=isInvalidSearchTerm
+      classes=myClasses.classes
+      profile=profile}}
+    {{/if}}
+    <div class="container-fluid app-container">
+      {{outlet}}
+    </div>
+  {{gru-footer}}
+</div>
+
+{{gru-modal}}
+{{qz-modal}}

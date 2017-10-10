@@ -1,0 +1,169 @@
+.teacher.class {
+  padding: 10px;
+  @media (min-width: $screen-sm) {
+    padding: 35px 47px;
+  }
+  .content .no-content {
+    font-size: $font-size-lead;
+    list-style: none;
+    margin: 20px 0 0;
+    text-align: center;
+  }
+  .header {
+    .go-back-container {
+      margin: 0 0 25px 0;
+      .back-to {
+        font-size: 19px;
+        i {
+          font-size: 20px;
+          height: 24px;
+          vertical-align: middle;
+          width: 25px;
+        }
+      }
+    }
+    h1 {
+      font-size: $font-size-h5;
+      display: block;
+      color: $dark-500;
+      margin: 0 0 5px 0;
+    }
+    .panel.classroom-information {
+      float: left;
+      width: 100%;
+      margin: 15px 20px 0 0;
+      .panel-heading {
+        font-size: $font-size-large;
+        line-height: $font-size-large;
+        border-top-right-radius: 3px;
+        border-top-left-radius: 3px;
+        padding: 5px 10px 6px;
+      }
+      .panel-body {
+        padding: 5px;
+        min-height: 185px;
+        @include flexbox();
+        .legend {
+          display: block;
+          font-size: $font-navigator;
+        }
+        .course-info {
+          width: 33%;
+          padding: 0 40px;
+          .gru-course-card {
+            width: 100%;
+            .panel {
+              width: 100%;
+              height: 135px;
+              min-height: 135px;
+              border-radius: 0;
+              border: none;
+              box-shadow: none;
+              overflow: hidden;
+              .panel-body {
+                height: inherit;
+                padding: 0;
+                display: inline-block;
+                width: 100%;
+                .card-header {
+                  .header-content {
+                    padding: 0;
+                    margin-left: 10px;
+                    width: 85%;
+                    h3 {
+                      font-size: $font-navigator;
+                      color: $gray;
+                      height: 20px;
+                    }
+                  }
+                }
+                .card-content {
+                  position: inherit;
+                  margin-top: 8px;
+                  padding: 0;
+                  .taxonomy-standards {
+                    .gru-taxonomy-tag {
+                      padding: 0 3px 3px 2px;
+                      max-width: 75px;
+                      .tag-label {
+                        text-transform: uppercase;
+                        font-size: $font-size-h6;
+                      }
+                      .tag-caption {
+                        font-size: $font-size-xsmall;
+                        font-weight: 100;
+                      }
+                    }
+                    .non-visible-tags {
+                      display: none;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        .graphics {
+          width: 33%;
+          border-right: 1px solid $light-300;
+          border-left: 1px solid $light-300;
+          padding: 0 35px;
+          .graphic {
+            margin: 0 10px;
+            float: left;
+            .charts.gru-radial-chart,
+            .charts.gru-bubble-chart {
+              width: 100px;
+              height: 100px;
+              margin: 18px auto 0;
+              .bubble-circle span {
+                font-size: $font-size-h4;
+              }
+            }
+            .legend {
+              text-align: center;
+            }
+            &.performance {
+              margin-right: 48px;
+            }
+            &.completed {
+              .charts.gru-radial-chart .radial-svg {
+                width: inherit !important;
+                height: inherit !important;
+              }
+            }
+          }
+        }
+        .students {
+          padding: 0 15px;
+          width: 34%;
+          .row {
+            margin: 0;
+            .instructor {
+              img {
+                width: 30px;
+                height: 30px;
+                border-radius: 50px;
+                cursor: pointer;
+                margin: 10px 0;
+              }
+              .owner {
+                font-size: $font-navigator;
+                line-height: $font-navigator;
+              }
+            }
+            .members {
+              i {
+                font-size: $expand-arrow;
+              }
+              span {
+                vertical-align: top;
+                font-size: $font-navigator;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,95 @@
+<div class="controller account-settings">
+  <article>
+    <header>
+      <h1>{{t "account-settings.title"}}</h1>
+      <div class="actions">
+        <button class="btn btn-default btn-primary btn-edit" {{action "editAccount"}}>{{t "common.edit"}}</button>
+      </div>
+
+      <nav>
+        {{#gru-scroll to="#accountInformation" class="selected" offset='article > header'}}{{t "account-settings.account-info"}}{{/gru-scroll}}
+        {{#gru-scroll to="#privateInformation" offset='article > header'}}{{t "account-settings.private-info"}}{{/gru-scroll}}
+      </nav>
+
+    </header>
+    <section id="accountInformation">
+      <div class="header">
+        <h2>{{t "account-settings.account-info"}}</h2>
+      </div>
+      <div class="content">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="email">
+              <label>
+                <span class="required">{{t "account-settings.email-address"}}</span>
+                {{#if isEditing}}
+                  <!--TODO-->
+                  {{!validation.gru-input model=tempProfile valuePath='title' maxLength=50}}
+                {{else}}
+                  <b>{{profile.email}}</b>
+                {{/if}}
+              </label>
+            </div>
+            <div class="password">
+              <label>
+                <span class="required">{{t "common.password"}}</span>
+                {{#if isEditing}}
+                  <!--TODO-->
+                {{!validation.gru-input model=tempProfile valuePath='title' maxLength=50}}
+                {{else}}
+                  <b>
+                    <div class="dots">
+                      <span class="dot"></span>
+                      <span class="dot"></span>
+                      <span class="dot"></span>
+                      <span class="dot"></span>
+                      <span class="dot"></span>
+                      <span class="dot"></span>
+                      <span class="dot"></span>
+                      <span class="dot"></span>
+                      <span class="dot"></span>
+                    </div>
+                  </b>
+                {{/if}}
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="privateInformation">
+      <div class="header">
+        <h2>{{t "account-settings.private-info"}}</h2>
+      </div>
+      <div class="content">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="gender">
+              <label>
+                <span>{{t "account-settings.gender"}}</span>
+                {{#if isEditing}}
+                  <!--TODO-->
+                {{!validation.gru-input model=tempProfile valuePath='title' maxLength=50}}
+                {{else}}
+                  <b>{{gender}}</b>
+                {{/if}}
+              </label>
+            </div>
+            <div class="dateOfBirth">
+              <label>
+                <span class="required">{{t "account-settings.birthday"}}</span>
+                {{#if isEditing}}
+                  <!--TODO-->
+                {{!validation.gru-input model=tempProfile valuePath='title' maxLength=50}}
+                {{else}}
+                  <b>{{format-date profile.dateOfBirth 'MMMM DD, YYYY'}}</b>
+                {{/if}}
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </article>
+</div>

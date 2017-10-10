@@ -1,0 +1,49 @@
+<div class="panel-body">
+    <div class="col-xs-6 date-picker {{showErrorDateInput}}">
+        <span class="calendar">{{gru-icon name='event'}}</span>
+      {{input
+      type='text'
+      id=dateID
+      value=rawDateValue
+      disabled=disabled
+      placeholder=(t 'assign-students.date')
+      class="form-control"
+      key-press="inputTyping"
+      enter="enterPressed"
+      focus-out="inputValueChange"
+      autofocus=autofocus
+      }}
+    </div>
+
+    <div class="col-xs-6 time-picker {{showErrorTimeInput}}">
+        <span class="clock">{{gru-icon name='access_time'}}</span>
+      {{input
+      type='text'
+      id=timeID
+      value=rawTimeValue
+      disabled=disabled
+      placeholder=(t 'assign-students.time')
+      class="form-control"
+      key-press="inputTyping"
+      enter="enterPressed"
+      focus-out="inputValueChange"
+      autofocus=autofocus
+      }}
+    </div>
+</div>
+<div class="error-messages">
+
+  {{#if showDateMessage}}
+      <span class="error">
+        {{{v-get model datePath 'message'}}}
+      </span>
+    {{else if showTimeMessage}}
+      <span class="error">
+        {{{v-get model timePath 'message'}}}
+      </span>
+    {{else if showMessage}}
+      <span class="error">
+      {{{v-get model valuePath 'message'}}}
+      </span>
+  {{/if}}
+</div>

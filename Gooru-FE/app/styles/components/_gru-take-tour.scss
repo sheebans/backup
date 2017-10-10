@@ -1,0 +1,45 @@
+.gru-take-tour {
+  height: 28px;
+  overflow: hidden;
+  position: fixed;
+  right: 15px;
+  top: 80px;
+  z-index: 10;
+  button {
+    @include transition(all 0.7s ease);
+    background-color: $green-400;
+    height: 28px;
+    padding: 0;
+    width: 32px;
+    i {
+      @include transition(all 0.7s ease);
+      color: $white;
+      font-size: $font-size-tour-icon;
+      height: 16px;
+      width: 25px;
+    }
+    .descriptive-text {
+      @include transition(all 0.7s ease);
+      left: 0;
+      margin-left: -72px;
+      position: absolute;
+      top: 0;
+      width: 72px;
+      p {
+        color: $white;
+        margin: 2px 0 0;
+        font-weight: bold;
+      }
+    }
+
+    &:hover {
+      width: 76px;
+      i {
+        margin-left: 70px;
+      }
+      .descriptive-text {
+        margin-left: 1px;
+      }
+    }
+  }
+}

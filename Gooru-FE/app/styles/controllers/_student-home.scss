@@ -1,0 +1,116 @@
+.student-home {
+  .container-fluid {
+    .student-landing {
+      padding-top: 30px;
+      > * {
+        margin: 0 auto;
+        width: 97%;
+
+        @media (min-width: $screen-sm) {
+          width: 90%;
+        }
+        @media (min-width: $screen-md) {
+          width: 90%;
+        }
+      }
+      .title {
+        > * {
+          display: inline-block;
+        }
+      }
+    }
+  }
+  .student-landing {
+    .student-left-panel {
+      float: left;
+      .greetings {
+        span {
+          color: $gray-base;
+          font-size: $font-size-h4;
+          line-height: $font-size-h4;
+        }
+        p {
+          font-weight: lighter;
+          @media (min-width: $screen-sm) {
+            font-size: $font-navigator;
+          }
+        }
+      }
+      .tab-content {
+        padding: 10px 0 0;
+        clear: both;
+        @include transition(width 0.3s ease-out);
+        @media (min-width: $screen-sm) {
+          width: 100%;
+        }
+        @media (min-width: $screen-md) {
+          width: 100%;
+        }
+        .tab-pane {
+          margin: 0;
+        }
+      }
+    }
+  }
+  .student-navigator {
+    clear: both;
+    .nav-tabs {
+      @media (min-width: $screen-sm) {
+        box-shadow: inset 0 -1px 0 $gray-light;
+      }
+      li {
+        margin-right: 15px;
+        a {
+          padding: 10px 0 5px;
+        }
+      }
+    }
+    li {
+      display: none;
+      height: 46px;
+      margin-bottom: 0;
+      @media (min-width: $screen-sm) {
+        display: block;
+      }
+      &.active {
+        display: block;
+        a {
+          box-shadow: inset 0 -4px 0 $gray;
+          padding-left: 0;
+          padding-right: 0;
+          &:focus {
+            box-shadow: inset 0 -4px 0 $gray;
+          }
+          &:active {
+            box-shadow: inset 0 -4px 0 $gray;
+          }
+        }
+      }
+      &:not(.active) {
+        a {
+          box-shadow: none;
+        }
+      }
+      a {
+        &:hover {
+          color: initial;
+        }
+        span {
+          font-weight: bold;
+        }
+      }
+    }
+    .no-classes-found {
+      font-size: $font-navigator;
+      line-height: $font-size-h5;
+      margin: 15px 0;
+    }
+    .actions {
+      @include flexbox;
+      @include align-items(flex-end);
+      @include justify-content(space-between);
+      height: 35px;
+      margin: 8px 0 0;
+    }
+  }
+}

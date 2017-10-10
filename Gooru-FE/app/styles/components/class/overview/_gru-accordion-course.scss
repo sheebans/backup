@@ -1,0 +1,32 @@
+.gru-accordion-course {
+  .panel {
+    background-color: transparent;
+    border: 0 none;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .panel-heading {
+    position: relative;
+    .panel-title {
+      > a {
+        display: inline-block;
+        max-width: 54%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        @media (min-width: $screen-sm) {
+          max-width: 95%;
+        }
+        &.disabled {
+          font-style: italic;
+          color: $dark-100;
+        }
+      }
+    }
+  }
+  .gru-user-icons {
+    &.visible-xs {
+      margin-top: 8px;
+    }
+  }
+}

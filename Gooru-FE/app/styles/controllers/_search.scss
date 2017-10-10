@@ -1,0 +1,120 @@
+.controller.search {
+  display: block;
+  padding: 0;
+  div.content-navigation {
+    background-color: $dark-400;
+    height: 51px;
+    padding: 0;
+    margin: 0;
+    @include flexbox;
+    div.category-menu {
+      height: inherit;
+      ul.category-options {
+        @include flexbox;
+        @include justify-content(space-between);
+        li {
+          a {
+            span {
+              font-size: 12px;
+              @media (min-width: $screen-md) {
+                font-size: 14px;
+              }
+            }
+            @media (min-width: $screen-sm-max) {
+              padding: 0 7px;
+            }
+            @media (min-width: $screen-md-max) {
+              padding: 0 20px;
+            }
+          }
+          &.rubrics .btn-category {
+            i {
+              background: url("gooru/images/add_rubric_white.svg") no-repeat
+                center;
+              height: 25px;
+              width: 25px;
+              @media (max-width: $screen-xs-max) {
+                height: 16px;
+              }
+            }
+          }
+          @media (min-width: $screen-md-max) {
+            margin: 0 10px;
+          }
+        }
+        @media (max-width: $screen-xs) {
+          overflow: hidden;
+          overflow-x: auto;
+        }
+        @media (min-width: $screen-sm-min) {
+          margin: 0;
+        }
+      }
+    }
+    .standards {
+      @include flexbox;
+      @include justify-content(flex-end);
+      padding: 0;
+
+      @media (min-width: $screen-sm-min) {
+        width: 36%;
+      }
+      @media (min-width: $screen-sm-max) {
+        width: 35%;
+      }
+      @media (min-width: $screen-md-max) {
+        width: 45%;
+      }
+      div {
+        display: inherit;
+        align-self: center;
+      }
+      .taxonomy {
+        button.selected-category,
+        button.selected-subject {
+          max-width: 80px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          @media (min-width: $screen-md-min) {
+            max-width: 105px;
+          }
+        }
+        .btn-group {
+          margin-right: 5px;
+          button {
+            font-size: $font-size-base;
+          }
+        }
+      }
+    }
+
+    .gru-category-picker .btn,
+    .gru-subject-picker .btn {
+      background-color: $green-300;
+
+      &.dropdown-toggle {
+        margin-left: 1px;
+      }
+    }
+  }
+
+  .content {
+    width: 100%;
+
+    .standards-list {
+      margin: 20px;
+      .gru-taxonomy-tag-list {
+        .gru-taxonomy-tag {
+          background-color: $blue-400;
+          border: 0 none;
+          margin: 0 20px 10px 0;
+          overflow: visible;
+          .popover {
+            min-width: 280px;
+          }
+        }
+      }
+    }
+  }
+}

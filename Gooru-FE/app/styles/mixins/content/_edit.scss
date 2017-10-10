@@ -1,0 +1,370 @@
+.content_assessments_edit .app-container,
+.content_collections_edit .app-container,
+.content_courses_edit .app-container,
+.content_courses_play .app-container,
+.content_questions_play .app-container,
+.content_questions_edit .app-container,
+.content_resources_edit .app-container,
+.content_resources_play .app-container,
+.content_rubric_edit .app-container,
+.account-settings .app-container {
+  padding-left: 0;
+  padding-right: 0;
+
+  > .controller {
+    display: block;
+  }
+}
+
+.controller.content.assessments.edit,
+.controller.content.collections.edit,
+.controller.content.courses.edit,
+.controller.content.courses.play,
+.controller.content.questions.edit,
+.controller.content.questions.play,
+.controller.content.resources.edit,
+.controller.content.resources.play,
+.controller.account-settings,
+.content.rubric.preview {
+  $aside-padding: 25px;
+
+  @include flexbox();
+
+  > article {
+    @include flex();
+    padding-bottom: 50px;
+    min-width: 730px;
+
+    > header {
+      z-index: $zindex-navbar-fixed;
+      background-color: $dark-400;
+      padding: 20px 20px 0 5%;
+
+      h1,
+      nav > a {
+        color: $white;
+        display: inline-block;
+      }
+
+      h1 {
+        font-size: $font-size-h3;
+        margin: 0;
+      }
+
+      button.toggle {
+        float: right;
+        color: $white;
+        border: 0 none;
+        background-color: $dark-400;
+        padding: 20px 15px 0;
+      }
+
+      .actions {
+        margin-top: 15px;
+        text-align: center;
+
+        /**
+         * Required to prevent actions menu breaking up nav layout in phones,
+         * it's below sm breakpoint so it must not be a problem
+         */
+        @media (min-width: 600px) {
+          float: right;
+          text-align: left;
+          margin-top: 5px;
+        }
+
+        .btn-icon {
+          padding: 5px 8px;
+
+          > i {
+            font-size: $font-size-h5;
+            line-height: 1.1;
+          }
+        }
+      }
+
+      nav {
+        padding-top: 15px;
+        white-space: nowrap;
+
+        a {
+          vertical-align: middle;
+          opacity: 0.6;
+          font-size: $font-size-h6;
+          padding: 5px;
+          margin-right: 5px;
+          border-bottom: 3px solid $dark-400;
+
+          @media (min-width: $screen-sm-min) {
+            padding: 5px 10px;
+            margin-right: 20px;
+          }
+
+          &.selected {
+            opacity: 1;
+            border-bottom-color: $white;
+          }
+        }
+      }
+      .back-to {
+        color: $white;
+        font-size: $font-size-large;
+        div {
+          margin-left: -12px;
+          i {
+            vertical-align: text-top;
+          }
+        }
+      }
+    }
+
+    > section {
+      padding-left: 5%;
+      padding-right: 5%;
+
+      h2 {
+        display: inline-block;
+        font-size: $font-size-h4;
+        padding: 0;
+        margin: 0;
+        line-height: 34px; // height of the buttons
+      }
+
+      h3 {
+        font-size: $font-size-large;
+      }
+
+      .header {
+        border-bottom: 1px solid $gray-light;
+        margin-bottom: 25px;
+        padding: 40px 0 20px;
+
+        .detail {
+          float: right;
+
+          > span:last-of-type {
+            display: inline-block;
+            padding-right: 20px;
+            border-right: 1px solid $gray-light;
+            line-height: 2.2;
+          }
+          .actions {
+            display: inline-block;
+            padding-left: 20px;
+
+            button {
+              font-size: 24px;
+              line-height: 1;
+              padding: 5px 7px;
+            }
+          }
+        }
+      }
+
+      .panel {
+        margin-bottom: 0;
+
+        .panel-heading,
+        .panel-body {
+          padding-left: 25px;
+          padding-right: 25px;
+        }
+
+        .panel-heading {
+          background-color: $white;
+          padding-top: 10px;
+          padding-bottom: 0;
+        }
+
+        .panel-body {
+          padding-bottom: 25px;
+        }
+
+        label span.required:after,
+        span.label.required:after {
+          content: ' *';
+        }
+      }
+    }
+  }
+
+  > aside {
+    background-color: $white;
+    width: 18%;
+    padding: ($aside-padding - 10) 0 0 $aside-padding;
+
+    > div {
+      position: fixed;
+      margin-right: $aside-padding - 5;
+
+      h4 {
+        color: $gray;
+      }
+
+      p {
+        line-height: 1.5;
+        margin-bottom: 0.6em;
+      }
+    }
+  }
+
+  button.add-prefix {
+    padding: 5px 15px;
+  }
+
+  .add-prefix:before {
+    content: '+ ';
+  }
+
+  article.fixed-header {
+    > header {
+      padding-top: 5px;
+      position: fixed;
+
+      h1 {
+        display: none;
+      }
+
+      nav {
+        padding-top: 10px;
+      }
+    }
+
+    #information {
+      padding-top: 115px;
+    }
+  }
+
+  #information,
+  #accountInformation,
+  #privateInformation {
+    > .header {
+      .actions {
+        float: right;
+      }
+    }
+
+    > .content {
+      @include flexbox();
+
+      .gru-image {
+        float: left;
+        margin-right: 20px;
+      }
+
+      .panel {
+        border-radius: 6px;
+        @include flex();
+
+        .panel-body {
+          padding-top: 10px;
+
+          > div {
+            margin-top: 10px;
+            &:first-child {
+              margin: 0;
+            }
+
+            > label {
+              margin: 0;
+              input,
+              b {
+                display: block;
+              }
+              input {
+                outline: 0;
+              }
+              b {
+                font-size: $font-size-large;
+                font-weight: normal;
+              }
+              .form-group {
+                margin-bottom: 5px;
+              }
+              textarea {
+                line-height: $font-size-large;
+              }
+            }
+            > label > span,
+            > span.label {
+              color: $gray;
+              display: block;
+              font-size: 100%;
+              font-weight: normal;
+              text-align: left;
+            }
+
+            .btn-empty {
+              margin-top: 5px;
+              border: 1px solid $gray-light;
+              background-color: $white;
+              cursor: auto;
+            }
+          }
+          .learning-objectives {
+            label {
+              width: 100%;
+              textarea {
+                width: 100%;
+                outline: none;
+                resize: none;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  #settings {
+    .panel {
+      border-radius: 6px;
+      margin-bottom: 30px;
+
+      .panel-heading {
+        border-top-right-radius: 6px;
+        border-top-left-radius: 6px;
+
+        h3 {
+          padding-bottom: 15px;
+          border-bottom: 1px solid $gray-light;
+          margin-bottom: 0;
+          margin-top: 15px;
+        }
+      }
+      .panel-body {
+        .setting {
+          margin-top: 10px;
+
+          > i,
+          > span {
+            margin-right: 10px;
+          }
+
+          > i {
+            vertical-align: -6px;
+          }
+
+          &:first-child {
+            margin-top: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+.controller.content.assessments.edit,
+.controller.content.collections.edit,
+.controller.content.courses.edit,
+.controller.content.courses.play,
+.content.rubric,
+.content.rubric.preview {
+  #information .title > label {
+    display: block;
+
+    @media (min-width: $screen-lg) {
+      max-width: 500px;
+    }
+  }
+}

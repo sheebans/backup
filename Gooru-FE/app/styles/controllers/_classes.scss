@@ -1,0 +1,62 @@
+.controller.classes {
+  $class-container-xs: 100%;
+  $class-container-sm: 50%;
+  $class-container-md: 33%;
+
+  .joined,
+  .taught {
+    clear: both;
+    margin-top: 25px;
+
+    > ul {
+      margin: 0 0 30px 0;
+      padding: 0;
+      list-style: none;
+
+      > li {
+        float: left;
+        width: $class-container-xs;
+
+        > div {
+          margin: 20px 10px;
+          border: 1px solid $gray-light;
+
+          a,
+          span {
+            display: block;
+            text-align: center;
+          }
+
+          a {
+            line-height: 4;
+            font-size: $font-size-base;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 90%;
+            margin: 0 auto;
+          }
+
+          span {
+            line-height: 2.5;
+          }
+
+          > ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            border-top: 1px solid $gray-light;
+          }
+        }
+
+        @media (min-width: $screen-sm) {
+          width: $class-container-sm;
+        }
+
+        @media (min-width: $screen-md) {
+          width: $class-container-md;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,46 @@
+.qz-submit-confirmation {
+  width: 100%;
+  .panel-heading {
+    display: block;
+    text-align: left;
+  }
+
+  .title {
+    color: $white;
+    font-size: $font-size-h6;
+  }
+
+  .panel-body {
+    padding: 15px 40px;
+
+    div {
+      display: block;
+      width: 100%;
+    }
+
+    .info {
+      @include flexbox;
+      @include align-items(center);
+      margin-top: 35px;
+
+      > * {
+        float: left;
+      }
+
+      p {
+        line-height: 22px;
+        margin: 0;
+      }
+
+      i {
+        font-size: $font-size-h2;
+        margin-right: 10px;
+      }
+    }
+
+    .actions {
+      margin-top: 70px;
+      text-align: right;
+    }
+  }
+}

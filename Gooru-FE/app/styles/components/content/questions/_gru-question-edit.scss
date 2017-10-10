@@ -1,0 +1,183 @@
+.content.questions.edit {
+  .standards {
+    .title {
+      display: block;
+    }
+  }
+  .tags {
+    margin: 10px 0px;
+  }
+
+  .content.gru-image {
+    margin-top: 35px;
+    max-height: 150px;
+    max-width: 125px;
+    &.picker-error {
+      margin-bottom: 50px;
+    }
+    .validation {
+      bottom: -55px;
+    }
+    img {
+      margin: 0px 5px;
+      padding: 5px 0px;
+      width: calc(100% - 10px);
+      max-height: 150px;
+    }
+  }
+  .gru-taxonomy-selector {
+    > div {
+      display: table;
+    }
+    .gru-subject-picker {
+      margin-bottom: 15px;
+    }
+  }
+  #builder .question-text {
+    > .panel-body {
+      overflow-x: inherit !important;
+    }
+    .submission-format {
+      margin-top: 40px;
+      .answer-types {
+        margin-top: 10px;
+        @include flexbox;
+        @include flex-direction(row);
+        @include flex-wrap(wrap);
+        .panel {
+          border-radius: 4px;
+          cursor: default;
+          float: left;
+          height: 120px;
+          text-align: center;
+          width: 160px;
+          margin-bottom: 0;
+          .panel-body {
+            min-height: 20px;
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px;
+            background-color: $blue-400;
+            padding: 22px 15px 13px;
+            i {
+              color: $white;
+              font-size: $font-size-h2;
+            }
+          }
+          .panel-footer {
+            border-bottom-left-radius: 4px;
+            border-bottom-right-radius: 4px;
+            background-color: $blue-500;
+            color: $white;
+            padding: 5px 15px;
+          }
+        }
+      }
+    }
+
+    .feedback-grading {
+      margin: 40px 0 0;
+      .content {
+        .switch {
+          margin: 10px 0;
+          font-weight: bold;
+          .switch-label {
+            margin: 10px 0 0;
+            min-width: 50px;
+          }
+        }
+        .add-rubric-container {
+          border: 2px dashed $gray-light;
+          height: 80px;
+          margin: 0 0 10px;
+          padding: 10px 0 0 14px;
+        }
+        .associated-rubric {
+          border: 1px solid $gray-lighter;
+          box-shadow: 0 1px 2px $gray;
+          padding: 12px 10px 8px;
+          margin: 0 0 30px 0;
+          .image {
+            display: inline-block;
+            padding: 5px 10px 0 0;
+            img {
+              border-radius: 4px;
+              height: 35px;
+              width: 35px;
+            }
+            .rubric-icon {
+              background: url("gooru/images/rubric-green.svg");
+              -webkit-background-size: 31px 30px;
+              background-size: 31px 30px;
+              border-radius: 4px;
+              display: block;
+              height: 30px;
+              margin: 0 0 5px;
+              width: 31px;
+            }
+          }
+          .info {
+            display: inline-block;
+            vertical-align: top;
+            border-left: 1px solid $gray-light;
+            border-right: 1px solid $gray-light;
+            width: 88%;
+            h3 {
+              margin: 13px 10px 14px;
+            }
+          }
+          .actions {
+            display: inline-block;
+            float: initial;
+            padding: 8px 0 0 8px;
+            vertical-align: top;
+            &.disabled {
+              button {
+                color: $gray-light;
+                cursor: not-allowed;
+                pointer-events: none;
+              }
+            }
+            button {
+              background-color: transparent;
+              font-size: $font-size-h4;
+              line-height: 1;
+              padding: 0;
+            }
+          }
+        }
+        .scoring-settings {
+          margin-top: 10px;
+          .setting {
+            @include flexbox;
+            float: left;
+            width: 25%;
+            .title {
+              margin: 0 15px 0 0;
+              width: auto;
+            }
+            .gru-select {
+              padding: 8px 0 0;
+              .bootstrap-select {
+                border-bottom: 1px solid $gray;
+                width: 50px;
+                span {
+                  right: 0;
+                  text-align: center;
+                }
+                .dropdown-toggle {
+                  font-size: $font-size-h6;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    div.border-bottom {
+      padding-bottom: 15px;
+      border-bottom: 1px solid $gray-lighter;
+      margin-bottom: 15px;
+      margin-top: 15px;
+    }
+  }
+}

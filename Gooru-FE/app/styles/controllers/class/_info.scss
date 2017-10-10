@@ -1,0 +1,182 @@
+.controller.info {
+  .class-details {
+    background-color: $dark-400;
+    margin-bottom: 33px;
+    min-height: 180px;
+
+    @include box-shadow(0px 2px 5px 0px rgba(0,0,0,0.10));
+    * {
+      color: $light-200;
+    }
+    .class-info {
+      padding: 24px 15px 20px 60px;
+      width: 80%;
+      float: left;
+
+      @media (max-width: $screen-xs-max) {
+        width: 58%;
+        padding-left: 10px;
+        padding-right: 0;
+      }
+
+      h3 {
+        margin-bottom: 24px;
+        @media (max-width: $screen-xs-max) {
+          /* only for phone */
+          font-size: $font-size-large;
+        }
+      }
+
+      @media (max-width: $screen-xs-max) {
+        /* only for phone */
+        padding-left: 15px;
+      }
+    }
+
+    .info-details.truncate {
+      display: inline-block;
+      $line-height: 1.3;
+      $lines-to-show: 3;
+      @include ellipsis($font-size: $font-size-large, $line-height: $line-height, $lines-to-show: $lines-to-show, $excerpt-bg: $dark-400);
+    }
+    .info-btns {
+      padding: 45px 10px 0 0;
+      width: 20%;
+      float: left;
+      @media (max-width: $screen-xs-max) {
+        width: 42%;
+        padding-left: 0;
+        padding-right: 5px;
+      }
+      .code {
+        border: 1px solid $white;
+        max-width: 140px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 8px 0;
+        @include border-top-radius(4px);
+        @include border-bottom-radius(4px);
+
+        @media (max-width: $screen-sm-max) {
+          width: 125px;
+          float: right;
+          clear: both;
+        }
+        span {
+          display: block;
+          &.class-code {
+            order: 1;
+            font-size: $font-size-large * 1.5;
+            line-height: 1;
+            @media (max-width: $screen-xs-max) {
+              font-size: $font-size-large;
+            }
+            @media (max-width: $screen-sm-max) {
+              font-size: $font-size-large;
+            }
+          }
+          &.code-legend {
+            order: 2;
+            font-size: $font-size-large;
+            line-height: 1.5;
+            color: $dark-100;
+          }
+        }
+      }
+      .edit-actions-section {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        height: 35px;
+        text-align: center;
+
+        @media (max-width: $screen-sm-max) {
+          float: right;
+          clear: both;
+        }
+
+        button.edit-btn {
+          margin-bottom: 10px;
+          float: left;
+          padding: 6px 5px;
+          @media (min-width: $screen-xs-max) {
+            padding: 6px 12px;
+          }
+        }
+        .info-actions {
+          float: left;
+          margin: 0 0 0 5px;
+          padding: 5px 0;
+          a {
+            text-align: center;
+            i.material-icons {
+              font-size: $font-size-h4;
+            }
+          }
+        }
+        .dropdown-menu {
+          margin: 12px 0 0 0;
+          padding: 10px;
+          min-width: 126px;
+          text-align: center;
+          left: -97px;
+          @media (min-width: $screen-md) {
+            left: -103px;
+          }
+          .arrow-up {
+            width: 0;
+            height: 0;
+            border-left: 7px solid transparent;
+            border-right: 7px solid transparent;
+            border-bottom: 7px solid $white;
+            position: absolute;
+            top: -12%;
+            left: 84%;
+            @media (max-width: $screen-sm-max) {
+              left: 80%;
+            }
+          }
+          .delete-btn {
+            padding-right: 6px;
+            padding-left: 6px;
+          }
+        }
+      }
+    }
+  }
+  .teachers-section,
+  .students-section {
+    .row {
+      padding-left: 45px;
+      @media (max-width: $screen-xs-max) {
+        padding-left: 15px;
+      }
+      hr {
+        margin-top: 0;
+        margin-bottom: 18px;
+        border-top-color: $light-300;
+      }
+      .btn-teacher {
+        float: right;
+      }
+      ul {
+        padding-left: 0px;
+        list-style: none;
+        li {
+          float: left;
+          padding: 0 20px 20px 0;
+        }
+      }
+    }
+  }
+  .teachers-section {
+    .profile-card.student-view {
+      .gru-user-card {
+        span {
+          cursor: default;
+        }
+      }
+    }
+  }
+}

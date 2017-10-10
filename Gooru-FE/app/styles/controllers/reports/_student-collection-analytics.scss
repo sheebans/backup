@@ -1,0 +1,44 @@
+.controller.class.analytics.collection.student {
+  .navigation {
+    padding: 10px 35px;
+
+    @media (min-width: $screen-xs) {
+      padding: 10px 27px;
+    }
+
+    @media (min-width: $screen-md) {
+      padding: 10px 65px;
+    }
+  }
+  .gru-assessment-report {
+    .gru-learning-target {
+      .learning-target {
+        width: 100%;
+        padding: 25px 20px 0 40px;
+
+        .header-content {
+          .learning-target-description {
+            width: 75%;
+            overflow: hidden;
+          }
+          .questions {
+            max-width: 20%;
+          }
+        }
+        .resource-cards-section {
+          margin-bottom: 20px;
+
+          .gru-resource-result-card {
+            .card-icon {
+              i {
+                background-size: 25px 25px;
+                height: 25px;
+                width: 25px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

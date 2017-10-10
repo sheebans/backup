@@ -1,0 +1,20 @@
+.create-class {
+  .condition-prompt {
+    padding-top: 20px;
+
+    .conditions {
+      @include flexbox;
+
+      & > :last-child {
+        margin-left: 15px;
+      }
+    }
+  }
+}
+
+.class-name-input {
+  label {
+    margin-bottom: 10px;
+    margin-left: 3px;
+  }
+}

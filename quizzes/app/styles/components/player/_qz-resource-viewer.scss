@@ -1,0 +1,93 @@
+.qz-resource-viewer {
+  @include flexbox;
+  @include flex-direction(row);
+  @include justify-content(space-between);
+  width: 100%;
+  height: 100%;
+  .qz-resource-viewer-panel {
+    width: 100%;
+    height: 100%;
+  }
+  .btn-next {
+    width: 85px;
+    height: 35px;
+    margin: 0 auto;
+    @media (max-width: $screen-xs-max) {
+      width: 60px;
+    }
+  }
+  .narration {
+    .panel-body {
+      padding: 10px 15px;
+    }
+    span {
+      display: table-cell;
+      vertical-align: middle;
+    }
+  }
+
+  .not-iframe {
+    padding: 25px;
+    .panel-header {
+      text-align: center;
+    }
+    p.description {
+      line-height: $font-size-base;
+    }
+    p.title {
+      font-size: $font-size-large;
+      font-weight: 300;
+      margin: 0 0 7px 0;
+    }
+    .panel-footer {
+      text-align: center;
+      background-color: $white;
+      margin: 15px 0 0 0;
+    }
+    .panel-body {
+      display: flex;
+      justify-content: center;
+      $line-height: 1.2;
+      text-decoration: none;
+      color: $text-color;
+
+      .cards.qz-resource-card {
+        margin: 0 auto;
+
+        .panel-heading {
+          padding: 12px 15px 0;
+          .header {
+            padding: 0;
+            margin: 0;
+            border: 0;
+          }
+        }
+        .panel-body {
+          padding: 12px 15px 0;
+          display: block;
+
+          .publisher {
+            a {
+              color: $blue-400;
+            }
+          }
+        }
+        .panel-footer {
+          margin: 0;
+          text-align: left;
+        }
+      }
+    }
+  }
+}
+
+.resource-player {
+  .qz-resource-viewer-panel {
+    max-width: 70%;
+    margin: 0 0 0 15%;
+    @media (max-width: $screen-xs-max) {
+      max-width: 80%;
+      margin: 0 0 0 15px;
+    }
+  }
+}

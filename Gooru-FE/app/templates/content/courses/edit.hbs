@@ -1,0 +1,18 @@
+<div class="controller content courses edit">
+  {{content.courses.gru-course-edit
+    course=course
+    isEditing=isEditing
+    selectedLessonId=lessonId
+    onLocationChange='setLocation'
+    tempCourse=tempCourse
+    classId= classId
+    userId= userId
+  }}
+
+  <aside class="hidden-sm">
+    <div>
+      <h4>{{t "common.best-practices"}}</h4>
+      {{{t "content.courses.edit.best-practices"}}}
+    </div>
+  </aside>
+</div>

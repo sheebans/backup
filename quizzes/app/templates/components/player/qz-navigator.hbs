@@ -1,0 +1,45 @@
+<div class="navigator-header">
+  {{#if showBackToCourseMap}}
+    <div class="course-map sub-header" {{action 'redirectCourseMap'}}>
+      <div class="nav-icon-container">
+        {{gru-icon name="sort"}}
+      </div>
+      <span class="title">BACK TO COURSE MAP</span>
+    </div>
+  {{/if}}
+  {{#if unitTitle}}
+    <div class="course-unit sub-header">
+      <div class="nav-icon-container">
+        {{gru-icon name="sort"}}
+        <span class="short-title">{{unitTitle.shortname}}</span>
+      </div>
+      <span class="title">{{unitTitle.fullname}}</span>
+    </div>
+  {{/if}}
+  {{#if lessonTitle}}
+    <div class="course-lesson sub-header">
+      <div class="nav-icon-container">
+        {{gru-icon name="sort"}}
+        <span class="short-title">{{lessonTitle.shortname}}</span>
+      </div>
+      <span class="title">{{lessonTitle.fullname}}</span>
+    </div>
+  {{/if}}
+  {{#if collectionTitle}}
+    <div class="collection sub-header {{unless collection.isCollection 'assessment'}}">
+      <div class="nav-icon-container">
+        <i class="icon"></i>
+        <span class="short-title">{{collectionTitle.shortname}}</span>
+      </div>
+      <span class="title">{{collectionTitle.fullname}}</span>
+    </div>
+  {{/if}}
+  {{#if showBackToCollection}}
+    <div class="back-to-collectio sub-header" {{action 'backToCollection'}}>
+      <div class="nav-icon-container">
+        {{gru-icon name='keyboard_arrow_left'}}
+      </div>
+      <span class="title">BACK TO COLLECTION</span>
+    </div>
+  {{/if}}
+</div>

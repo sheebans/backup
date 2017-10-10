@@ -1,0 +1,21 @@
+<div class="network">
+  <div class="content-navigation">
+    <div class="category-menu">
+      <ul class="nav nav-tabs category-options">
+        {{#link-to "profile.network.following" tagName="li" class='followings'}}
+          <a href='{{view.href}}' class="btn btn-category">
+            <span>{{t "common.following"}}</span>
+          </a>
+        {{/link-to}}
+        {{#link-to "profile.network.followers" tagName="li" class='followers'}}
+          <a href='{{view.href}}' class="btn btn-category">
+            <span>{{t "common.followers"}}</span>
+          </a>
+        {{/link-to}}
+      </ul>
+    </div>
+  </div>
+  <div class="content_outlet">
+    {{outlet}}
+  </div>
+</div>

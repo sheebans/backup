@@ -1,0 +1,75 @@
+.controller.class .controller.edit {
+  .edit-panel {
+    > .panel {
+      margin: 10px 60px 30px;
+      > .panel-body {
+        padding: 30px;
+        label {
+          width: 100%;
+          > span {
+            color: $gray;
+          }
+        }
+      }
+    }
+  }
+
+  .basic-info {
+    h4 {
+      margin: 60px 60px 0;
+    }
+  }
+  .course-map {
+    h4 {
+      margin: 0 60px;
+    }
+    .course {
+      margin-top: 40px;
+    }
+  }
+  .description-legend {
+    font-size: $font-size-large !important;
+  }
+  .description,
+  .description * {
+    color: $dark-100 !important;
+    font-size: 16px;
+    line-height: $font-size-large * 1.44;
+  }
+  .class-details {
+    background-color: $dark-400;
+    @include box-shadow(0px 2px 5px 0px rgba(0,0,0,0.10));
+    * {
+      color: $light-200;
+    }
+    .class-edit {
+      padding: 24px 15px 20px 60px;
+      @media (max-width: $screen-xs-max) {
+        /* only for phone */
+        padding: 24px 0 0 10px;
+      }
+    }
+    .edit-btns {
+      padding-top: 40px;
+      @media (max-width: $screen-xs-max) {
+        padding: 24px 10px 0 0;
+      }
+      .edit-save-section {
+        margin: 10px 0 40px 0;
+        text-align: center;
+        @media (max-width: $screen-xs-max) {
+          /* only for phone */
+          text-align: right;
+          margin: 0 0 24px 0;
+        }
+        a.cancel {
+          margin: 0 20px 0 0;
+          @media (max-width: $screen-xs-max) {
+            /* only for phone */
+            margin: 0 10px 0 0;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+<div class="controller content-questions">
+  <div class="questions clearfix">
+    {{#each questions as |question|}}
+      <div class="card">
+        {{new-cards.gru-resource-card
+          resource=question
+          addEnabled=true
+          onRemixQuestion="remixQuestion"
+          onPlayResource="playQuestion"
+          profile=sessionProfile
+          isOnProfile=true}}
+      </div>
+    {{else}}
+      <div class="no-content panel add-content panel-default">
+        <div class="panel-body">
+          {{gru-icon name='explore'}}
+          <p>{{{t "common.no-questions-to-display"}}}</p>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+  {{#if showMoreResultsButton}}
+    <span class="show-more-results" {{action 'showMoreResults'}}>{{t "common.show-more-results"}}</span>
+  {{/if}}
+</div>

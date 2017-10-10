@@ -1,0 +1,27 @@
+{{#each questionItems as |item|}}
+  <div class="item">
+    <div class="context ellipsis">
+      <span class="unit-prefix">{{item.unitPrefix}}</span><span class="greater-than">{{gru-icon name='chevron_right'}}</span>
+      <span class="lesson-prefix">{{item.lessonPrefix}}</span><span class="greater-than">{{gru-icon name='chevron_right'}}</span>
+      <span class="collection-name">{{item.collection.title}}</span>
+    </div>
+    <div class="question ellipsis">
+      <span class="greater-than">{{gru-icon name='chevron_right'}}</span>
+      {{#link-to 'grading-player'
+        (query-params
+          questionId=item.question.id
+          classId=item.classId
+          courseId=item.courseId
+          unitId=item.unitId
+          lessonId=item.lessonId
+          collectionId=item.collection.id
+        )
+      }}
+        <span class="question-name">{{item.question.title}}</span>
+      {{/link-to}}
+    </div>
+    <div class="students">
+      ({{t 'class.analytics.performance.gru-grade-items.students' count=item.studentCount}})
+    </div>
+  </div>
+{{/each}}

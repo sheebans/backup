@@ -1,0 +1,217 @@
+<div class="panel panel-default {{if isPanelExpanded 'expanded' 'collapsed'}}">
+  <div class="panel-heading">
+
+    {{#if isSorting}}
+      <span class="drag-icon">
+        {{gru-icon name="drag_handle"}}
+      </span>
+    {{/if}}
+
+    <h3>{{plus-one index}}</h3>
+    {{#if isEditingInline}}
+      <div class="edit-title">
+        <i class="{{model.format}}-icon"></i>
+        <div class="input">
+          {{validation.gru-input model=tempModel valuePath='title' maxLength=50}}
+        </div>
+      </div>
+    {{else}}
+      <a class="title" {{action 'editInline'}}>
+        <i class="{{model.format}}-icon"></i>
+        <div>
+          <strong>{{{model.title}}}</strong>
+          {{#if (eq model.format 'question')}}
+            <span>{{t "common.question"}} | {{t (concat "common.question-type." model.type)}}</span>
+          {{else}}
+            <span>{{t "common.resource"}} | {{t (concat "common.resource-format." model.format)}}</span>
+          {{/if}}
+        </div>
+      </a>
+    {{/if}}
+
+    <div class="detail {{if isPanelExpanded 'hidden' 'visible'}} collapsed">
+      {{#if model.standards.length}}
+        {{#each visibleStandardsList as |standard|}}
+          <span class="btn btn-primary btn-small">{{standard.code}}</span>
+        {{/each}}
+        {{#if remainingStandards}}
+          <span class="btn btn-default btn-small">+{{remainingStandards}}</span>
+        {{/if}}
+      {{else}}
+        <span class="out-of-scope">{{t "common.add-standard"}}</span>
+      {{/if}}
+
+      <div class="actions">
+        <button class="btn add-item no-bgd out-of-scope" title="{{t 'common.add'}}" {{action 'add'}}>{{gru-icon name="add"}}</button>
+        {{#unless (eq model.format 'question')}}
+        <button class="btn narration no-bgd" title="{{t 'common.edit-narration'}}" {{action 'editNarration' model}}>{{gru-icon name="mode_comment"}}</button>
+        {{/unless}}
+          <div class="item-actions">
+            <button title="{{t 'common.delete'}}" class="btn no-bgd delete-item" {{action 'deleteItem' model}} data-toggle="tooltip" data-placement="auto" data-trigger="hover">{{gru-icon name="delete"}}</button>
+            <button title="{{t 'common.copy-to'}}" class="btn no-bgd copy-to" {{action 'copyTo' model}} data-toggle="tooltip" data-placement="auto">{{gru-icon name="call_split"}}</button>
+            <button title="{{t 'common.move'}}" class="btn no-bgd move-item out-of-scope" {{action 'move' model}} data-toggle="tooltip" data-placement="auto">{{gru-icon name="subdirectory_arrow_right"}}</button>
+            <button title="{{t 'common.copy'}}" class="btn no-bgd copy-item" {{action 'copy' model}} data-toggle="tooltip" data-placement="auto">{{gru-icon name="content_copy"}}</button>
+            <button class="btn edit-item no-bgd" title="{{t 'common.edit'}}" {{action 'editInline'}} data-toggle="tooltip" data-placement="auto">{{gru-icon name="edit"}}</button>
+          </div>
+      </div>
+    </div>
+    <div class="detail {{if isPanelExpanded 'visible' 'hidden'}} expanded">
+      <div class="actions">
+        {{#unless isEditingInline}}
+          <button class="btn narration no-bgd" title="{{t 'common.edit-narration'}} "{{action 'cancel'}}>{{gru-icon name="mode_comment"}}</button>
+        {{/unless}}
+        <div class="item-actions no-border">
+          {{#if isEditingInline}}
+            <button class="more-details btn btn-default" {{action 'edit' model}}>{{gru-icon name="launch"}}{{t "common.more-details"}}</button>
+          {{/if}}
+          <button class="cancel btn btn-info" {{action 'cancel'}}>{{t "common.cancel"}}</button>
+          <button class="save btn btn-success" {{action 'updateItem' model}}>{{t "common.save"}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel-body">
+    {{#if isEditingInline}}
+      {{#if (eq model.format 'question')}}
+        <div class="question">
+          <div class="border-bottom">
+            <h3>{{t "common.question"}}</h3>
+            <span class="instructions">{{t (concat 'content.questions.edit.builder.question-instructions.' model.type)}}</span>
+          </div>
+          {{gru-rich-text-editor content=tempModel.text model=tempModel valuePath='description'}}
+          {{#if showImagePicker}}
+            {{content.gru-image isEditing=true srcImage=model.thumbnail editImage=tempModel.thumbnail}}
+          {{else}}
+              <button class="add-image btn btn-sm btn-primary" {{action "toggleImagePicker"}}>{{t "common.add-question-image"}}</button>
+          {{/if}}
+        </div>
+        {{#if model.isOpenEnded}}
+          <div class="submission-format">
+            <div class="border-bottom">
+              <h3>{{t 'content.questions.edit.builder.submission-format.title'}}</h3>
+            </div>
+            <div class="answer-types">
+              <div class="panel panel-default">
+                <div class="panel-body">{{gru-icon name='text_fields'}}</div>
+                <div class="panel-footer">{{t 'content.questions.edit.builder.submission-format.answer-type.text-box'}}</div>
+              </div>
+            </div>
+          </div>
+          <div class="feedback-grading">
+            <div class="border-bottom">
+              <h3>{{t 'content.questions.edit.builder.feedback-grading.title'}}</h3>
+            </div>
+            <div class="content">
+              <div class="switch rubric">
+                <label class="switch-label">{{t 'common.rubric'}}</label>
+                {{gru-switch switchOptions=switchOptions isChecked=tempModel.rubric.rubricOn}}
+              </div>
+              {{#if tempModel.rubric.rubricOn}}
+                {{#if tempModel.rubric.title}}
+                  <div class="associated-rubric">
+                    <div class="image">
+                      {{#if tempModel.rubric.thumbnail}}
+                        <img class="img-responsive" src="{{tempModel.rubric.thumbnail}}"/>
+                      {{else}}
+                        <i class="rubric-icon"></i>
+                      {{/if}}
+                    </div>
+                    <div class="info">
+                      <h3>{{tempModel.rubric.title}}</h3>
+                    </div>
+                    <div class="actions">
+                      <button class="btn no-bgd remove-item" {{action 'removeRubric' tempModel.rubric.id}}>
+                        {{gru-icon name="remove_circle"}}
+                      </button>
+                      {{#link-to 'content.rubric.edit' tempModel.rubric.id class="btn no-bgd edit-item" tagName="button"}}{{gru-icon name="edit"}}{{/link-to}}
+                    </div>
+                  </div>
+                {{else}}
+                  <div class="add-rubric-container">
+                    <button class="btn btn-success add-prefix add-rubric" {{action 'showAddRubricModal'}}>
+                      {{t 'content.questions.edit.builder.feedback-grading.from-existing-rubric'}}
+                    </button>
+                  </div>
+                  <div class="validation">
+                    {{#if rubricError}}
+                      <span class="error">
+                        {{t 'content.questions.edit.builder.feedback-grading.rubric-error'}}
+                      </span>
+                    {{/if}}
+                  </div>
+                {{/if}}
+              {{else}}
+                <div class="switch scoring">
+                  <label class="switch-label">{{t 'content.questions.edit.builder.feedback-grading.scoring'}}</label>
+                  {{gru-switch switchOptions=switchOptions isChecked=tempModel.rubric.scoring}}
+                </div>
+                {{#if tempModel.rubric.scoring}}
+                  <div class="scoring-settings">
+                    <div class="setting maximum-points">
+                      <span class="title">{{t 'content.questions.edit.builder.feedback-grading.maximum-points'}}</span>
+                      {{validation.gru-select options=maximumOptions search="true" optionSelected=tempModel.rubric.maxScore onOptionSelect="onMaxScoreChange"}}
+                    </div>
+                    <div class="setting increment">
+                      <span class="title">{{t 'content.questions.edit.builder.feedback-grading.increment'}}</span>
+                      {{validation.gru-select options=incrementOptions search="true" optionSelected=tempModel.rubric.increment onOptionSelect="onIncrementChange"}}
+                    </div>
+                  </div>
+                {{/if}}
+              {{/if}}
+            </div>
+          </div>
+        {{/if}}
+        {{#unless (or model.isOpenEnded model.isFIB)}}
+          <div class="answers">
+            <div class="{{unless model.isHotTextHighlight 'border-bottom'}}">
+              <h3>{{t "content.questions.edit.builder.answer"}}</h3>
+              {{#if showAdvancedEditButton}}
+                <div class="advanced-button">
+                  <span>{{t "common.advanced-editing"}}</span>
+                  {{gru-switch switchOptions=switchOptions onOptionSwitch='onShowAdvancedEditor' isChecked=showAdvancedEditor}}
+                </div>
+              {{/if}}
+              {{#unless model.isHotTextHighlight}}
+                <span class="instructions">{{t (concat 'content.questions.edit.builder.answer-instructions.' model.type)}}</span>
+              {{/unless}}
+            </div>
+            {{#if hasNoImages}}
+              <div class="missing-images">
+                <p><small>{{t "common.errors.answer-has-no-image"}}</small></p>
+              </div>
+            {{/if}}
+            {{#if correctAnswerNotSelected}}
+              <div class="missing-correct-answer">
+                <p><small>{{t "common.errors.select-correct-answer"}}</small></p>
+              </div>
+            {{/if}}
+            {{component (question-config model.type 'component.builder_answer') answers=tempModel.answers editMode=true showAdvancedEditor=showAdvancedEditor}}
+          </div>
+          {{gru-notify onLoad="focusQuestionTextEditor"}}
+        {{/unless}}
+      {{else}}
+        <div class="narration">
+          <label>
+            <span>{{t "common.narration"}}</span>
+            {{validation.gru-textarea rawTextareaValue=tempModel.narration model=tempModel valuePath='narration' maxLength=500 rows=2}}
+          </label>
+        </div>
+      {{/if}}
+      <div class="actions">
+        <div class="item-actions no-border">
+          <button class="cancel btn btn-info" {{action 'cancel'}}>{{t "common.cancel"}}</button>
+          <button class="save btn btn-success" {{action 'updateItem' model}}>{{t "common.save"}}</button>
+        </div>
+      </div>
+    {{/if}}
+    {{#if isEditingNarration}}
+      <div class="narration">
+        <label>
+          <span>{{t "common.narration"}}</span>
+          {{validation.gru-textarea rawTextareaValue=tempModel.narration model=tempModel valuePath='narration' maxLength=500 rows=2}}
+        </label>
+      </div>
+    {{/if}}
+  </div>
+</div>

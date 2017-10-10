@@ -1,0 +1,97 @@
+.content.resources.edit {
+  .panel-body {
+    .external-https {
+      @include flexbox;
+      @include flex-direction(column);
+      @include align-items(center);
+      @include justify-content(center);
+      padding: 2em;
+      .gru-resource-card .header {
+        border-bottom: none;
+        padding: 0;
+      }
+    }
+    .form-field {
+      &.title {
+        padding-left: 0;
+      }
+    }
+    .not-iframe {
+      padding: 25px;
+      .panel-header {
+        text-align: center;
+      }
+      p.description {
+        line-height: $font-size-base;
+      }
+      p.title {
+        font-size: $font-size-large;
+        font-weight: 300;
+        margin: 0 0 7px 0;
+      }
+      .panel-footer {
+        text-align: center;
+        background-color: $white;
+      }
+      .panel-body {
+        display: flex;
+        justify-content: center;
+        $line-height: 1.2;
+        text-decoration: none;
+        color: $text-color;
+
+        .cards.gru-resource-card {
+          margin: 0 auto;
+          .panel-heading {
+            padding: 12px 15px 0 15px;
+
+            .header {
+              padding: 0;
+              margin: 0;
+              border: 0;
+            }
+          }
+          .panel-body {
+            padding: 12px 15px 0 15px;
+            display: block;
+
+            .publisher {
+              a {
+                color: $blue-400;
+              }
+            }
+          }
+          .panel-footer {
+            margin: 0;
+            text-align: left;
+          }
+        }
+      }
+    }
+    .gru-taxonomy-selector {
+      > div {
+        display: table;
+      }
+      .gru-subject-picker {
+        margin-bottom: 15px;
+      }
+    }
+  }
+  .tags {
+    margin: 10px 0;
+  }
+  .century-skills {
+    > label {
+      width: 100%;
+      .choose {
+        float: left;
+        padding: 4px 16px;
+      }
+      .skills-buttons {
+        width: inherit;
+        margin: 5px 0 0 0;
+        float: left;
+      }
+    }
+  }
+}

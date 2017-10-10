@@ -1,0 +1,15 @@
+<div class="student-featured-courses">
+  <div class="courses">
+    {{#each courses as |course index|}}
+      {{new-cards.gru-standard-card
+        content=course
+        profile=profile
+        isCourse=true
+        onOpenContentPlayer="playCourse"
+        onOpenIndependentPlayer="playIndependentContent"
+        onRemixCourse="remixCourse"
+        onBookmarkContent="onBookmarkCourse"
+      }}
+    {{/each}}
+  </div>
+</div>

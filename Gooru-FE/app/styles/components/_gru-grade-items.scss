@@ -1,0 +1,27 @@
+.gru-grade-items {
+  max-height: 90px;
+  overflow-y: auto;
+  .item {
+    width: 100%;
+    line-height: $font-size-large;
+    .context,
+    .question,
+    .students {
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .context {
+      max-width: 48%;
+    }
+    .question {
+      max-width: 50%;
+    }
+    .greater-than {
+      i {
+        font-size: $font-navigator;
+        line-height: $font-size-base;
+        vertical-align: middle;
+      }
+    }
+  }
+}

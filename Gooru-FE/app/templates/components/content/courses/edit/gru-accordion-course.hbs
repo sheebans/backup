@@ -1,0 +1,53 @@
+<div class="header">
+  <h2>{{t "common.builder"}}</h2>
+
+  <div class="detail">
+    {{#if totalSavedItems}}
+      <span><b>{{totalSavedItems}}</b> {{t "common.unitObj" count=totalSavedItems}}</span>
+    {{else}}
+      <span>{{t "common.add-units"}}</span>
+    {{/if}}
+
+    <div class="actions">
+      <button class="btn btn-primary add-unit" {{action 'addUnit'}}>{{gru-icon name="add"}}</button>
+
+      {{#if (gt totalSavedItems 1)}}
+        {{#unless model.isSorting}}
+          <button class="btn btn-primary sort-items" {{action 'sortUnits'}}>{{gru-icon name="swap_vert"}}</button>
+        {{/unless}}
+      {{/if}}
+    </div>
+    {{#if model.isSorting}}
+      <div class="drag-options">
+        <button class="cancel btn btn-info"  {{action 'cancelSort'}}>{{t "common.cancel"}}</button>
+        <button class="save btn btn-success" {{action 'saveUnitsOrder'}}>{{t "common.save"}}</button>
+      </div>
+    {{/if}}
+  </div>
+</div>
+
+<ol class="accordion-course sortable" role="tablist" aria-multiselectable="true">
+
+  {{#each items as |item index|}}
+
+    {{content.courses.edit.gru-accordion-unit
+      course=model
+      model=item
+      index=index
+      isSorting=model.isSorting
+      totalItems=items.length
+      onCancelAddUnit=(action 'cancelAddUnit')
+      onExpandUnit=(action 'expandUnit')
+      onDeleteUnit=(action 'removeUnit')
+      onRemixUnit=(action 'remixUnit')
+      selectedLessonId=selectedLessonId
+      onExpandLesson=(action 'expandLesson')
+    }}
+
+  {{/each}}
+
+  <li class="unit add-item">
+    <a class="add-prefix" href="#" {{action 'addUnit'}}>{{t "common.add-new-unit"}}</a>
+  </li>
+
+</ol>

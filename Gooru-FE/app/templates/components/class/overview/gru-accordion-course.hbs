@@ -1,0 +1,31 @@
+<ol class="accordion-course" role="tablist" aria-multiselectable="true">
+  {{#if loading}}
+    {{three-bounce-spinner}}
+  {{else}}
+
+    {{#each items as |item index|}}
+
+      {{class.overview.gru-accordion-unit
+        currentClass=currentClass
+        currentCourse=currentCourse
+        classMembers=classMembers
+        model=item
+        index=index
+        onStudyNow=(action 'studyNow')
+        onSelectResource=(action 'selectResource')
+        onLocationUpdate=(action 'updateLocation')
+        onLaunchOnAir=(action 'launchOnAir')
+        currentResource=currentResource
+        parsedLocation=parsedLocation
+        showLocation=showLocation
+        contentVisibility=contentVisibility
+        onUpdateContentVisibility="updateContentVisibility"
+        isTeacher=isTeacher
+        isNUCourse=isNUCourse}}
+
+    {{else}}
+      <li>{{t "common.contentUnavailable"}}</li>
+    {{/each}}
+
+  {{/if}}
+</ol>

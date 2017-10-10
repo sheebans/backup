@@ -1,0 +1,17 @@
+<div class="independent-results">
+  {{#if items}}
+    {{#each items as |item|}}
+      {{cards.gru-independent-card
+        location=item.location
+        performance=item.performance
+      }}
+    {{/each}}
+    {{#if showMoreResultsButton}}
+      <span class="show-more-results" {{action 'showMoreResults'}}>{{t "common.show-more-results"}}</span>
+    {{/if}}
+  {{else}}
+    <div class="no-results-content">
+      {{t "common.no-independent-results" contentType=(t contentTypeTranslation)}}
+    </div>
+  {{/if}}
+</div>

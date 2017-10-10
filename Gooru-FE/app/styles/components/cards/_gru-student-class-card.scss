@@ -1,0 +1,100 @@
+.gru-student-class-card {
+  padding: 12px;
+  .panel {
+    @include border-top-radius(4px);
+    @include border-bottom-radius(4px);
+    @include box-shadow(0 0 7px #ddd);
+    margin: 0;
+    .panel-heading {
+      @include flexbox;
+      @include align-items(center);
+      @include justify-content(space-between);
+      @include border-top-radius(4px);
+      background-color: $sky-300;
+      .title {
+        h5 {
+          color: $white;
+          line-height: $font-size-h4;
+          margin: 0;
+        }
+      }
+      .code {
+        span {
+          @include border-top-radius(4px);
+          @include border-bottom-radius(4px);
+          @include flex-shrink(0);
+          border: 1px solid $white;
+          font-size: $font-size-base;
+          line-height: 1;
+          padding: 4px 5px;
+          text-transform: uppercase;
+          color: $white;
+          @media (min-width: $screen-xs) {
+            font-size: $font-size-h6;
+          }
+        }
+      }
+    }
+    .panel-body {
+      padding: 10px;
+      @media (min-width: $screen-md) {
+        &.border-between > [class*='col-']:before {
+          background: $light-400;
+          width: 1px;
+        }
+      }
+      @media (max-width: $screen-md) {
+        &.border-between > [class*='col-']:before {
+          width: 0px;
+        }
+      }
+      .information {
+        height: 125px;
+        span {
+          color: $gray-base;
+        }
+        .current-activity {
+          i {
+            margin: 0 2px 0 0;
+            width: 22px;
+            height: 17px;
+            vertical-align: middle;
+            background-repeat: no-repeat;
+            background-position: center center;
+            display: inline-block;
+            &.collection {
+              background-image: url("gooru/images/add_collection.svg");
+            }
+            &.assessment {
+              background-image: url("gooru/images/add_assessment.svg");
+            }
+          }
+        }
+      }
+      .charts {
+        text-align: center;
+        margin: 10px 0 0;
+        @media (max-width: $screen-md) {
+          > [class*='row']:after {
+            width: 100%;
+            background: $light-400;
+            height: 1px;
+          }
+        }
+        .row {
+          margin: 0;
+          .performance,
+          .completed {
+            padding: 0;
+          }
+          .charts.gru-radial-chart,
+          .charts.gru-bubble-chart {
+            width: 75px;
+            height: 75px;
+            margin: 0 auto 5px;
+          }
+        }
+      }
+    }
+  }
+}

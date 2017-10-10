@@ -1,0 +1,52 @@
+{{player.gru-study-header
+  classId=classId
+  collection=collection
+  courseId=course.id
+  courseTitle=course.title
+  breadcrumbs=breadcrumbs
+  showConfirmation=false
+  onToggleHeader='toggleHeader'
+  fromReport=true
+  courseVersion=courseVersion
+}}
+
+<div class="report-container {{if toggleState 'expanded' 'collapsed'}}">
+  {{#if hasAnySuggestion}}
+    {{#if hasBackFillSuggestions}}
+      <div class="suggestion-panel">
+        {{player.gru-suggest-test type=backFillType assessment=collection suggestion=mapLocation.backFillSuggestion onPlayCollection='next' onPlaySuggestion='playBackFillSuggestion'}}
+      </div>
+    {{/if}}
+    {{#if hasPostTestSuggestions}}
+      <div class="suggestion-panel">
+        {{player.gru-suggest-test type=postTestType assessment=collection onPlayCollection='next' onPlaySuggestion='playPostTestSuggestion'}}
+      </div>
+    {{/if}}
+    {{#if hasResourceSuggestions}}
+      <div class="suggestion-panel">
+        {{player.gru-suggest-test type=resourceType suggestion=mapLocation.resourceSuggestion onPlayCollection='next' onPlaySuggestion='playResourceSuggestion'}}
+      </div>
+    {{/if}}
+    {{#if hasBenchmarkSuggestions}}
+      <div class="suggestion-panel">
+        {{player.gru-suggest-test type=benchmarkType assessment=collection onPlayCollection='next' onPlaySuggestion='playBenchmarkSuggestion'}}
+      </div>
+    {{/if}}
+  {{else}}
+    <div class="suggestion-panel no-suggestions">
+      {{#if isDone}}
+        {{player.gru-player-done classId=classId}}
+      {{else}}
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="description">{{t 'gru-suggest-test.no-suggestions'}}</div>
+            <div class="actions right">
+              <button class="btn btn-primary btn-next" {{action 'next'}}>{{t 'common.next'}}</button>
+            </div>
+          </div>
+        </div>
+      {{/if}}
+    </div>
+  {{/if}}
+  {{reports.qz-student-report attemptData=attemptData}}
+</div>

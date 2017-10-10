@@ -1,0 +1,208 @@
+.profile-content.content-navigation {
+  @include flexbox;
+  @include align-items(center);
+  @include justify-content(space-between);
+  background-color: $dark-400;
+  height: 50px;
+  width: 100%;
+
+  .category-menu {
+    @media (min-width: $screen-sm-min) {
+      ul {
+        margin-left: 0;
+
+        li {
+          &:first-of-type {
+            margin-left: 10px;
+          }
+
+          &:last-of-type {
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+  }
+  .category-menu,
+  .standards {
+    padding: 0;
+    @media (min-width: $screen-md-min) {
+      padding: 0 15px;
+    }
+  }
+  .btn-group {
+    margin-right: 5px;
+    @media (min-width: $screen-md-min) {
+      margin-right: 65px;
+    }
+    .btn {
+      font-size: $font-size-base;
+      .symbol {
+        font-size: $font-size-base * 1.6;
+        line-height: $font-size-base;
+        margin: 0 -8px;
+      }
+    }
+    .dropdown-toggle {
+      background-color: $green-300;
+    }
+    .dropdown-menu {
+      padding: 0;
+      min-width: 150px;
+
+      li {
+        text-align: center;
+        border-bottom: 1px solid $light-200;
+        &:last-child {
+          border-bottom: 0;
+        }
+        a {
+          text-align: left;
+          padding: 10px;
+
+          i {
+            display: inline-block;
+            width: 25px;
+            height: 25px;
+            vertical-align: middle;
+            margin-right: 12px;
+            background-repeat: no-repeat;
+            background-position: center center;
+          }
+
+          &.course i {
+            background-image: url("gooru/images/add_course.svg");
+          }
+          &.collection i {
+            background-image: url("gooru/images/add_collection.svg");
+          }
+          &.assessment i {
+            background-image: url("gooru/images/add_assessment.svg");
+          }
+          &.resource i {
+            background-image: url("gooru/images/add_resource.svg");
+          }
+          &.rubric i {
+            background-image: url("gooru/images/add_rubric.svg");
+          }
+          &.question {
+            padding: 7px 10px 7px 8px;
+
+            i {
+              background-image: url("gooru/images/add_question.svg");
+              margin-right: 9px;
+              width: 30px;
+              height: 30px;
+              @include scale(0.8);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.filters {
+  .sort {
+    padding-right: 10px;
+  }
+  .search-navigation {
+    @include flexbox;
+    @include flex-wrap(wrap);
+    @include justify-content(space-between);
+    @media (max-width: $screen-xs-max) {
+      @include justify-content(center);
+    }
+    padding-top: 25px;
+    font-size: $font-size-base;
+    margin: 0 0 5px;
+    width: 100%;
+
+    > span {
+      @media (max-width: $screen-xs-max) {
+        @include order(2);
+      }
+    }
+
+    .search-keyword {
+      background-color: $white;
+      border-radius: 2px;
+      @media (max-width: $screen-xs-max) {
+        @include order(1);
+      }
+
+      > i {
+        margin-left: 7px;
+        margin-top: 7px;
+        position: absolute;
+      }
+      .search-icon {
+        color: $gray-base;
+        float: left;
+        i {
+          margin: 5px;
+        }
+      }
+      .gru-input {
+        padding-left: 35px;
+
+        .form-group {
+          margin-bottom: 0;
+
+          input {
+            box-shadow: none;
+            border: none;
+            font-size: 14px;
+          }
+          .error-messages {
+            position: absolute;
+            width: 184px;
+            left: -35px;
+          }
+        }
+      }
+    }
+  }
+  .filter-date-asc {
+    padding-top: 25px;
+    bottom: 5px;
+    float: right;
+
+    button.filter-date,
+    button.filter-asc {
+      margin: 1px;
+      padding: 5px 18px;
+      i {
+        font-size: $font-size-h4;
+      }
+      .arrow {
+        position: absolute;
+        top: 50%;
+        border-left: 4px solid transparent;
+        border-right: 4px solid transparent;
+        height: 0;
+        width: 0;
+      }
+      .arrow-down {
+        border-top: 4px solid white;
+      }
+      .arrow-up {
+        border-bottom: 4px solid white;
+      }
+    }
+    button.filter-asc {
+      .arrow-up,
+      .arrow-down {
+        right: 8px;
+        margin-left: 5px;
+      }
+    }
+
+    button.filter-date {
+      .arrow-up,
+      .arrow-down {
+        left: 8px;
+        margin-right: 5px;
+      }
+    }
+  }
+}

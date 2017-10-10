@@ -1,0 +1,17 @@
+<div class="partner-library">
+  <div class="side-panel">
+    <div class="partner-library-info clearfix">
+      <img class="partner-library-img img-responsive" src="{{library.image}}" alt="{{t 'common.avatarFor'}} {{library.name}}"/>
+      <h3 class="partner-library-name">{{library.name}}</h3>
+    </div>
+    <ul class="partner-library-menu list-group">
+      <li class="list-group-item partner-library-menu-item content selected">
+        <h6>{{t "common.myContent"}}</h6>
+        <i class="gru-icon material-icons content"></i>
+      </li>
+    </ul>
+  </div>
+  <div class="content">
+    {{outlet}}
+  </div>
+</div>

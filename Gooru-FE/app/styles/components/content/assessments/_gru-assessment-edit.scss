@@ -1,0 +1,42 @@
+.content.assessments.edit {
+  .tags {
+    margin: 10px 0px;
+  }
+  .gru-image {
+    margin-top: 35px;
+    max-height: 150px;
+    max-width: 125px;
+    &.picker-error {
+      margin-bottom: 70px;
+    }
+    .validation {
+      bottom: -55px;
+    }
+    img {
+      margin: 0px 5px;
+      padding: 5px 0px;
+      width: calc(100% - 10px);
+      max-height: 150px;
+    }
+  }
+  .century-skills {
+    > label {
+      width: 100%;
+      .choose {
+        float: left;
+        padding: 4px 16px;
+      }
+      .skills-buttons {
+        width: 75%;
+        float: left;
+        margin: 0 0 0 5px;
+        @media (min-width: $screen-sm-min) {
+          width: 78%;
+        }
+        @media (min-width: $screen-lg-min) {
+          width: 85%;
+        }
+      }
+    }
+  }
+}

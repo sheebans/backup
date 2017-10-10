@@ -1,0 +1,82 @@
+.controller.about.edit {
+  @media (max-width: $screen-xs-max) {
+    $component-height: 210px;
+    .avatar {
+      width: 100%;
+      .gru-image {
+        width: 100%;
+        height: $component-height;
+        border-radius: 4px;
+        img {
+          height: $component-height - 30px;
+          margin: 0 auto;
+        }
+      }
+    }
+  }
+
+  .panel {
+    .panel-body {
+      padding: 22px;
+    }
+    input[type="text"],
+    textarea,
+    select {
+      outline: none;
+      margin-bottom: 1em;
+      padding: 0 4px;
+    }
+    select {
+      padding: 6px 16px 6px 4px;
+    }
+    .checkbox-inline {
+      padding: 0;
+      margin-bottom: 1.2em;
+      label {
+        margin: 0;
+        padding: 0;
+      }
+      input {
+        margin-left: 0;
+      }
+    }
+    .roles {
+      @include flexbox;
+      .gru-radio {
+        margin-right: 20px;
+        @media (min-width: $screen-sm-min) {
+          margin-right: 30px;
+        }
+      }
+      & > :last-child {
+        margin-right: 0;
+      }
+    }
+    .bootstrap-select {
+      width: 100%;
+    }
+    span.error {
+      color: $red-400;
+      display: inline-block;
+      font-size: 12px;
+      margin-top: 4px;
+    }
+    span.required {
+      display: block;
+      &:after {
+        content: ' *';
+      }
+    }
+    .existing-user-error {
+      position: relative;
+      top: -16px;
+    }
+  }
+  @media (min-width: $screen-sm-min) {
+    .panel {
+      select {
+        width: auto;
+      }
+    }
+  }
+}

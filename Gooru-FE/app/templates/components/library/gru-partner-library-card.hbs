@@ -1,0 +1,40 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <div class="image">
+      <img class="img-responsive" src="{{content.image}}">
+    </div>
+    <div class="library-info">
+      <div class="title-section">
+        {{#link-to 'partner-library.content.courses' content.shortName class="title" alt="{{content.name}}"}} {{truncate text=content.name maxLength=40}} {{/link-to}}
+      </div>
+      <p class="counts-info">
+        {{#if hasCourses}}
+          <span class="item total-courses">{{t "library.gru-partner-library-card.course" count=content.courseCount}}</span>
+        {{/if}}
+        {{#if hasCollections}}
+          <span class="item total-collections">{{t "library.gru-partner-library-card.collection" count=content.collectionCount}}</span>
+        {{/if}}
+        {{#if hasAssessments}}
+          <span class="item total-assessments">{{t "library.gru-partner-library-card.assessment" count=content.assessmentCount}}</span>
+        {{/if}}
+        {{#if hasResources}}
+          <span class="item total-resources">{{t "library.gru-partner-library-card.resource" count=content.resourceCount}}</span>
+        {{/if}}
+        {{#if hasQuestions}}
+          <span class="item total-questions">{{t "library.gru-partner-library-card.question" count=content.questionCount}}</span>
+        {{/if}}
+        {{#if hasRubrics}}
+          <span class="item total-rubrics">{{t "library.gru-partner-library-card.rubric" count=content.rubricCount}}</span>
+        {{/if}}
+      </p>
+    </div>
+  </div>
+  <div class="panel-body">
+    {{#if content.description}}
+      <p class="description" title="{{content.description}}">
+        {{truncate text=content.description maxLength=155}}
+      </p>
+    {{/if}}
+  </div>
+  <div class="panel-footer out-of-scope"></div>
+</div>

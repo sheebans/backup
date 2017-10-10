@@ -1,0 +1,19 @@
+<div class="student-collection">
+  <div class="back-button">
+    <button {{action "goBack"}} class="btn btn-info back">
+      <span>
+        {{gru-icon name='keyboard_arrow_left'}}
+        {{#if lesson}}
+          {{#if isStudent}}
+            {{t "common.back-to-data"}}
+          {{else}}
+            {{t (if backUrl "common.back-to-data" "common.back-to-course-map")}}
+          {{/if}}
+        {{else}}
+          {{t 'common.back'}}
+        {{/if}}
+      </span>
+    </button>
+  </div>
+  {{partial 'partials/student-context'}}
+</div>

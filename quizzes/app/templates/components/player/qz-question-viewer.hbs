@@ -1,0 +1,86 @@
+{{#if freeResponse}}
+  {{player.qz-free-response-viewer question=question questionText=questionBody
+  isSubmitDisabled=isSubmitDisabled
+  buttonTextKey=buttonTextKey
+  userAnswer=questionResult.answer
+  onAnswerChanged="changeAnswer"
+  onAnswerCleared="clearAnswer"
+  onAnswerCompleted="completeAnswer"
+  onAnswerLoaded="loadedAnswer"
+  onSubmitQuestion="submitQuestion"}}
+{{else}}
+  <div class="question-panel">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <h2>{{t "qz-question-viewer.question"}}</h2>
+        <div class="question">
+          <span class="text">{{gru-math-text text=questionBody}}</span>
+          {{#if thumbnail}}
+            <img src="{{thumbnail}}"/>
+          {{/if}}
+        </div>
+        <div>
+          {{partial 'components/player/qz-question-information'}}
+        </div>
+      </div>
+    </div>
+    {{#if hintsToDisplay}}
+      <div class="panel panel-primary hints">
+        <div class="panel-heading">
+          {{t "common.hints"}}
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <ol class="hints">
+              {{#each hintsToDisplay as |hint|}}
+                <li>{{{hint.hintText}}}</li>
+              {{/each}}
+            </ol>
+          </div>
+        </div>
+      </div>
+    {{/if}}
+    {{#if isExplanationShown}}
+      <div class="panel panel-primary explanation">
+        <div class="panel-heading">
+          {{t "common.explanation"}}
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            {{#if isExplanationShown}}
+              <p class="explanation">{{{question.explanation}}}</p>
+            {{/if}}
+          </div>
+        </div>
+      </div>
+    {{/if}}
+  </div>
+
+  <div class="answers-panel">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <h2>{{t "qz-question-viewer.answer"}}</h2>
+
+        <form {{action "submitQuestion" on="submit"}}>
+          {{component (qz-question-config question.type 'component.player')
+          instructionsActionTextKey=instructionsActionTextKey
+          question=question
+          readOnly=isInputDisabled
+          userAnswer=questionResult.answer
+          onAnswerChanged="changeAnswer"
+          onAnswerCleared="clearAnswer"
+          onAnswerCompleted="completeAnswer"
+          onAnswerLoaded="loadedAnswer"}}
+          <div class="actions">
+            {{#if isSubmitDisabled}}
+              <button type="submit" class="save btn btn-success" disabled="disabled">{{t buttonTextKey}}</button>
+            {{else}}
+              <button type="submit" class="save btn btn-success">{{t buttonTextKey}}</button>
+            {{/if}}
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+{{/if}}

@@ -1,0 +1,24 @@
+{{#if course.id}}
+  <div class="controller student course-map">
+    <div class="actions">
+      <button {{action "locateMe" userLocation}} class="btn btn-info locate">
+        <span>{{gru-icon name='near_me'}}{{t "class.overview.locate"}}</span>
+      </button>
+    </div>
+
+    {{class.overview.gru-accordion-course
+      currentCourse=course
+      onSelectResource="playResource"
+      onStudyNow="studyPlayer"
+      onLocationUpdate=(action 'updateLocation')
+      userLocation=userLocation
+      location=openingLocation
+      units=units
+      contentVisibility=contentVisibility
+      showLocation=showLocation
+      isTeacher=false
+    }}
+  </div>
+{{else}}
+  <div class="no-content">This course has no content</div>
+{{/if}}

@@ -1,0 +1,62 @@
+<div class="panel panel-default view collapsed">
+  <div class="panel-heading">
+    {{#if isSorting}}
+        <span class="drag-icon">
+          {{gru-icon name="drag_handle"}}
+        </span>
+    {{/if}}
+    <h3>{{plus-one index}}</h3>
+    {{#if model.isExternalAssessment}}
+      <a href="{{model.url}}" target="_blank" class="title">
+        <img class="img-rounded" src="{{model.thumbnailUrl}}" />
+        <div>
+          <strong>{{model.title}}</strong>
+          <span>{{model.collectionType}}</span>
+        </div>
+      </a>
+    {{else}}
+      {{#link-to (if model.isCollection 'content.collections.edit' 'content.assessments.edit')  model.id (query-params courseId=course.id allowBackToCourse=true) class="title"}}
+        <img class="img-rounded" src="{{model.thumbnailUrl}}" />
+        <div>
+          <strong>{{model.title}}</strong>
+          <span>{{model.collectionType}}</span>
+        </div>
+      {{/link-to}}
+    {{/if}}
+    <div class="detail">
+      {{#if model.isCollection}}
+        <div class="{{if model.questionCount 'mixed'}}">
+          {{#if model.computedResourceCount}}
+            <span><b>{{model.computedResourceCount}}</b> {{t "common.resource-pl" count=model.computedResourceCount}}</span>
+          {{else}}
+            <span><b>{{model.resourceCount}}</b> {{t "common.resource-pl" count=model.resourceCount}}</span>
+          {{/if}}
+          {{#if model.computedQuestionCount}}
+            <span><b>{{model.computedQuestionCount}}</b> {{t "common.question-pl" count=model.computedQuestionCount}}</span>
+          {{else}}
+            {{#if model.questionCount}}
+              <span><b>{{model.questionCount}}</b> {{t "common.question-pl" count=model.questionCount}}</span>
+            {{/if}}
+          {{/if}}
+        </div>
+      {{else}}
+      <div>
+        {{#if model.computedQuestionCount}}
+          <span><b>{{model.computedQuestionCount}}</b> {{t "common.question-pl" count=model.computedQuestionCount}}</span>
+        {{else}}
+            <span><b>{{model.questionCount}}</b> {{t "common.question-pl" count=model.questionCount}}</span>
+        {{/if}}
+      </div>
+      {{/if}}
+
+      <div class="actions">
+          <div class="item-actions">
+            {{partial 'content/partials/item-actions'}}
+            {{#unless model.isExternalAssessment}}
+              <button class="btn edit-item" title="{{t 'common.edit'}}" {{action 'edit' model}} data-toggle="tooltip" data-placement="auto">{{gru-icon name="edit"}}</button>
+            {{/unless}}
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

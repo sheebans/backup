@@ -1,0 +1,27 @@
+.player .qz-hot-text-highlight {
+  span.item {
+    cursor: pointer;
+    display: inline;
+
+    &.disabled {
+      cursor: $cursor-disabled;
+    }
+    margin-right: 4px;
+    border: 1px solid transparent;
+    &.selected {
+      color: $white;
+      font-weight: bold;
+      border-radius: 4px;
+      border-color: $blue-400;
+      background-color: $blue-400;
+    }
+
+    &:not(.disabled):hover {
+      color: $white;
+      font-weight: bold;
+      border-radius: 4px;
+      border-color: $dark-300;
+      background-color: $dark-300;
+    }
+  }
+}

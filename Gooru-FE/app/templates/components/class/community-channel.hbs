@@ -1,0 +1,83 @@
+ <!-- channel -->
+  {{#if showChannels}}
+    <div class="channel-info">
+      {{gru-icon name='channel'}}
+      {{#each channels as |channel index|}} {{#if (eq index 0)}}
+      <h4>{{channel.channelName}}</h4>
+      {{/if}} {{/each}}
+    </div>
+
+    <div class="channel-chat-discussion">
+    
+      <div class="chat-discussion" id="chat-box">
+        <div class="chat_discussion_header">
+          <i class="icon_comment"></i>
+        </div>
+        <div class="message-row-container">
+          <div class="message-row-container-inner">
+            {{#each messages as |item|}}
+            <div class="chat-message">
+              <div class="message-details">
+                <div class="message-author-name">
+                  <div class="message-author"></div>
+                  <span class="message-time"></span>
+                </div>
+                <div class="message-block">
+                  <div class="user-pic" style="background-image: url({{item.photo}})"></div>
+                  <div class="message-content">
+                    <span class="user-full-name">{{item.fullname}}</span>
+                    <a href="javascript: void(0);" class="fa fa-remove" title="remove this message" onclick={{action 'removeMessage' item}}></a>
+                    <a href="javascript: void(0);" class="fa fa-pencil-square-o" title="edit this message" onclick={{action 'editMessage' item}}></a>
+                      {{#if item.imageURL}}
+                            <span class={{if item.role 'messageTeacher' 'message'}}><a target="_blank" href="{{item.imageURL}}">{{item.fileName}}</a></span>
+                      {{else}}  
+                        {{#if item.editing}}
+                        <form {{action "submitEditedMessage" item on="submit"}}>
+                          {{input type="text" class="channel-chat-message" valueBinding="editedMessage" placeholder=item.message}}
+                        </form>                     
+                        {{else}}
+                            <span class={{if item.role 'messageTeacher' 'message'}}>{{item.message}}</span>
+                        {{/if}}
+                      {{/if}}
+                  </div>
+                </div>
+              </div>
+            </div>
+            {{/each}}
+          </div>
+        </div>
+      </div>
+
+      <div class="channel-chat-message-form">
+        <div class="form-group">
+          <div class="button-container">
+            <li class="navbar-nav-list dropdown">
+                      <a class="dropdown-toggle chat-options" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+                          <i class="fa fa-plus"></i>
+                      </a>
+                      
+                      <ul class="dropdown-menu" role="menu" id="profile-more">
+                          <li class="navbar-nav-list">
+                            <form {{action "submitFile" on="submit"}}>
+                          <input id="mediaCapture"  multiple="true"  valueBinding="file" onchange={{action "submitFile"}} type="file"/>
+                          <label class="upload-file" for="mediaCapture">{{t "common.choose-file"}}</label>
+                      </form>
+                </li>
+                          <li class="navbar-nav-list">
+                            <a class="navbar-link" href="javascript: void(0);" {{action 'submitMessage'}}>{{t "common.post-message"}}</a>
+                          </li>
+                      </ul>
+                    </li>
+                  </div>
+                  <div class="input-container">
+            <form {{action "submitMessage" on="submit"}}>
+              {{input type="text" class="channel-chat-message"
+              valueBinding="message" placeholder=" Post Message"}}
+            </form>
+          </div>
+        </div>
+        
+      </div>
+      
+    </div>
+  {{/if}}

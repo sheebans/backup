@@ -1,0 +1,130 @@
+{{#if model.isEditing}}
+  <div class="panel panel-default edit">
+    <div class="panel-heading">
+
+      {{#if unit.id}}
+        <h3>{{t "common.unit"}} {{plus-one index}}</h3>
+      {{else}}
+        <h3>{{t "common.unit"}} {{totalItems}}</h3>
+      {{/if}}
+
+      {{validation.gru-input model=tempUnit valuePath='title' class="title" maxLength=50 didValidate=didValidate}}
+
+      <div class="actions">
+        <button class="cancel btn btn-info"  {{action 'cancelEdit'}}>{{t "common.cancel"}}</button>
+        <button class="save btn btn-success" {{action 'saveUnit'}}>{{t "common.save"}}</button>
+      </div>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-sm-6 big-ideas">
+          <label>
+            <span>{{t "common.big-ideas"}}</span>
+            {{textarea value=tempUnit.bigIdeas}}
+          </label>
+        </div>
+        <div class="col-sm-6 essential-questions">
+          <label>
+            <span>{{t "common.essential-questions"}}</span>
+            {{textarea value=tempUnit.essentialQuestions}}
+          </label>
+        </div>
+      </div>
+
+      <div class="data-row domain">
+        <span>{{t "common.domain"}}</span>
+        <div class="add-taxonomy">
+          <div>
+            <button type="button" class="btn btn-primary btn-sm add-prefix add-domain" {{action 'openDomainPicker'}} disabled={{not course.hasSubject}}>{{t "common.add"}}</button>
+              {{#unless course.hasSubject}}
+                <span class="legend">{{t 'common.select-a-framework'}}</span>
+              {{/unless}}
+          </div>
+          {{taxonomy.gru-taxonomy-tag-list tags=selectedTags onRemove=(action 'removeTag')}}
+        </div>
+      </div>
+    </div>
+  </div>
+{{/if}}
+
+<div class="panel panel-default view {{if model.isExpanded 'expanded' 'collapsed'}}">
+  <div class="panel-heading">
+
+    {{#if isSorting}}
+      <span class="drag-icon">
+        {{gru-icon name="drag_handle"}}
+      </span>
+    {{/if}}
+
+    <a href="#" {{action 'toggle'}}>
+      <div class="title">
+          <h3>{{t "common.unit"}} {{plus-one index}}</h3>
+          <strong>{{unit.title}}</strong>
+      </div>
+    </a>
+    <div class="detail">
+
+      {{#if model.isSorting}}
+        <div class="actions">
+          <button class="btn sort-items" {{action 'sortLessons'}} title="{{t 'common.swap'}}">{{gru-icon name="swap_vert"}}</button>
+          <div class="drag-options">
+            <button class="cancel btn btn-info"  {{action 'cancelSort'}}>{{t "common.cancel"}}</button>
+            <button class="save btn btn-success" {{action 'saveLessonsOrder'}}>{{t "common.save"}}</button>
+          </div>
+        </div>
+
+      {{else}}
+        {{#if isLoaded}}
+          {{#if totalSavedItems}}
+            <span><b>{{totalSavedItems}}</b> {{t "common.lessonObj" count=totalSavedItems}}</span>
+          {{else}}
+            <span>{{t "common.add-lessons"}}</span>
+          {{/if}}
+        {{else}}
+          {{#if unit.lessonCount}}
+            <span><b>{{unit.lessonCount}}</b> {{t "common.lessonObj" count=unit.lessonCount}}</span>
+          {{else}}
+            <span>{{t "common.add-lessons"}}</span>
+          {{/if}}
+        {{/if}}
+
+        <div class="actions">
+          <button title="{{t 'common.create'}}" class="btn add-item" {{action 'add'}}>{{gru-icon name="add"}}</button>
+          <button class="btn sort-items" {{action 'sortLessons'}} title="{{t 'common.swap'}}">{{gru-icon name="swap_vert"}}</button>
+
+          <div class="item-actions">
+
+            {{partial 'content/partials/item-actions'}}
+
+            <button {{action 'edit' model}}
+                title="{{t 'common.edit'}}"
+                class="btn edit-item"
+                data-toggle="tooltip"
+                data-placement="auto">{{gru-icon name="edit"}}</button>
+          </div>
+        </div>
+
+      {{/if}}
+    </div>
+  </div>
+  <div class="panel-body">
+    <ol class="accordion-unit sortable" role="tablist" aria-multiselectable="true">
+      {{#each items as |item index|}}
+        {{content.courses.edit.gru-accordion-lesson
+          course=course
+          unitId=unit.id
+          model=item
+          index=index
+          isSorting=model.isSorting
+          totalItems=items.length
+          onExpandLesson=(action 'expandLesson')
+          onCancelAddLesson=(action 'cancelAddLesson')
+          onDeleteLesson=(action 'removeLesson')
+          onRemixLesson=(action 'remixLesson')}}
+      {{/each}}
+      <li class="lesson add-item">
+        <a class="add-prefix" href="#" {{action 'addLesson'}}>{{t "common.add-new-lesson"}}</a>
+      </li>
+    </ol>
+  </div>
+</div>

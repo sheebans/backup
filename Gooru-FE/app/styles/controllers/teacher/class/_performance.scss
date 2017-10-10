@@ -1,0 +1,90 @@
+.controller.teacher.class.performance {
+  padding: 20px 0 0 0;
+  .panel.grade-items {
+    .panel-heading {
+      background-color: $white;
+      font-size: $font-navigator;
+      font-weight: bold;
+      margin: 2px 18px;
+      border-bottom: 1px solid $light-300;
+      padding: 0 0 5px;
+      color: $gray;
+    }
+    .panel-body {
+      padding: 5px 0 10px 18px;
+    }
+  }
+  .actions {
+    margin: 0 0 20px 0;
+    .radios-container {
+      @include flexbox;
+      float: left;
+      .radio-button {
+        height: 25px;
+        margin: 0 20px 0 0;
+      }
+      & > :last-child {
+        margin-right: 0;
+      }
+    }
+    .btn-primary {
+      float: right;
+      padding: 6px 10px 6px 8px;
+    }
+  }
+  .options {
+    margin: 0 0 20px 0;
+    @media (min-width: $screen-xs) {
+      margin: 0 0 10px 0;
+    }
+    .data-picker {
+      float: right;
+      height: 28px;
+      ul.list-inline {
+        .checkbox {
+          display: initial;
+          margin: 0 15px 0 0;
+          input {
+            float: left;
+            margin: 6px 2px 0 0;
+          }
+          label {
+            color: $gray-base;
+            float: left;
+            font-size: 14px;
+            font-weight: bold;
+          }
+        }
+        & > :last-child div {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+  .info {
+    margin: 0;
+    .teacher-breadcrumb {
+      float: left;
+      padding: 0;
+      width: 100%;
+      @media (min-width: $screen-md) {
+        width: 55%;
+      }
+      @media (min-width: $screen-lg) {
+        width: 63%;
+      }
+      button {
+        background-color: $white;
+        border: 2px solid $light-200;
+        border-radius: 18px;
+      }
+    }
+    .grading-scale {
+      float: right;
+      margin: 20px 0 0 0;
+    }
+  }
+  .gru-metrics-table .metrics-table-wrapper {
+    margin: 0 0 0 106px;
+  }
+}

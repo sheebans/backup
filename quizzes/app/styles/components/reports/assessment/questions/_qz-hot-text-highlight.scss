@@ -1,0 +1,30 @@
+.qz-hot-text-highlight p {
+  line-height: 32px;
+  span {
+    word-wrap: break-word;
+    overflow: auto;
+    max-width: 10em;
+    p {
+      display: inline-block;
+      margin: 0;
+      padding: 0;
+    }
+    &.correct,
+    &.incorrect,
+    &.anonymous {
+      padding: 6px;
+      border-radius: 4px;
+      color: $white;
+    }
+    &.correct {
+      background-color: $brand-success;
+    }
+    &.incorrect {
+      background-color: $brand-incorrect;
+    }
+    &.anonymous,
+    &.anonymous {
+      background-color: $brand-anonymous;
+    }
+  }
+}

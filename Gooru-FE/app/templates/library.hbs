@@ -1,0 +1,23 @@
+{{gru-take-tour steps=filteredSteps containerClass='library'}}
+<div class="libraries">
+  {{content.gru-header options=options selected=selected}}
+  {{#if (eq selected 'featured-courses')}}
+    <div id="featured-courses">
+      {{library.gru-browse-library
+        courses=courses
+        onBookmarkCourse='onBookmarkCourse'
+        onOpenIndependentPlayer="playIndependentContent"
+        profile=profile
+      }}
+    </div>
+  {{/if}}
+  {{#if (eq selected 'partner-libraries')}}
+    <div id="partner-libraries">
+      <div class="libraries-container">
+      {{#each libraries as |library|}}
+        {{library.gru-partner-library-card content=library}}
+      {{/each}}
+      </div>
+    </div>
+  {{/if}}
+</div>

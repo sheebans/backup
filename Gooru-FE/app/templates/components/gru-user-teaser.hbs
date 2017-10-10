@@ -1,0 +1,11 @@
+<span>
+    <img class="avatar" src="{{firstUser.avatarUrl}}">
+</span>
+<span class="user-full-name">
+    {{#link-to 'profile.content.courses' firstUser.id}}{{firstUser.displayName}}{{/link-to}}
+</span>
+{{#if usersLeft}}
+    <span class="total-users-left">
+    <p>+{{usersLeft}}</p>
+  </span>
+{{/if}}

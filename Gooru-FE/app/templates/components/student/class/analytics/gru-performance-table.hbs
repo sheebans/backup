@@ -1,0 +1,94 @@
+<div class="performance-table-wrapper">
+  {{#if performanceData.length}}
+      <table class="table table-striped">
+          <thead>
+          <tr>
+            {{#each metrics as |metric|}}
+                <th class="{{metric.value}}">
+                    <div>
+                        {{#if metric.hasSorting}}
+                            <a {{action 'sort' metric}}>
+                              {{t (concat 'gru-performance-metrics.' metric.value) }}
+                              {{#if metric.sorted}}
+                                {{#if metric.isAsc}}
+                                    <span>{{gru-icon name='arrow_upward'}}</span>
+                                {{else}}
+                                    <span>{{gru-icon name='arrow_downward'}}</span>
+                                {{/if}}
+                              {{else}}
+                                  <span>{{gru-icon name='swap_vert'}}</span>
+                              {{/if}}
+                            </a>
+                          {{else}}
+                          <a>{{t (concat 'gru-performance-metrics.' metric.value) }}</a>
+                        {{/if}}
+                    </div>
+                </th>
+            {{/each}}
+          </tr>
+          </thead>
+          <tbody>
+          <tr class="summary">
+              <th class="header assessment-title" scope="row">
+                  <span>{{contentTitle}}</span>
+              </th>
+              <td class="performance-info performance-score">
+                  <div class="score"
+                       style={{safe-html (concat "background-color:" (grade-color aggregatedPerformanceSummary.score))}}>
+                      <span>{{aggregatedPerformanceSummary.score}}%</span>
+                  </div>
+              </td>
+            {{#if showReportColumn}}
+              <td class="performance-info performance-report">
+                  <div class="report">
+                  </div>
+              </td>
+            {{/if}}
+              <td class="performance-info performance-completion out-of-scope">
+                {{charts.gru-radial-chart
+                value=assessmentsCompleted
+                minValue=0
+                maxValue=assessments.length }}
+              </td>
+              <td class="performance-info performance-time">
+                {{format-time aggregatedPerformanceSummary.timeSpent}}
+              </td>
+          </tr>
+          {{#each performanceData as |studentPerformance|}}
+              <tr>
+                  <th class="header assessment-title" scope="row">
+                      <span>{{{studentPerformance.assessment.title}}}</span>
+                  </th>
+                  <td class="performance-info performance-score">
+                      <div class="score"
+                           style={{safe-html (concat "background-color:" (grade-color studentPerformance.performanceData.score)) }}>
+                          <span>{{{studentPerformance.performanceData.score}}}%</span>
+                      </div>
+                  </td>
+                {{#if showReportColumn}}
+                  <td class="performance-info performance-report">
+                      <div class="report">
+                        {{#if studentPerformance.performanceData.timeSpent}}
+                          <a {{action 'viewReport' studentPerformance.assessment.id}}>
+                              <span class="report-icon">{{gru-icon name='library_books'}}</span>
+                          </a>
+                        {{/if}}
+                      </div>
+                  </td>
+                {{/if}}
+                  <td class="performance-info performance-completion out-of-scope">
+                    <span class="completion {{if (eq studentPerformance.performanceData.status 'complete') 'visible' 'hidden'}}">
+                      {{gru-icon name='done'}}
+                    </span>
+                  </td>
+                  <td class="performance-info performance-time">
+                    {{format-time studentPerformance.performanceData.timeSpent}}
+                  </td>
+              </tr>
+          {{/each}}
+          </tbody>
+      </table>
+  {{else}}
+    {{t 'common.no-content'}}
+  {{/if}}
+</div>

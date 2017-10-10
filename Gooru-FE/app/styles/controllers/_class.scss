@@ -1,0 +1,200 @@
+.controller {
+  &.class {
+    .content {
+      height: 100%;
+      margin-left: -1px;
+      @media (max-width: $screen-xs-max) {
+        padding: 0;
+      }
+    }
+
+    .channel {
+      .channel-info {
+        color: #fff;
+        display: inline-block;
+        border-bottom: 1px solid #fff;
+        padding: 15px 0px 15px 0px;
+        width: 100%;
+
+        .gru-icon {
+          width: 32px;
+          height: 32px;
+          &.channel {
+            background-color: #fff;
+            -webkit-mask: url(/assets/gooru/images/iconChannel.svg) no-repeat
+              center center;
+            mask: url(/assets/gooru/images/iconChannel.svg) no-repeat center
+              center;
+            margin: 0px 4px 0px 18px;
+          }
+        }
+
+        h4 {
+          color: #fff;
+          margin-top: 12px;
+          display: inline-block;
+        }
+      }
+      .message-row-container {
+        max-height: 550px;
+        overflow-y: auto;
+
+        .message-row-container-inner {
+          float: left;
+          width: 100%;
+          padding-top: 15px;
+        }
+
+        .message-block {
+          color: #fff;
+          margin: 10px 0px 10px 0px;
+          float: left;
+          width: 100%;
+
+          .user-pic {
+            border: solid 1px #fff;
+            border-radius: 2px;
+            width: 36px;
+            height: 36px;
+            margin: 0px 0px 0px 20px;
+            display: inline-block;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 36px 36px;
+            float: left;
+          }
+
+          .message-content {
+            float: left;
+            width: 75%;
+            width: -moz-calc(100% - 70px);
+            width: -webkit-calc(100% - 70px);
+            width: -o-calc(100% - 70px);
+            width: calc(100% - 70px);
+            margin-left: 12px;
+
+            .user-full-name {
+              margin: -4px 0px 1px 0px;
+              float: left;
+              width: 75%;
+              width: -moz-calc(100% - 34px);
+              width: -webkit-calc(100% - 34px);
+              width: -o-calc(100% - 34px);
+              width: calc(100% - 34px);
+              font-weight: 600;
+            }
+            .message {
+              float: left;
+              width: 90%;
+              margin: -6px 0px 0px 0px;
+              a {
+                color: #fff;
+              }
+            }
+            .messageTeacher {
+              float: left;
+              width: 90%;
+              margin: -6px 0px 0px 0px;
+              a {
+                color: #fff;
+              }
+              font-weight: bold;
+              background-color: #146ebe;
+            }
+            .fa-remove {
+              margin: -4px 0px 0px 8px;
+              cursor: pointer;
+              color: rgba(255, 255, 255, 0);
+              background-color: rgba(255, 255, 255, 0);
+              border-radius: 50%;
+              padding: 2px 4px 3px 4px;
+            }
+          }
+
+          &:hover {
+            .message-content {
+              .fa-remove {
+                color: rgba(255, 255, 255, 1);
+                background-color: rgba(255, 255, 255, .4);
+              }
+            }
+          }
+        }
+      }
+
+      .channel-chat-message-form {
+        float: left;
+        width: 100%;
+        background: #fff;
+        position: relative;
+
+        .form-group {
+          border-bottom: solid 1px #e8e8e8;
+
+          .button-container {
+            float: left;
+            width: 40px;
+            display: inline-block;
+
+            li {
+              list-style: none;
+
+              ul {
+                margin-top: -106px;
+                background: #fff;
+
+                li {
+                  #mediaCapture {
+                    display: none;
+                  }
+                  .upload-file {
+                    padding-left: 20px;
+                    width: 100%;
+                    cursor: pointer;
+                    &:hover {
+                      color: #141414;
+                    }
+                  }
+                }
+              }
+            }
+
+            .chat-options {
+              background-color: #f1f1f1;
+              border: solid 1px #e8e8e8;
+              width: 40px;
+              height: 40px;
+              overflow: hidden;
+              border-radius: 0px;
+              display: block;
+
+              i {
+                color: #a6a6a6;
+                font-size: 16px;
+                display: block;
+                margin-top: 11px;
+                margin-left: 11px;
+              }
+            }
+          }
+          .input-container {
+            float: left;
+            width: -moz-calc(100% - 95px);
+            width: -webkit-calc(100% - 95px);
+            width: -o-calc(100% - 95px);
+            width: calc(100% - 95px);
+
+            .channel-chat-message {
+              background-color: #fff;
+              padding: 6px 3px 5px 10px;
+              width: 100%;
+              outline: none;
+              -webkit-box-shadow: none;
+              box-shadow: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}

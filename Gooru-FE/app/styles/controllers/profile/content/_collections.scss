@@ -1,0 +1,21 @@
+.controller.content-collections {
+  .collections {
+    @include flexbox;
+    @include flex-wrap(wrap);
+    @include justify-content(center);
+  }
+
+  .no-content {
+    margin-top: 25px;
+
+    .panel-body {
+      @include flexbox;
+      @include flex-direction(row);
+      @include justify-content(space-between);
+
+      p {
+        margin-left: 5px;
+      }
+    }
+  }
+}

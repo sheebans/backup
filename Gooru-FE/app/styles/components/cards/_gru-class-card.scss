@@ -1,0 +1,160 @@
+.gru-class-card {
+  padding: 12px;
+  &.cards {
+    .panel {
+      @include border-top-radius(4px);
+      @include border-bottom-radius(4px);
+      @include box-shadow(0 0 7px #ddd);
+      margin: 0;
+      width: 100%;
+      a {
+        padding: 0;
+      }
+      &.archive {
+        .panel-heading {
+          background-color: $light-400;
+        }
+      }
+    }
+
+    .panel-body {
+      line-height: 1.5;
+      padding: 0;
+
+      > div {
+        padding: 20px;
+      }
+    }
+    .panel-heading {
+      @include flexbox;
+      @include align-items(center);
+      @include justify-content(space-between);
+      @include border-top-radius(4px);
+      background-color: $sky-300;
+      .title {
+        h5 {
+          color: $white;
+          font-size: $font-size-lead;
+          margin: 5px 0;
+        }
+      }
+      .side-info {
+        @include flexbox;
+        @include align-items(center);
+        @include flex-shrink(0);
+        @include justify-content(space-between);
+        height: 100%;
+        overflow: hidden;
+        width: 170px;
+        @media (min-width: $screen-xs) {
+          width: 185px;
+        }
+        .profile-link {
+          padding: 0 10px;
+        }
+      }
+    }
+
+    .action {
+      @include flexbox;
+      @include align-items(center);
+      @include border-top-radius(4px);
+      @include border-left-radius(0);
+      font-size: $font-size-large;
+      height: 100%;
+      padding: 0 10px;
+
+      span {
+        white-space: nowrap;
+      }
+
+      .gru-icon {
+        font-size: $font-size-large * 2;
+        margin: 2px -7px 0;
+        vertical-align: middle;
+      }
+    }
+
+    .code {
+      @include border-top-radius(4px);
+      @include border-bottom-radius(4px);
+      @include flex-shrink(0);
+      border: 1px solid $white;
+      font-size: $font-size-base;
+      line-height: 1;
+      padding: 4px 5px;
+      text-transform: uppercase;
+      @media (min-width: $screen-xs) {
+        font-size: $font-size-large;
+      }
+    }
+
+    .collaborators {
+      color: $gray;
+      margin-bottom: 15px;
+      text-align: center;
+
+      .collaborator-avatar {
+        @include border-top-radius(50%);
+        @include border-bottom-radius(50%);
+        height: 30px;
+        width: 30px;
+      }
+      .name {
+        display: block;
+        @media (max-width: $screen-xs-max) {
+          @include text-overflow;
+          max-width: 115px;
+        }
+      }
+    }
+
+    .members-info {
+      margin-top: 2%;
+      border-right: 1px solid $gray-lighter;
+      color: $gray-light;
+      float: left;
+      margin-right: -1px;
+
+      .gru-icon {
+        font-size: 150%;
+        line-height: 1;
+        vertical-align: middle;
+      }
+    }
+
+    .description {
+      border-left: 1px solid $gray-lighter;
+      min-height: 124px;
+      height: 100%;
+      overflow: hidden;
+      position: relative;
+
+      p {
+        margin-top: 35px;
+        margin-bottom: 0;
+      }
+
+      > div {
+        @include ellipsis($font-size-base, 1.5, 4);
+      }
+    }
+
+    .archived-actions {
+      display: inline-block;
+      margin-top: 10px;
+      span {
+        display: inline-block;
+        margin-top: 2px;
+        margin-left: 4px;
+      }
+      i.material-icons {
+        font-size: $font-size-h4;
+        float: left;
+      }
+      .btn i.material-icons {
+        float: none;
+      }
+    }
+  }
+}

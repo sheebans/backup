@@ -1,0 +1,129 @@
+.search {
+  .gru-resource-options {
+    $optionsHeightXS: 70px;
+    $optionsHeightSM: 53px;
+    padding: 0;
+    width: 100vw;
+    .options {
+      display: block;
+      height: $optionsHeightXS;
+      background-color: $light-100;
+      margin-left: -15px;
+      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.20);
+      text-align: center;
+      padding: 0 0 0 3%;
+      @media (min-width: $screen-sm) {
+        padding: 0 0 0 15px;
+        height: $optionsHeightSM;
+      }
+      ul {
+        padding: 0;
+        list-style: none;
+        @include flexbox;
+        margin: 0;
+        height: $optionsHeightXS;
+        overflow: hidden;
+        overflow-x: auto;
+        @media (min-width: $screen-sm) {
+          height: $optionsHeightSM;
+        }
+        li {
+          margin: 0 20px;
+          text-align: left;
+          width: 118px;
+          @media (max-width: $screen-xs-max) {
+            margin: 0 5px;
+          }
+          .btn-option {
+            color: $green-300;
+            padding: 0 5px;
+            border-radius: 0;
+            border-bottom: $light-100 3px solid;
+            height: $optionsHeightXS;
+            background-color: $light-100;
+            display: table-cell;
+            span {
+              vertical-align: middle;
+              display: inline-block;
+              font-size: $font-size-h6;
+              i {
+                font-size: $font-size-h5;
+                line-height: 26px;
+              }
+              &.icon-container {
+                height: 30px;
+                margin: 3px 2px 0 0;
+                .icon {
+                  background-size: 25px 20px;
+                  height: 20px;
+                }
+              }
+              &.text {
+                line-height: 14px;
+                text-align: left;
+                @media (max-width: $screen-xs-max) {
+                  display: block;
+                  font-size: 12px;
+                }
+              }
+            }
+            @media (min-width: $screen-sm) {
+              height: $optionsHeightSM;
+            }
+          }
+          .btn-option.selected {
+            border-bottom-color: $green-300;
+          }
+          .video {
+            .icon {
+              background: url(gooru/images/video-resource-green.svg) no-repeat;
+              width: 25px;
+            }
+          }
+          .web-page {
+            .icon {
+              background: url("gooru/images/website-resource-green.svg")
+                no-repeat;
+              width: 25px;
+            }
+          }
+          .interactive {
+            .icon {
+              background: url("gooru/images/interactive-resource-green.svg")
+                no-repeat;
+              width: 26px;
+            }
+          }
+          .image {
+            .icon {
+              background: url("gooru/images/image-resource-green.svg") no-repeat;
+              width: 25px;
+            }
+          }
+
+          .text {
+            .icon {
+              background: url("gooru/images/text-resource-green.svg") no-repeat;
+              width: 25px;
+            }
+          }
+          .audio {
+            .icon {
+              background: url("gooru/images/audio-resource-green.svg") no-repeat;
+              width: 26px;
+            }
+          }
+          &.web-page {
+            margin-left: 5px;
+          }
+          &.interactive {
+            margin-right: 35px;
+            @media (max-width: $screen-xs-max) {
+              margin-right: 5px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

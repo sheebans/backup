@@ -1,0 +1,47 @@
+.gru-user-card {
+  display: table;
+  background: $white;
+  @include border-top-radius(5px);
+  @include border-bottom-radius(5px);
+  width: 114px;
+  height: 126px;
+  border: 1px solid $gray-light;
+  > span {
+    cursor: pointer;
+    display: table-row;
+    line-height: 17px;
+    padding: 5px;
+    text-align: center;
+    width: 100%;
+
+    .avatar {
+      border-radius: 60px;
+      display: inline-block;
+      height: $user-card-avatar-height;
+      margin: 10px;
+      width: $user-card-avatar-width;
+    }
+
+    &.user-name {
+      span {
+        display: block;
+        margin: 0 auto;
+      }
+    }
+  }
+
+  .display-name {
+    height: 46px;
+    width: 120px;
+  }
+
+  .remove {
+    background-color: $dark-300;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    color: $white;
+    display: block;
+    height: 30px;
+    line-height: 21px;
+  }
+}

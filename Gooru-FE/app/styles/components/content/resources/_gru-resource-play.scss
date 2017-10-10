@@ -1,0 +1,18 @@
+.controller.content.resources.play {
+  > article > section {
+    .header {
+      border-bottom: none;
+      padding: 0;
+    }
+  }
+}
+
+.panel-body {
+  .external-https {
+    @include flexbox;
+    @include flex-direction(column);
+    @include align-items(center);
+    @include justify-content(center);
+    padding: 2em;
+  }
+}

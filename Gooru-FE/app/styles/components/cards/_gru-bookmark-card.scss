@@ -1,0 +1,56 @@
+.gru-bookmark-card {
+  height: 100px;
+  width: 88px;
+  float: left;
+  margin: 20px 20px 0 0;
+  .panel.bookmark {
+    border-radius: 5px;
+    height: inherit;
+    background-color: $blue-400;
+    .panel-heading {
+      display: block;
+      .icon {
+        display: inline-block;
+        padding: 5px;
+        i {
+          margin: 0 5px 0 0;
+          width: 22px;
+          height: 17px;
+          vertical-align: middle;
+          background-repeat: no-repeat;
+          background-position: center center;
+          display: inline-block;
+          &.collection {
+            background-image: url("gooru/images/navigation_collection_selected.svg");
+          }
+          &.assessment {
+            background-image: url("gooru/images/navigation_assessment_selected.svg");
+          }
+          &.course {
+            background-image: url("gooru/images/navigation_course_selected.svg");
+          }
+        }
+      }
+      .unBookmark-btn {
+        display: inline-block;
+        margin: 0;
+        padding: 0;
+        &.no-bgd {
+          background-color: transparent;
+          i {
+            color: $white;
+            line-height: $font-unBookmark;
+            font-size: $font-unBookmark;
+          }
+        }
+      }
+    }
+    .panel-body {
+      padding: 5px 4px;
+      .title {
+        font-size: $font-size-small;
+        color: $white;
+      }
+    }
+  }
+}

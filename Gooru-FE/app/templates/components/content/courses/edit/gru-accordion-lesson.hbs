@@ -1,0 +1,111 @@
+{{#if model.isEditing}}
+  <div class="panel panel-default edit">
+    <div class="panel-heading">
+
+      {{#if lesson.id}}
+        <h3>{{t "common.lesson"}} {{plus-one index}}</h3>
+      {{else}}
+        <h3>{{t "common.lesson"}} {{totalItems}}</h3>
+      {{/if}}
+
+      {{validation.gru-input model=tempLesson valuePath='title' class="title" maxLength=50 didValidate=didValidate}}
+
+      <div class="actions">
+        <button class="cancel btn btn-info"  {{action 'cancelEdit'}}>{{t "common.cancel"}}</button>
+        <button class="save btn btn-success" {{action 'saveLesson'}}>{{t "common.save"}}</button>
+      </div>
+    </div>
+  </div>
+{{/if}}
+
+<div class="panel panel-default view {{if model.isExpanded 'expanded' 'collapsed'}}">
+  <div class="panel-heading">
+
+    {{#if isSorting}}
+      <span class="drag-icon">
+        {{gru-icon name="drag_handle"}}
+      </span>
+    {{/if}}
+
+    <a href="#" {{action 'toggle'}}>
+      <div class="title">
+        <h3>{{t "common.lesson"}} {{plus-one index}}</h3>
+        <strong>{{lesson.title}}</strong>
+      </div>
+    </a>
+
+    <div class="detail">
+
+     {{#if model.isSorting}}
+        <div class="actions">
+          <button class="btn sort-items" {{action 'sortLessonItems'}} title="{{t 'common.swap'}}">{{gru-icon name="swap_vert"}}</button>
+          <div class="drag-options">
+            <button class="cancel btn btn-info"  {{action 'cancelSort'}}>{{t "common.cancel"}}</button>
+            <button class="save btn btn-success" {{action 'saveLessonItemsOrder'}}>{{t "common.save"}}</button>
+          </div>
+        </div>
+
+     {{else}}
+
+       {{#if (or lesson.assessmentCount lesson.collectionCount)}}
+         <div class="{{if (and lesson.assessmentCount lesson.collectionCount) 'mixed'}}">
+           {{#if lesson.assessmentCount}}
+             <span><b>{{lesson.assessmentCount}}</b> {{t "common.assessment-pl" count=lesson.assessmentCount}}</span>
+           {{/if}}
+           {{#if lesson.collectionCount}}
+             <span><b>{{lesson.collectionCount}}</b> {{t "common.collection-pl" count=lesson.collectionCount}}</span>
+           {{/if}}
+         </div>
+       {{else}}
+         <span>{{t "common.add"}}</span>
+       {{/if}}
+       <div class="actions">
+         <div class="dropdown">
+           <button class="btn add-item dropdown-toggle" title="{{t 'common.create'}}" type="button" data-toggle="dropdown">{{gru-icon name="add"}}</button>
+           <ul class="dropdown-menu dropdown-menu-right">
+             <li><a href="#" {{action "fromMyCollections"}}>{{t "common.from-my-collections"}}</a></li>
+             <li><a href="#" {{action "fromMyAssessments"}}>{{t "common.from-my-assessments"}}</a></li>
+             <li><a href="#" {{action "showModal" "content.modals.gru-collection-new" newCollectionModel}}>{{t "common.new-collection"}}</a></li>
+             <li><a href="#" {{action "showModal" "content.modals.gru-assessment-new" newCollectionModel}}>{{t "common.new-assessment"}}</a></li>
+           </ul>
+         </div>
+         <button class="btn sort-items" {{action 'sortLessonItems'}} title="{{t 'common.swap'}}">{{gru-icon name="swap_vert"}}</button>
+         <div class="item-actions">
+           {{partial 'content/partials/item-actions'}}
+           <button class="btn edit-item" title="{{t 'common.edit'}}" {{action 'edit' model}} data-toggle="tooltip" data-placement="auto">{{gru-icon name="edit"}}</button>
+         </div>
+       </div>
+
+     {{/if}}
+    </div>
+  </div>
+  <div class="panel-body">
+
+    <ol class="accordion-lesson sortable" role="tablist" aria-multiselectable="true">
+
+        {{#each items as |item index|}}
+          {{content.courses.edit.gru-accordion-lesson-item
+          model=item
+          course=course
+          index=index
+          isSorting=model.isSorting
+          lessonId=lesson.id
+          unitId=unitId
+          courseId=course.id
+          lessonTitle=lesson.title
+          onRemoveLessonItem=(action 'removeLessonItem')
+          onDeleteLessonItem=(action 'removeLessonItem')
+          onRemixLessonItem=(action 'remixLessonItem')
+          }}
+        {{/each}}
+    </ol>
+
+    <div>
+      <button class="btn btn-success add-prefix" {{action "fromMyCollections"}}>{{t "common.from-my-collections"}}</button>
+      <button class="btn btn-success add-prefix" {{action "fromMyAssessments"}}>{{t "common.from-my-assessments"}}</button>
+      <button class="btn btn-success add-prefix" {{action "showModal" "content.modals.gru-collection-new" newCollectionModel}}>{{t "common.new-collection"}}</button>
+      <button class="btn btn-success add-prefix" {{action "showModal" "content.modals.gru-assessment-new" newCollectionModel}}>{{t "common.new-assessment"}}</button>
+    </div>
+
+  </div>
+</div>

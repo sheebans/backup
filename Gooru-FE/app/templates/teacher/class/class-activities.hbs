@@ -1,0 +1,53 @@
+<div class="controller teacher class class-activities">
+  <div class="links">
+    {{t "teacher-landing.class.class-activities-tab.add-activities"}}
+    {{#link-to "teacher.class.course-map" class="pointer course-map"}}{{t "common.course-map"}}{{/link-to}}
+    {{t "teacher-landing.class.class-activities-tab.or"}}
+    {{#link-to "profile.content.courses" session.userData.gooruUId class="pointer my-content"}}{{t "common.myContent"}}{{/link-to}}
+  </div>
+  {{#if classActivities}}
+    {{#each classActivities as |activities index|}}
+      <div class="class-activity-accordion" role="tab" id="{{index}}-heading">
+        <div class="panel-title">
+          <a class="title" role="button" data-toggle="collapse" href="#{{index}}-content"
+             aria-expanded="true" aria-controls="{{index}}-content">
+             <span>
+               {{#if (eq index 0)}}
+                  {{t "teacher-landing.class.class-activities-tab.today"}}{{activities.date}}
+               {{else}}
+                  {{activities.date}}
+               {{/if}}
+             </span>
+          </a>
+        </div>
+      </div>
+      <div id="{{index}}-content"
+           class="panel-collapse collapse in"
+           role="tabpanel"
+           aria-labelledby="{{index}}-heading">
+        {{#each activities.classActivities as |classActivity|}}
+          <ol class="panel-group collections" role="tablist" aria-multiselectable="true">
+            {{class.gru-class-activity-panel
+              classActivity=classActivity
+              onGoLive='goLive'
+              onChangeVisibility='changeVisibility'
+              index=index
+              onRemoveClassActivity='removeClassActivity'
+            }}
+          </ol>
+        {{else}}
+          <li class="no-content">{{t "common.contentUnavailable"}}</li>
+        {{/each}}
+      </div>
+    {{/each}}
+    <div class="class-activity-accordion">
+      <a class="title" role="button" {{action "viewMore"}}>
+         <span>
+           {{t "teacher-landing.class.view-more"}}
+         </span>
+      </a>
+    </div>
+  {{else}}
+    <div class="no-content">{{t "common.no-dca-teacher"}}</div>
+  {{/if}}
+</div>

@@ -1,0 +1,218 @@
+.controller.teacher.class.class-management {
+  padding: 0;
+  .panel {
+    border-radius: 5px;
+    padding: 10px 15px;
+    min-height: 180px;
+    .panel-header {
+      min-height: 30px;
+      h5 {
+        display: inline-block;
+        margin: 0;
+        vertical-align: middle;
+      }
+      .actions {
+        @media (min-width: $screen-sm) {
+          float: right;
+        }
+        button {
+          padding: 4px 15px;
+        }
+      }
+    }
+    .panel-body {
+      clear: both;
+      padding: 5px;
+      p {
+        margin: 0;
+        color: $gray-base;
+        font-weight: 300;
+        line-height: $font-family-base;
+      }
+      .edit-text {
+        font-size: $font-navigator;
+        color: $gray-base;
+        .gru-icon.edit {
+          color: $light-400;
+          font-size: $font-size-large;
+          cursor: pointer;
+        }
+        .gru-input {
+          &.minScore {
+            width: 20%;
+          }
+          &.title {
+            width: 50%;
+          }
+        }
+      }
+    }
+  }
+
+  .class-panel {
+    .class-code {
+      margin: 5px -15px 0;
+      .input-group {
+        width: 132px;
+        @media (max-width: $screen-xs) {
+          width: 100%;
+        }
+        input {
+          text-align: center;
+          border: 1px solid $light-400;
+          -webkit-border-top-left-radius: 3px;
+          -moz-border-top-left-radius: 3px;
+          border-top-left-radius: 3px;
+          -webkit-border-bottom-left-radius: 3px;
+          -moz-border-bottom-left-radius: 3px;
+          border-bottom-left-radius: 3px;
+          color: $gray-base;
+          height: 34px;
+          width: 98px;
+          font-size: $font-navigator;
+          @media (max-width: $screen-xs) {
+            width: 100%;
+            font-size: $font-size-xsmall;
+          }
+        }
+        .gru-copy-value {
+          .copy-btn {
+            height: inherit;
+          }
+        }
+        .input-group-addon {
+          background-color: $dark-300;
+          border-left: 1px solid $white;
+          padding: 0 8px;
+          i {
+            color: white;
+            font-size: $font-size-lead;
+          }
+          .tooltip {
+            width: 100%;
+            line-height: $font-size-base;
+          }
+        }
+      }
+      .gru-switch {
+        margin: 0;
+        padding: 0;
+        .btn-default.active {
+          background-color: $dark-300;
+        }
+      }
+    }
+  }
+
+  .course-panel {
+    .panel-body {
+      padding: 5px 0;
+      .course-information {
+        .gru-course-card.small {
+          padding: 0;
+          margin: 7px 0 0;
+          @media (max-width: $screen-lg) {
+            width: 100%;
+          }
+          .panel {
+            padding: 0;
+            overflow: hidden;
+            border-shadow: none;
+            box-shadow: none;
+            border: 1px solid $light-400;
+            min-height: 65px;
+            .panel-body {
+              padding: 0;
+              .card-header {
+                .header-content {
+                  @media (max-width: $screen-lg) {
+                    width: 100%;
+                  }
+                  .course-title {
+                    width: 100%;
+                  }
+                  .subject {
+                    margin: 15px 0 0;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .students-panel {
+    min-height: 0;
+    padding: 0;
+    p {
+      color: $gray-base;
+    }
+    button {
+      border: 1px solid $table-border-color;
+      padding: 6px 20px;
+    }
+    .panel-heading {
+      @include flexbox();
+      background-color: $dark-200;
+      color: $white;
+      border-top-left-radius: 6px;
+      border-top-right-radius: 6px;
+      div {
+        @include flexbox();
+        @include align-items(center);
+        width: 12%;
+        @media (max-width: $screen-xs) {
+          width: 25%;
+        }
+        &.sortable {
+          cursor: pointer;
+        }
+      }
+    }
+    .panel-body {
+      padding: 0;
+      max-height: 322px;
+      overflow-y: auto;
+      table {
+        width: 100%;
+        margin-bottom: 0;
+        td {
+          padding: 10px;
+          border-top: none;
+          border-bottom: 2px solid $table-border-color;
+        }
+        .student-id {
+          width: 63%;
+        }
+        .student {
+          span {
+            font-size: 16px;
+            color: $gray-base;
+          }
+        }
+        tr:last-child {
+          td {
+            border-bottom: none;
+          }
+        }
+      }
+      .border-right {
+        width: 12%;
+        border-right: 1px solid $table-border-color;
+        @media (max-width: $screen-xs) {
+          width: 40%;
+        }
+      }
+    }
+  }
+  .assessment-min-score {
+    .gru-input-number {
+      .error-messages {
+        position: absolute;
+        width: 211px;
+      }
+    }
+  }
+}

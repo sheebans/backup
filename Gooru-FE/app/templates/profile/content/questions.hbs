@@ -1,0 +1,38 @@
+<div class="controller content-questions">
+  <div class="questions clearfix">
+    {{#each questions as |question|}}
+      <div class="card">
+        {{cards.gru-resource-card
+          resource=question
+          addEnabled=true
+          publishVisible=true
+          isOnProfile=true
+          editEnabled=isMyProfile
+          onPlayResource="playQuestion"
+          onEditResource="editQuestion"
+          onRemixQuestion="remixQuestion"}}
+      </div>
+
+    {{else}}
+
+      <div class="panel add-content panel-default">
+        <div class="panel-body">
+          {{gru-icon name='explore'}}
+
+          {{#if isMyProfile}}
+            <p>{{{t "common.add-content-prompt" type=(t "common.a-question")}}}</p>
+            <button class="btn btn-success" {{action "showModal" "content.modals.gru-question-new"}}>
+              {{t "common.add"}} {{t "common.question"}}
+            </button>
+          {{else}}
+            <p>{{{t "common.no-questions-to-display"}}}</p>
+          {{/if}}
+        </div>
+      </div>
+
+    {{/each}}
+  </div>
+  {{#if showMoreResultsButton}}
+    <span class="show-more-results" {{action 'showMoreResults'}}>{{t "common.show-more-results"}}</span>
+  {{/if}}
+</div>

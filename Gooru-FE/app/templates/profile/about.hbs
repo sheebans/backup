@@ -1,0 +1,107 @@
+<div class="controller about">
+  <h4>
+    {{#if isMyProfile}}
+      {{t "common.about-me"}}
+      {{#link-to "profile.edit" tagName="button" class='btn btn-info pull-right hidden-xs'}}{{t "common.edit"}}{{/link-to}}
+    {{else}}
+      {{t "common.about"}}
+    {{/if}}
+  </h4>
+  <div class="about-container">
+    <div class="avatar">
+      <div class="background" style={{safe-html (concat "background-image: url(" profile.avatarUrl ")")}}></div>
+      <div class="image-container"><img class="img-responsive" src="{{profile.avatarUrl}}"/></div>
+    </div>
+    <div class="info">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-xs-12 col-sm-6">
+             <h6>{{t "sign-up.username"}}</h6>
+              <div class="username">
+                <p> {{profile.username}}</p>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12 col-sm-6">
+              <h6>{{t "common.first-name"}}</h6>
+              <p class="first-name">{{profile.firstName}}</p>
+            </div>
+            <div class="col-xs-12 col-sm-6">
+              <h6>{{t "common.last-name"}}</h6>
+              <p class="last-name">{{profile.lastName}}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12 col-sm-6">
+              <h6>{{t "common.biography"}}</h6>
+              <div class="bio">
+                <p>
+                  {{#if profile.aboutMe}}
+                    {{profile.aboutMe}}
+                  {{else}}
+                      <span class="italic">{{t "common.not-added"}}</span>
+                  {{/if}}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <h4>
+    {{t "common.school-info"}}
+    <span class="verification pull-right hidden-xs"><i class="gru-icon verified"></i> {{t "common.verified"}}</span>
+  </h4>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      {{#if profile.lastUpdate}}
+        <span class="pull-right hidden-xs">{{t "common.last-updated"}}: {{format-date profile.lastUpdate "MMMM D, YYYY"}}</span>
+      {{/if}}
+      <div class="row">
+        <div class="col-xs-12 col-sm-12">
+          <h6>{{t "common.role"}}</h6>
+          <p class="role">
+            {{profile.role}}
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-6">
+          <h6>{{t "common.country"}}</h6>
+          <p class="country">
+            {{#if profile.country}}
+              {{profile.country}}
+            {{else}}
+                <span class="italic">{{t "common.not-specified"}}</span>
+            {{/if}}
+          </p>
+        </div>
+        <div class="col-xs-12 col-sm-6">
+          <h6>{{t "common.state"}}</h6>
+          <p class="school">
+            {{#if profile.state}}
+              {{profile.state}}
+            {{else}}
+              <span class="italic">{{t "common.not-specified"}}</span>
+            {{/if}}
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-6">
+          <h6>{{t "common.district"}}</h6>
+          <p class="district">
+            {{#if profile.schoolDistrict}}
+              {{profile.schoolDistrict}}
+            {{else}}
+                <span class="italic">{{t "common.not-specified"}}</span>
+            {{/if}}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

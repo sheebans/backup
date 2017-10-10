@@ -1,0 +1,29 @@
+{{#if class.courseId}}
+  <div class="controller student course-map">
+    <div class="actions">
+      <span class="min-score {{unless class.minScore 'hidden'}}"><i></i> > {{class.minScore}} %</span>
+      <button {{action "locateMe" userLocation}} class="btn btn-info locate">
+        <span>{{gru-icon name='near_me'}}{{t "class.overview.locate"}}</span>
+      </button>
+      <button {{action "studyNow"}}class="btn btn-primary study-now out-of-scope">
+        {{gru-icon name='play_arrow'}}
+        <span>{{t 'common.study'}}</span>
+      </button>
+    </div>
+
+    {{class.overview.gru-accordion-course
+    currentClass=class
+    classMembers=classMembers
+    onSelectResource="playResource"
+    onStudyNow="studyPlayer"
+    onLocationUpdate=(action 'updateLocation')
+    userLocation=userLocation
+    location=openingLocation
+    units=units
+    contentVisibility=contentVisibility
+    showLocation=showLocation
+    isTeacher=false}}
+  </div>
+{{else}}
+  <div class="no-content">This classroom does not have a related course and it has no content</div>
+{{/if}}

@@ -1,0 +1,326 @@
+.gru-class-navigation {
+  .code {
+    border: 1px solid $white;
+    border-radius: 4px;
+    display: inline-block;
+    padding: 2px 20px;
+
+    &.introjs-showElement {
+      background-color: $blue-300;
+    }
+  }
+
+  .members {
+    i {
+      margin-right: 7px;
+    }
+  }
+
+  .class-info {
+    color: $white;
+    padding: 0 32px;
+
+    h4 {
+      color: $white;
+      display: inline-block;
+      margin: 40px 0 0 -10px;
+      padding: 12px 30px 12px 10px;
+
+      &.active-for-tour {
+        @include box-shadow(0 0 0 3px $white);
+        background-color: $blue-500;
+        border-radius: 2px;
+        box-shadow: 0 0 0 3px $white;
+        position: relative;
+        z-index: 9999999;
+      }
+    }
+
+    p {
+      color: $white;
+      font-weight: normal;
+      margin-bottom: 10px;
+    }
+
+    .active-dates {
+      ul {
+        padding: 0 17px;
+
+        li {
+          opacity: .6;
+        }
+      }
+    }
+
+    .greetings {
+      p {
+        display: inline;
+      }
+
+      i {
+        float: right;
+      }
+    }
+
+    .greetings-description {
+      font-size: $font-size-h6;
+
+      p {
+        line-height: 18px;
+        opacity: .6;
+        overflow: hidden;
+        width: 100%;
+      }
+    }
+
+    .members {
+      margin-top: 20px;
+    }
+  }
+
+  .class-menu {
+    margin: 30px 0 0;
+
+    .class-menu-item {
+      @include flexbox;
+      @include justify-content(space-between);
+      @include align-items(center);
+      @include align-content(flex-start);
+      border: 0;
+      color: $white;
+      cursor: pointer;
+      padding: 7px 32px;
+
+      &.introjs-showElement {
+        @include linear-gradient($blue-500, $blue-400);
+        margin-left: 4px;
+      }
+
+      h6 {
+        color: $white;
+      }
+
+      a {
+        color: $white;
+      }
+    }
+
+    .selected {
+      background-color: rgba(255, 255, 255, .1);
+    }
+  }
+
+  .xs-design {
+    @include flexbox;
+    @include flex-direction(column);
+    @include align-items(center);
+    @include align-content(center);
+
+    .class-info {
+      @include flexbox;
+      @include justify-content(space-between);
+      @include align-items(center);
+      @include align-content(center);
+      border: 1px solid rgba(255, 255, 255, .17);
+      height: 60px;
+      padding: 0;
+      width: 100%;
+
+      .navigation-active {
+        @include flexbox;
+        @include justify-content(flex-end);
+        @include align-content(center);
+        height: 100%;
+        width: 25%;
+        @media (max-width: $screen-xs-max) {
+          width: 40%;
+        }
+      }
+
+      .arrow-up {
+        border-bottom: 10px solid $blue-600;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        display: none;
+        height: 0;
+        left: 3px;
+        margin-top: 50px;
+        position: absolute;
+        width: 0;
+      }
+
+      .class-name {
+        width: 75%;
+        @media (max-width: $screen-xs-max) {
+          width: 60%;
+        }
+        h4 {
+          margin: 0 20px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          max-width: 100%;
+          @media (max-width: $screen-xs-max) {
+            margin: 0;
+            padding: 5px;
+          }
+        }
+      }
+
+      .greetings {
+        @include flexbox;
+        @include justify-content(center);
+        @include align-content(center);
+        position: relative;
+        margin: 15px 0;
+
+        &.in {
+          i {
+            opacity: 1;
+          }
+
+          .arrow-up {
+            display: block;
+          }
+        }
+
+        button {
+          border: 0;
+          height: 21px;
+          margin: 0;
+          overflow: hidden;
+          padding: 0;
+
+          i {
+            opacity: .5;
+          }
+        }
+      }
+
+      .drop-menu {
+        @include flexbox;
+        @include justify-content(center);
+        @include align-content(center);
+        background-color: rgba(0, 0, 0, .15);
+        margin-left: 15px;
+
+        &.open {
+          ul {
+            right: 0;
+          }
+        }
+
+        .btn {
+          height: 22px;
+          margin: 15px;
+          padding: 0;
+
+          i {
+            font-size: 24px;
+
+            &:first-child {
+              margin: 0 5px;
+              opacity: .5;
+            }
+          }
+        }
+
+        ul {
+          @include flexbox;
+          @include flex-direction(column);
+          @include align-items(center);
+          @include align-content(center);
+          -webkit-transition: all 500ms cubic-bezier(0.250, 0.460, 0.450, 0.940);
+          -moz-transition: all 500ms cubic-bezier(0.250, 0.460, 0.450, 0.940);
+          -o-transition: all 500ms cubic-bezier(0.250, 0.460, 0.450, 0.940);
+          background: #0050a2; /* Old browsers */
+          background: -moz-linear-gradient(left, $blue-500 0%, $blue-400 100%);
+          background: -webkit-linear-gradient(
+            left,
+            $blue-500 0%,
+            $blue-400 100%
+          );
+          background: linear-gradient(-90deg, $blue-500 0%, $blue-400 100%);
+          box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, .50);
+          height: 100vh;
+          left: initial;
+          position: fixed;
+          right: -55%;
+          top: 0;
+          transition: all 500ms cubic-bezier(0.250, 0.460, 0.450, 0.940);
+          width: 55%;
+
+          > li {
+            @include flexbox;
+            @include justify-content(space-between);
+            @include align-items(center);
+            @include align-content(center);
+            cursor: pointer;
+            height: 60px;
+            padding: 30px;
+            width: 100%;
+
+            &.close {
+              @include flexbox;
+              @include flex-direction(row-reverse);
+              cursor: default;
+              margin-bottom: 10px;
+              padding-right: 10px;
+            }
+
+            .close {
+              > * {
+                cursor: pointer;
+              }
+            }
+
+            &.selected {
+              background-color: rgba(255, 255, 255, .1);
+            }
+
+            h6 {
+              color: $white;
+              padding: 0;
+            }
+
+            button {
+              border: 0;
+              box-shadow: none;
+              padding: 0;
+
+              i {
+                color: $white;
+                font-size: $font-size-h3;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .description {
+      color: $white;
+      padding: 20px 25px;
+    }
+
+    .class-details {
+      @include flexbox;
+      @include justify-content(space-between);
+      @include align-content(center);
+      color: $white;
+      height: 36px;
+      padding: 0 20px;
+      width: 100%;
+
+      @media (max-width: $screen-xs-max) {
+        padding: 5px;
+      }
+
+      > div {
+        @include flexbox;
+        @include align-items(center);
+        @include align-content(center);
+      }
+    }
+  }
+}

@@ -1,0 +1,41 @@
+.reports.assessment.qz-mastery {
+  margin-top: 30px;
+
+  .header {
+    @media (max-width: $screen-xs) {
+      border-bottom: 1px solid $light-300;
+      padding: 0 0 20px 0;
+    }
+    h4 {
+      display: inline-block;
+      vertical-align: middle;
+      width: 23%;
+      margin: 0;
+      @media (min-width: $screen-lg-min) {
+        width: 40%;
+      }
+      @media (max-width: $screen-md-min) {
+        display: block;
+      }
+    }
+    h6 {
+      display: inline-block;
+      vertical-align: middle;
+      width: 20%;
+      margin: 0;
+      @media (min-width: $screen-lg-min) {
+        width: 12%;
+      }
+    }
+
+    @media (min-width: $screen-sm) {
+      .grading-scale-legend {
+        display: table-cell;
+        vertical-align: middle;
+        float: right;
+        margin: 5px 0;
+      }
+      @include clearfix();
+    }
+  }
+}

@@ -1,0 +1,26 @@
+<div class="panel panel-default">
+
+  {{#if student.isAttemptStarted}}
+    <div class="panel-heading {{ if anonymous 'anonymous'}}" style={{startedStyle}} {{action 'selectStudent'}}>
+      <span class="name ellipsis">{{ if anonymous student.profileCode student.profileName }}</span>
+      {{#unless anonymous}}
+        {{#unless student.isAttemptFinished}}
+          <span class="question-in-progress">{{gru-icon name='av_timer'}}</span>
+        {{/unless}}
+        {{#if student.totalAnswered}}
+          <span class="score">{{score}}%</span>
+        {{/if}}
+      {{/unless}}
+    </div>
+  {{else}}
+    <div class="panel-heading {{ if anonymous 'anonymous'}} not-started" {{action 'selectStudent'}}>
+        <span class="name ellipsis">{{ if anonymous student.profileCode student.profileName }}</span>
+    </div>
+  {{/if}}
+
+    <div class="panel-body questions">
+        {{#each questions as |question|}}
+            <span class="{{question.status}}" {{action 'selectQuestion' question.id}}></span>
+        {{/each}}
+    </div>
+</div>

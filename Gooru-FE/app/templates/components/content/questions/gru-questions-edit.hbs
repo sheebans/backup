@@ -1,0 +1,302 @@
+<header>
+  {{#if collection}}
+    {{#link-to  (if isCollection 'content.collections.edit' 'content.assessments.edit') collection.id class="back-to"}}
+      <div class="{{if isCollection 'return-collection' 'return-assessment'}}">
+        {{gru-icon name="keyboard_arrow_left"}}{{t (if isCollection 'common.collection' 'common.assessment')}}: {{collection.title}}
+      </div>
+    {{/link-to}}
+  {{/if}}
+  <h1>{{t "common.edit-question"}}</h1>
+  <div class="actions">
+    <button class="btn btn-default btn-icon delete" title="{{t 'common.delete'}}" {{action 'deleteQuestion' question}}>{{gru-icon name="delete"}}</button>
+    {{#gru-share-pop-over tagName="button" type="question"}}
+      {{gru-icon name="insert_link"}}
+    {{/gru-share-pop-over}}
+    <button class="btn btn-default copy" title="{{t 'common.copy-to'}}" {{action "addToCollection"}}>{{t "common.copy-to"}}</button>
+    {{#link-to 'content.questions.play' question.id class="btn btn-default preview" tagName="button"}}{{t "common.preview"}}{{/link-to}}
+  </div>
+  <nav>
+    {{#gru-scroll to="#builder" class="selected" offset='article > header'}}{{t "common.builder"}}{{/gru-scroll}}
+    {{#gru-scroll to="#information" offset='article > header'}}{{t "common.information"}}{{/gru-scroll}}
+    {{#gru-scroll to="#settings" offset='article > header'}}{{t "common.settings"}}{{/gru-scroll}}
+  </nav>
+</header>
+
+<section id="builder">
+  <div class="header">
+    <h2>{{t "common.builder"}} - {{t (concat 'common.question-type.' question.type)}}</h2>
+    <div class="actions">
+      {{#if isBuilderEditing}}
+        <button class="cancel btn btn-info"  {{action 'cancelBuilderEdit'}}>{{t "common.cancel"}}</button>
+        <button class="save btn btn-success"{{action 'updateContent'}}>{{t "common.save"}}</button>
+      {{else}}
+        <button class="edit btn btn-primary" {{action 'editBuilderContent'}}>{{t "common.edit"}}</button>
+      {{/if}}
+    </div>
+  </div>
+  <div class="panel panel-default question-text">
+    <div class="panel-heading">
+      <div class="border-bottom">
+        <h3>{{t "common.question"}}</h3>
+        <span class="instructions">{{t (concat 'content.questions.edit.builder.question-instructions.' question.type)}}</span>
+      </div>
+    </div>
+    <div class="panel-body">
+      {{#if isBuilderEditing}}
+        {{gru-rich-text-editor content=tempQuestion.text model=tempQuestion valuePath='description' didValidate=didValidate}}
+        {{#if showImagePicker}}
+          {{content.gru-image isEditing=true srcImage=question.thumbnail editImage=tempQuestion.thumbnail}}
+        {{else}}
+          <button class="add-image btn btn-sm btn-primary" {{action "toggleImagePicker"}}>{{t "common.add-question-image"}}</button>
+        {{/if}}
+      {{else}}
+        {{#if question.text}}
+          <div>
+            {{{gru-math-text text=question.text}}}
+          </div>
+        {{else}}
+          <p class="text-empty">{{t 'common.nothing-to-display'}}</p>
+        {{/if}}
+        {{#if showImagePicker}}
+          {{content.gru-image isEditing=false srcImage=question.thumbnail editImage=tempQuestion.thumbnail}}
+        {{/if}}
+      {{/if}}
+      {{#if question.isOpenEnded}}
+        <div class="submission-format">
+          <div class="border-bottom">
+            <h3>{{t 'content.questions.edit.builder.submission-format.title'}}</h3>
+          </div>
+          <div class="answer-types">
+            <div class="panel panel-default">
+              <div class="panel-body">{{gru-icon name='text_fields'}}</div>
+              <div class="panel-footer">{{t 'content.questions.edit.builder.submission-format.answer-type.text-box'}}</div>
+            </div>
+          </div>
+        </div>
+        <div class="feedback-grading">
+          <div class="border-bottom">
+            <h3>{{t 'content.questions.edit.builder.feedback-grading.title'}}</h3>
+          </div>
+          <div class="content">
+            <div class="switch rubric">
+              <label class="switch-label">{{t 'common.rubric'}}</label>
+              {{#if isBuilderEditing}}
+                {{gru-switch switchOptions=switchOptions isChecked=rubric.rubricOn}}
+              {{else}}
+                {{#if rubric.rubricOn}}{{t 'common.on'}}{{else}}{{t 'common.off'}}{{/if}}
+              {{/if}}
+            </div>
+            {{#if rubric.rubricOn}}
+              {{#if rubric.title}}
+                <div class="associated-rubric">
+                  <div class="image">
+                    {{#if rubric.thumbnail}}
+                      <img class="img-responsive" src="{{rubric.thumbnail}}"/>
+                    {{else}}
+                      <i class="rubric-icon"></i>
+                    {{/if}}
+                  </div>
+                  <div class="info">
+                    <h3>{{rubric.title}}</h3>
+                  </div>
+                  <div class="actions {{if isBuilderEditing '' 'disabled'}}">
+                    <button class="btn no-bgd remove-item" {{action 'removeRubric' rubric.id}}>
+                      {{gru-icon name="remove_circle"}}
+                    </button>
+                    {{#link-to 'content.rubric.edit' rubric.id class="btn no-bgd edit-item" tagName="button"}}{{gru-icon name="edit"}}{{/link-to}}
+                  </div>
+                </div>
+              {{else}}
+                <div class="add-rubric-container">
+                  <button class="btn btn-success add-prefix add-rubric" {{action 'showAddRubricModal'}}>
+                    {{t 'content.questions.edit.builder.feedback-grading.from-existing-rubric'}}
+                  </button>
+                </div>
+                <div class="validation">
+                  {{#if rubricError}}
+                    <span class="error">
+                      {{t 'content.questions.edit.builder.feedback-grading.rubric-error'}}
+                    </span>
+                  {{/if}}
+                </div>
+              {{/if}}
+            {{else}}
+              <div class="switch scoring">
+                <label class="switch-label">{{t 'content.questions.edit.builder.feedback-grading.scoring'}}</label>
+                {{#if isBuilderEditing}}
+                  {{gru-switch switchOptions=switchOptions isChecked=rubric.scoring}}
+                {{else}}
+                  {{#if rubric.scoring}}{{t 'common.on'}}{{else}}{{t 'common.off'}}{{/if}}
+                {{/if}}
+              </div>
+              {{#if rubric.scoring}}
+                <div class="scoring-settings">
+                  <div class="setting maximum-points">
+                    <span class="title">{{t 'content.questions.edit.builder.feedback-grading.maximum-points'}}</span>
+                    {{#if isBuilderEditing}}
+                      {{validation.gru-select options=maximumOptions search="true" optionSelected=tempQuestion.rubric.maxScore onOptionSelect="onMaxScoreChange"}}
+                    {{else}}
+                      {{rubric.maxScore}}
+                    {{/if}}
+                  </div>
+                  <div class="setting increment">
+                    <span class="title">{{t 'content.questions.edit.builder.feedback-grading.increment'}}</span>
+                    {{#if isBuilderEditing}}
+                      {{validation.gru-select options=incrementOptions search="true" optionSelected=tempQuestion.rubric.increment onOptionSelect="onIncrementChange"}}
+                    {{else}}
+                      {{rubric.increment}}
+                    {{/if}}
+                  </div>
+                </div>
+              {{/if}}
+            {{/if}}
+          </div>
+        </div>
+      {{/if}}
+    </div>
+  </div>
+
+  {{#unless (or question.isOpenEnded question.isFIB)}}
+  <div class="panel panel-default question-answer">
+    <div class="panel-heading">
+      <div class="{{unless question.isHotTextHighlight 'border-bottom'}}">
+        <h3>{{t "content.questions.edit.builder.answer"}}</h3>
+        {{#if showAdvancedEditButton}}
+          <div class="advanced-button">
+            <span>{{t "common.advanced-editing"}}</span>
+            {{gru-switch switchOptions=switchOptions onOptionSwitch='onShowAdvancedEditor' isChecked=showAdvancedEditor}}
+          </div>
+        {{/if}}
+        {{#unless question.isHotTextHighlight}}
+          <span class="instructions">{{t (concat 'content.questions.edit.builder.answer-instructions.' question.type)}}</span>
+        {{/unless}}
+        {{#if correctAnswerNotSelected}}
+          <div class="missing-correct-answer">
+            <p><small>{{t "common.errors.select-correct-answer"}}</small></p>
+          </div>
+        {{/if}}
+        {{#if hasNoImages}}
+          <div class="missing-images">
+            <p><small>{{t "common.errors.answer-has-no-image"}}</small></p>
+          </div>
+        {{/if}}
+      </div>
+    </div>
+    <div class="panel-body">
+      {{#if isBuilderEditing}}
+        {{component (question-config question.type 'component.builder_answer') answers=tempQuestion.answers editMode=true showAdvancedEditor=showAdvancedEditor}}
+        {{gru-notify onLoad="focusQuestionTextEditor"}}
+      {{else}}
+        {{component (question-config question.type 'component.builder_answer') answers=question.answers}}
+      {{/if}}
+    </div>
+    {{#if isBuilderEditing}}
+      <div class="panel-footer out-of-scope">
+        <button class="add-hint btn btn-sm btn-primary">{{t "content.questions.edit.builder.add-hint"}}</button>
+        <button class="add-explanation btn btn-sm btn-primary">{{t "content.questions.edit.builder.add-explanation"}}</button>
+      </div>
+    {{/if}}
+  </div>
+  {{/unless}}
+  {{#if isBuilderEditing}}
+    <div class="footer">
+      <div class="actions">
+        <button class="cancel btn btn-info"  {{action 'cancelBuilderEdit'}}>{{t "common.cancel"}}</button>
+        <button class="save btn btn-success"{{action 'updateContent'}}>{{t "common.save"}}</button>
+      </div>
+    </div>
+  {{/if}}
+</section>
+
+<section id="information">
+  <div class="header">
+    <h2>{{t "common.information"}}</h2>
+    {{partial 'content/partials/information-actions'}}
+  </div>
+  <div class="content">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="title-section">
+          <div class="title">
+            <label>
+              <span class="required">{{t "content.questions.edit.information.question-title"}}</span>
+              {{#if isEditing}}
+                {{validation.gru-input model=tempQuestion valuePath='title' maxLength=50 didValidate=didValidate}}
+              {{else}}
+                <b>{{{question.title}}}</b>
+              {{/if}}
+            </label>
+          </div>
+          <div class="question-types">
+            <label>
+              <span class="required">{{t "content.questions.edit.information.question-type"}}</span>
+              {{!--{{#if isEditing}}
+                  <div class="btn-group">
+                      <a href="#" class="btn btn-primary btn-sm" data-toggle="dropdown">
+                          <span>
+                             {{#if tempQuestion.type}}
+                               {{#if (eq questionType 'T/F')}}
+                                 {{t 'common.question-type.T_F'}}
+                                 {{else}}
+                                 {{t (concat 'common.question-type.' tempQuestion.type) }}
+                               {{/if}}
+                            {{else}}
+                              {{t 'common.select-question-type'}}
+                            {{/if}}</span>
+                       </a>
+                      <a href="#" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
+                      <ul class="dropdown-menu dropdown-menu-right">
+                        {{#each questionTypes as |questionType|}}
+                            <li><a {{action 'selectType' questionType }}>{{t (concat 'common.question-type.' questionType) }}</a></li>
+                        {{/each}}
+                      </ul>
+                  </div>
+              {{else}} --}}
+                  <div class="btn-empty btn btn-sm">{{t (concat 'common.question-type.' question.type) }}</div>
+              {{!--  {{/if}} --}}
+            </label>
+          </div>
+        </div>
+        <div class="standards">
+          {{#if isEditing}}
+            {{taxonomy.gru-taxonomy-selector
+            isEditing=isEditing
+            onSubjectSelected="selectSubject"
+            onCategorySelected="selectCategory"
+            selectedSubject=selectedSubject
+            subjectLabelKey='common.subject-and-framework'
+            onlySubjectsWithStandards=true
+            }}
+          {{/if}}
+          <div>
+            <label class="title">
+              <span>{{t standardLabelKey}}</span>
+            </label>
+            {{#if isEditing}}
+              <button type="button" class="btn btn-primary"
+                {{action 'openTaxonomyModal'}}
+                      disabled={{standardDisabled}}>
+                {{gru-icon name="open_in_new"}} {{t "common.select"}}
+              </button>
+              <div class="tags">
+                {{taxonomy.gru-taxonomy-tag-list tags=editableTags onRemove=(action 'removeTag')}}
+              </div>
+            {{else}}
+              <div class="tags">
+                {{#if tags.length}}
+                  {{taxonomy.gru-taxonomy-tag-list tags=tags}}
+                {{else}}
+                  {{t "common.not-specified"}}
+                {{/if}}
+              </div>
+            {{/if}}
+          </div>
+        </div>
+        {{content.gru-audience isEditing=isEditing srcSelectedAudiences=question.audience editSelectedAudiences=tempQuestion.audience}}
+        {{content.gru-depth-of-knowledge isEditing=isEditing srcSelectedKnowledge=question.depthOfknowledge editSelectedKnowledge=tempQuestion.depthOfknowledge}}
+      </div>
+    </div>
+  </div>
+</section>
+
+{{content.gru-settings-edit id="settings" action='publishToProfile' model=question}}

@@ -1,0 +1,25 @@
+<span class="label required">{{t "common.category"}}</span>
+{{#if isEditing}}
+
+  <div class="btn-group">
+    {{#each categories as |category|}}
+      {{#if (eq category.value editCategory)}}
+        <button type="button"
+                class="btn btn-sm btn-primary" {{action 'setCategory' category.value}}>{{t category.label}}</button>
+      {{else}}
+        <button type="button"
+                class="btn btn-sm btn-info" {{action 'setCategory' category.value}}>{{t category.label}}</button>
+      {{/if}}
+    {{/each}}
+  </div>
+
+{{else}}
+  <div>
+    {{#each categories as |category|}}
+      {{#if (eq category.value srcCategory)}}
+        <div class="btn-empty btn btn-sm">{{t category.label}}</div>
+      {{/if}}
+    {{/each}}
+  </div>
+{{/if}}
+

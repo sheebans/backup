@@ -1,0 +1,16 @@
+{{ search.gru-resource-options
+selectedOptionTypes=selectedOptionTypes
+onSelectedOption="selectMenuOption"}}
+
+<div class="content">
+  <div class="standards-list">
+    {{taxonomy.gru-taxonomy-tag-list tags=selectedTags isInSearch=true onRemove=(action 'removeTag')}}
+  </div>
+  {{gru-resource-results
+  term=term
+  resourceResults=resourceResults
+  profile=profile}}
+</div>
+{{#if showMoreResultsButton}}
+  <span class="show-more-results" {{action 'showMoreResults'}}>{{t "common.show-more-results"}}</span>
+{{/if}}

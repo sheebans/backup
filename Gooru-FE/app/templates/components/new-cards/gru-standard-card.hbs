@@ -1,0 +1,100 @@
+<div class="panel panel-default">
+  <div class="panel-heading" style="background-image: url({{content.thumbnailUrl}})">
+    <div class="info">
+      <div class="question-resources">
+        {{#if isCourse}}
+          {{gru-icon name="format_align_center"}}
+          <span class="unit-count">
+            {{content.unitCount}}
+          </span>
+        {{else}}
+          {{#if hasResources}}
+            {{gru-icon name="format_align_center"}}
+            <span class="resource-count">
+              {{content.resourceCount}}
+            </span>
+          {{/if}}
+          {{#if hasQuestions}}
+            {{gru-icon name="format_align_center"}}
+            <span class="question-count">
+              {{content.questionCount}}
+            </span>
+          {{/if}}
+        {{/if}}
+      </div>
+      <div class="title-section">
+        <h3 class="title" alt="{{content.title}}">{{truncate text=content.title maxLength=40}}</h3>
+      </div>
+    </div>
+  </div>
+  <div class="panel-body">
+    <div class="{{if isAssessment 'author' 'remixed-by'}}">
+      {{#if isAssessment}}
+        {{#link-to 'profile.content.courses' content.owner.id class="pointer" tagName="div"}}
+          <span class="title">
+            {{t (if content.sameOwnerAndCreator "common.created-by" "common.remixed-by")}}
+          </span>
+          <img class="img-responsive" src="{{content.owner.avatarUrl}}">
+          <span class="owner">{{content.owner.displayName}}</span>
+        {{/link-to}}
+      {{else}}
+        {{#if content.owner}}
+          {{#link-to 'profile.content.courses' content.owner.id class="pointer" tagName="div"}}
+            <span class="title">
+              {{t (if content.sameOwnerAndCreator "common.created-by" "common.remixed-by")}}
+            </span>
+            <img class="img-responsive" src="{{content.owner.avatarUrl}}">
+            <span class="owner">{{content.owner.displayName}}</span> {{#if content.remixCount}}+{{content.remixCount}}{{/if}}
+          {{/link-to}}
+        {{/if}}
+      {{/if}}
+    </div>
+  </div>
+  <div class="panel-footer">
+    <div class="options">
+      {{#if (and isOnProfile isMyProfile)}}
+        <button class="edit-btn btn btn-success btn-sm" {{action "editContent"}}>{{t "common.edit"}}</button>
+        <button class="play-btn btn btn-sm btn-success" {{action "openContentPlayer" content}}>{{t "common.play"}}</button>
+      {{else}}
+        <div>
+          <button class="preview-btn btn btn-success btn-sm" {{action 'previewContent' content}}>{{t "common.preview"}}</button>
+        </div>
+      {{/if}}
+    </div>
+    <div class="actions">
+      {{#if isOnProfile}}
+        {{#if (and profile isMyProfile)}}
+          {{#unless content.isVisibleOnProfile }}
+            <div class="visibility"  title="{{t 'common.visibility-tooltip'}}" data-toggle="tooltip" data-placement="bottom" data-trigger="hover">
+              {{gru-icon name="visibility_off" class='pull-right'}}
+            </div>
+          {{/unless}}
+          {{#unless isStudent}}
+            <button class="btn add-btn no-bgd" {{action 'addToClassroom'}}title="{{if isCourse (t 'common.add-to-classroom') (t 'common.add-to-daily-class') }}" data-toggle="tooltip" data-placement="bottom" data-trigger="hover">
+              {{gru-icon name="add"}}
+            </button>
+          {{/unless}}
+        {{/if}}
+      {{else}}
+        <div class="share-box" title={{t 'common.share'}} data-toggle="tooltip" data-placement="bottom" data-trigger="hover">
+          {{#if isCourse}}
+            {{#gru-share-pop-over tagName="button" class="btn share-btn no-bgd" type="course" contentId=content.id}}
+              {{gru-icon name="share"}}
+            {{/gru-share-pop-over}}
+          {{else}}
+            {{#gru-share-pop-over tagName="button" class="btn share-btn no-bgd" type=(if isAssessment 'assessment' 'collection') contentId=content.id}}
+              {{gru-icon name="share"}}
+            {{/gru-share-pop-over}}
+          {{/if}}
+        </div>
+        {{#if isStudent}}
+          <button class="btn bookmark-btn no-bgd {{if disabledBookmark 'btn-disabled'}}" title="{{t 'common.bookmark'}}"
+              {{action 'bookmarkContent' content true}} data-toggle="tooltip"
+              data-placement="bottom" data-trigger="hover" disabled={{disabledBookmark}}>
+            {{gru-icon name="turned_in_not"}}
+          </button>
+        {{/if}}
+      {{/if}}
+    </div>
+  </div>
+</div>

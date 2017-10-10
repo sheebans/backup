@@ -1,0 +1,87 @@
+{{#if loading}}
+  {{three-bounce-spinner}}
+{{else if showPerformanceData}}
+  <div class="controller teacher class performance container-fluid">
+    {{#if questionItems}}
+      <div class="panel panel-default grade-items">
+        <div class="panel-heading">
+          {{t 'class.analytics.performance.grade-items'}}
+        </div>
+        <div class="panel-body">
+          {{gru-grade-items questionItems=questionItems}}
+        </div>
+      </div>
+    {{/if}}
+    <div class="row">
+      <div class="better-experience visible-xs alert alert-warning alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <span class="better-experience-message">{{t 'class.analytics.performance.better-experience-message'}}</span>
+      </div>
+    </div>
+    {{#unless (and isAtCollectionLevel reportData)}}
+      <div class="row actions">
+        <div class="radios-container">
+          <label class="radio-button assessment">
+            <input type="radio" name="filter-radio" tabindex="0" checked={{filteredByAssessment}} {{action "selectFilterBy" "assessment" preventDefault=false}}>
+            {{t 'teacher-landing.class.performance-tab.assessments'}}
+          </label>
+          <label class="radio-button collection">
+            <input type="radio" name="filter-radio" tabindex="0"  checked={{filteredByCollection}} {{action "selectFilterBy" "collection" preventDefault=false}}>
+            {{t 'teacher-landing.class.performance-tab.collections'}}
+          </label>
+        </div>
+        <button class="btn btn-primary report-btn" {{action 'download'}}>
+          {{gru-icon name='file_download'}}
+          <span>{{t 'common.download'}}</span>
+        </button>
+      </div>
+    {{/unless}}
+    <div class="row options">
+      {{#unless (and isAtCollectionLevel reportData)}}
+        <div class="data-picker">
+          {{#if filteredByAssessment}}
+            {{class.analytics.performance.gru-data-picker
+              onOptionsChange="optionsChange" options=defaultAssessmentOptions max=3}}
+          {{else}}
+            {{class.analytics.performance.gru-data-picker
+              onOptionsChange="optionsChange" options=defaultCollectionOptions max=3}}
+          {{/if}}
+        </div>
+      {{/unless}}
+    </div>
+    <div class="row info">
+      <div class="teacher-breadcrumb">
+        {{gru-breadcrumb items=breadcrumb onSelectedItem="selectBreadcrumbItem"}}
+      </div>
+      {{#unless (and isAtCollectionLevel reportData)}}
+        <div class="grading-scale">
+          {{grading-scale-legend}}
+        </div>
+      {{/unless}}
+    </div>
+    <div class="row gru-content">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        {{#if (and isAtCollectionLevel reportData)}}
+          {{reports.gru-class-assessment-report
+            assessment=collection
+            students=class.members
+            reportData=reportData
+            anonymous=false
+            isRealTime=false
+          }}
+        {{else}}
+          {{class.analytics.performance.teacher.gru-metrics-table
+          headers=performanceDataHeaders
+          performanceDataMatrix=performanceDataMatrix
+          dataPickerOptions=selectedOptions
+          onNavigation="navigateTo"
+          onClickReport="navigateToReport"
+          headerType= headerType
+          }}
+        {{/if}}
+      </div>
+    </div>
+  </div>
+{{else}}
+  <div class="no-content">{{t 'class.analytics.performance.no-content'}}</div>
+{{/if}}

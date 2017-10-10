@@ -1,0 +1,72 @@
+<div class="container-fluid">
+  <div class="controller edit">
+    <form {{action "updateClass" on="submit"}}>
+      <div class="class-details row">
+        <div class="class-edit col-md-8 col-sm-8 col-xs-7">
+          <h3 class="hidden-xs">{{t "class.edit.edit-class"}}</h3>
+          <p class="description-legend hidden-sm hidden-md hidden-lg">{{t "class.edit.edit-class"}}</p>
+        </div>
+        <div class="edit-btns col-xs-5 col-sm-3 col-md-3 col-sm-offset-1 col-md-offset-1">
+          <div class="edit-save-section col-center-block {{if isStudent 'hide' 'show'}}">
+            {{#link-to 'class.info' class="cancel"}}{{t 'common.cancel'}}{{/link-to}}
+            <button type="submit" class="save-btn btn btn-success">
+              {{t "common.save"}}
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="row basic-info edit-panel">
+        <div class="header">
+          <h4>{{t "class.edit.basic-info"}}</h4>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-xs-12 col-sm-5">
+                <label>
+                  <span class="required">{{t 'class.edit.class-name'}}</span>
+                  {{validation.gru-input model=tempClass valuePath='title' maxLength=25 didValidate=didValidate}}
+                </label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12 col-sm-10">
+                <label>
+                  <span>{{t "class.edit.class-greetings"}}</span>
+                  {{validation.gru-textarea model=tempClass valuePath='greeting' rows=2 maxLength=200 didValidate=didValidate
+                    placeholder=(t "class.edit.class-greetings-placeholder")}}
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row course-map edit-panel">
+        <div class="header">
+          <h4>{{t "class.edit.course-map"}}</h4>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-xs-12 col-sm-5">
+                <label>
+                  <span>{{t 'class.edit.class-minscore'}}</span>
+                  {{validation.gru-input-number model=tempClass valuePath='minScore' min=1 max=100 step=1 didValidate=didValidate}}
+                </label>
+              </div>
+            </div>
+            {{#if tempClass.courseId}}
+              <div class="row">
+                <div class="col-xs-12 col-sm-5 course">
+                  <span>{{t 'class.edit.assigned-course'}}</span>
+                  {{cards.gru-course-card course=course isEditEnabled=isMyProfile isOwner=isMyProfile
+                    onEditCourse="editCourse" onRemixCourse="remixCourse" isSmall=true}}
+                </div>
+              </div>
+            {{/if}}
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,288 @@
+.controller.sign-up {
+  display: block;
+  .modal {
+    display: block;
+    position: relative;
+    z-index: 0;
+    margin: 15px auto;
+    max-width: 405px;
+    width: 100%;
+    padding: 0 0 5px 0;
+    @media (min-width: $screen-sm-min) {
+      width: 425px;
+      max-width: 425px;
+      margin: 60px auto;
+    }
+    .modal-dialog {
+      width: 100%;
+      max-width: 405px;
+      margin: 0;
+      @media (min-width: $screen-sm-min) {
+        width: 405px;
+        margin: 10px;
+      }
+      .modal-content {
+        border: 0;
+      }
+      .modal-header {
+        text-align: center;
+        padding: 5px 0 0 0;
+        .progress-dots {
+          margin: 0 auto;
+          .dot {
+            width: 10px;
+            height: 10px;
+            background: $light-400;
+            border-radius: 50px;
+            margin: 0 5px 0 0;
+            display: inline-block;
+            &.color {
+              background: $green-400;
+            }
+          }
+        }
+
+        h1 {
+          font-size: $font-size-h3;
+          margin: 15px 0;
+        }
+        .description {
+          font-size: $font-size-large;
+          font-weight: 300;
+        }
+
+        .google-button {
+          height: 50px;
+          width: 240px;
+          box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
+          border-radius: 1px;
+          text-align: center;
+          position: relative;
+          cursor: pointer;
+          background-color: $blue-300;
+          margin: 20px auto;
+          &:active {
+            background-color: $blue-400;
+          }
+          &:hover {
+            box-shadow: 0 0 3px 3px rgba(66, 133, 244, 0.3);
+          }
+          .google-button-content-wrapper {
+            border: 1px solid transparent;
+            width: 100%;
+            height: 100%;
+            .google-button-icon {
+              float: left;
+              background-color: $white;
+              border-radius: 1px;
+              padding: 15px;
+              .google-button-icon-image {
+                width: 18px;
+                height: 18px;
+                display: block;
+                background: url("gooru/images/google-icon.svg");
+              }
+            }
+            .google-button-content {
+              line-height: 48px;
+              font-family: $font-family-roboto;
+              font-size: $font-size-h6;
+              font-weight: 500;
+              letter-spacing: 0.21px;
+              margin-left: 6px;
+              margin-right: 6px;
+              vertical-align: top;
+              color: $white;
+            }
+          }
+        }
+      }
+      .divider {
+        border-bottom: 2px solid $light-200;
+        margin: 5px 0 0 0;
+        width: 100%;
+      }
+      .modal-body {
+        padding: 0;
+        .sign-up-form,
+        .sign-up-finish-form {
+          padding: 15px 37px 0;
+          .form-group {
+            margin: 5px 0 10px 0;
+            label {
+              width: 100%;
+            }
+            .validation.error {
+              position: relative;
+              top: -15px;
+            }
+            span.required {
+              display: block;
+              &:after {
+                content: ' *';
+              }
+            }
+            &.birth-day-date {
+              margin-bottom: 30px;
+              display: block;
+            }
+            a.btn-link {
+              padding: 0;
+              text-transform: none;
+              color: $blue-200;
+              font-size: $font-size-base;
+            }
+            input {
+              &:focus {
+                border-color: $blue-200;
+              }
+            }
+            .birth-months {
+              float: left;
+              margin-right: 10px;
+              @media (min-width: $screen-sm-min) {
+                margin-right: 20px;
+              }
+              .bootstrap-select {
+                width: 105px;
+                @media (min-width: $screen-sm-min) {
+                  width: 130px;
+                }
+              }
+            }
+            .birth-days {
+              float: left;
+              margin-right: 10px;
+              @media (min-width: $screen-sm-min) {
+                margin-right: 20px;
+              }
+              .bootstrap-select {
+                width: 55px;
+                @media (min-width: $screen-sm-min) {
+                  width: 65px;
+                }
+              }
+            }
+            .birth-years {
+              float: left;
+              .bootstrap-select {
+                width: 65px;
+                @media (min-width: $screen-sm-min) {
+                  width: 95px;
+                }
+              }
+            }
+            &.sign-up-button {
+              margin: 50px -37px 0;
+              button {
+                border-top-left-radius: 0;
+                border-top-right-radius: 0;
+                width: 100%;
+                font-size: $font-size-h4;
+                font-weight: 300;
+                position: relative;
+                i {
+                  position: absolute;
+                  font-size: $font-size-h3;
+                  line-height: 48px;
+                  position: absolute;
+                  right: 5px;
+                }
+              }
+            }
+            span.error {
+              color: $red-400;
+              display: inline-block;
+              font-size: 12px;
+              margin-top: 4px;
+            }
+            &.role {
+              margin: 10px 0 20px 0;
+              .roles {
+                @include flexbox;
+                .gru-radio {
+                  margin-right: 20px;
+                  @media (min-width: $screen-sm-min) {
+                    margin-right: 30px;
+                  }
+                }
+                & > :last-child {
+                  margin-right: 0;
+                }
+              }
+            }
+          }
+        }
+        .sign-up-finish-form {
+          .bootstrap-select {
+            width: 100%;
+            &.btn-group {
+              .dropdown-menu.inner {
+                max-height: 230px !important;
+              }
+            }
+          }
+        }
+        .gru-radio {
+          input[type="radio"]:checked {
+            &:before {
+              background-color: $green-400;
+            }
+            &:after {
+              border-color: $green-400;
+            }
+          }
+        }
+      }
+    }
+    .child-layout {
+      .modal-header {
+        h3 {
+          margin: 50px 0 5px 0;
+        }
+      }
+      .modal-body {
+        margin: 20px 0 0 0;
+        .form-group {
+          &.username {
+            margin: 5px 0 15px 0;
+            input {
+              border-bottom: 2px solid $green-400;
+              &:focus {
+                border-color: $green-400;
+              }
+            }
+          }
+          &.birth-day-date {
+            input {
+              border-bottom: 2px solid $red-400;
+              margin: 0 5% 0 0;
+              &:focus {
+                border-color: $red-400;
+              }
+              &.months {
+                width: 40%;
+              }
+              &.days {
+                width: 20%;
+              }
+              &.years {
+                width: 27%;
+                margin: 0;
+              }
+            }
+          }
+        }
+        .footer-description {
+          line-height: $font-size-base;
+        }
+      }
+    }
+  }
+  &.finish {
+    .modal {
+      margin: 60px auto 10px auto;
+      min-height: 700px;
+    }
+  }
+}

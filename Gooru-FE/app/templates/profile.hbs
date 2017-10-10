@@ -1,0 +1,14 @@
+{{gru-take-tour steps=steps containerClass='profile'}}
+<div class="controller profile row">
+    <div class="navigation">
+      {{profile.gru-navigation
+      profile=profile
+      isMyProfile=isMyProfile
+      onFollowChanged="toggleFollowingStatus"
+      onItemSelected="selectMenuItem"
+      selectedMenuItem=menuItem}}
+    </div>
+    <div class="content">
+      {{outlet}}
+    </div>
+</div>

@@ -1,0 +1,11 @@
+<div class="header">
+  <h4 class="hidden-xs">{{t "common.standard"}}</h4>
+  <h6 class="hidden-xs">{{t "common.averageScore"}}</h6>
+  {{grading-scale-legend}}
+</div>
+
+{{#each learningTargets as |learningTarget|}}
+  {{reports.assessment.gru-learning-target learningTarget=learningTarget assessmentResult=assessmentResult onBubbleSelect='bubbleSelect'}}
+{{/each}}
+
+

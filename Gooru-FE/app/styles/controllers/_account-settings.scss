@@ -1,0 +1,38 @@
+.controller.account-settings {
+  width: 100%;
+  > article {
+    min-width: inherit;
+    header {
+      padding: 20px 5% 0 5%;
+      h1 {
+        @media (max-width: $screen-xs-max) {
+          font-size: $font-size-h4;
+        }
+      }
+      .actions {
+        @media (max-width: $screen-xs-max) {
+          float: right;
+          margin: 0;
+        }
+      }
+    }
+    .panel-body {
+      label {
+        display: block;
+        width: 100%;
+      }
+      .password {
+        .dots {
+          .dot {
+            width: 10px;
+            height: 10px;
+            background: $dark-400;
+            border-radius: 50%;
+            margin: 0;
+            display: inline-block;
+          }
+        }
+      }
+    }
+  }
+}

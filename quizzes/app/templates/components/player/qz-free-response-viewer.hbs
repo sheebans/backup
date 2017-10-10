@@ -1,0 +1,58 @@
+{{#unless showFullRubric}}
+  <div class="rubric-response {{if showPanel 'rubric' 'no-rubric'}}">
+    <div class="panel prompt">
+      <div class="panel-body">
+        <div class="icon">
+          <i></i>
+        </div>
+        <div class="question-text">
+          <span class="title">{{t 'qz-free-response-viewer.prompt'}}</span>
+          {{gru-math-text text=questionText}}
+          {{#if thumbnail}}
+            <img class="question-thumbnail" src="{{thumbnail}}"/>
+          {{/if}}
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default question-response">
+      <div class="panel-body">
+        {{qz-rich-text-editor content=answer model=answer valuePath='description' didValidate=didValidate}}
+      </div>
+    </div>
+    <div class="actions">
+      <button type="submit" class="save btn btn-success" disabled="{{if isSubmitDisabled true null}}" {{action 'submitQuestion'}}>{{t buttonTextKey}}</button>
+    </div>
+  </div>
+{{/unless}}
+{{#if showPanel}}
+  <div class="rubric-information {{if showFullRubric 'full-rubric'}}">
+    <div class="header" {{action 'showFullRubric'}}>
+      {{gru-icon name=(if showFullRubric "keyboard_arrow_right" "keyboard_arrow_left")}}
+      <span>{{t (if showFullRubric 'common.rubric' 'qz-free-response-viewer.full-rubric')}}</span>
+    </div>
+    <div class="categories">
+      <ul>
+        {{#if totalPoints}}
+          <li class="total">
+            <span>
+              {{t 'qz-free-response-viewer.total-score'}}
+              ({{totalPoints}}{{t 'qz-free-response-viewer.points'}})
+            </span>
+          </li>
+        {{/if}}
+        {{#each categories as |category|}}
+          <li class="category">
+            <span>{{truncate-text text=category.title maxLength=25}}
+              {{#if category.totalPoints}}
+                ({{category.totalPoints}} {{t 'qz-free-response-viewer.points'}})
+              {{/if}}
+            </span>
+          </li>
+        {{/each}}
+      </ul>
+    </div>
+    <div class="rubric-preview">
+      {{player.resources.qz-url-resource resource=question.rubric}}
+    </div>
+  </div>
+{{/if}}

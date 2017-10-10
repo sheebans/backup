@@ -1,0 +1,68 @@
+.roleOption {
+  text-align: center;
+  width: 25%;
+  float: left;
+}
+
+.roleLabel {
+  color: #999;
+  font-size: $font-size-small;
+}
+
+.roleRadioButton {
+  margin: 4px 0 0;
+  line-height: normal;
+  margin-right: .5ex !important;
+}
+
+.teacherRoleImage {
+  background: url("quizzes-addon/quizzes/teacher.png") no-repeat scroll center
+    bottom rgba(0, 0, 0, 0);
+  height: 45px;
+  margin: 10px 0 5px;
+  width: 100%;
+}
+
+.selected .teacherRoleImage {
+  background: url("quizzes-addon/quizzes/teacher_selected.png") no-repeat scroll
+    center bottom rgba(0, 0, 0, 0);
+}
+
+.studentRoleImage {
+  background: url("quizzes-addon/quizzes/student.png") no-repeat scroll center
+    bottom rgba(0, 0, 0, 0);
+  height: 45px;
+  margin: 10px 0 5px;
+  width: 100%;
+}
+
+.selected .studentRoleImage {
+  background: url("quizzes-addon/quizzes/student_selected.png") no-repeat scroll
+    center bottom rgba(0, 0, 0, 0);
+}
+
+.parentRoleImage {
+  background: url("quizzes-addon/quizzes/parent.png") no-repeat scroll center
+    bottom rgba(0, 0, 0, 0);
+  height: 45px;
+  margin: 10px 0 5px;
+  width: 100%;
+}
+
+.selected .parentRoleImage {
+  background: url("quizzes-addon/quizzes/parent_selected.png") no-repeat scroll
+    center bottom rgba(0, 0, 0, 0);
+}
+
+.otherRoleImage {
+  background: url("quizzes-addon/quizzes/other.png") no-repeat scroll center
+    bottom rgba(0, 0, 0, 0);
+  height: 45px;
+  margin: 10px 0 5px;
+  width: 100%;
+}
+
+.selected .otherRoleImage {
+  background: url("quizzes-addon/quizzes/other_selected.png") no-repeat scroll
+    center bottom rgba(0, 0, 0, 0);
+}

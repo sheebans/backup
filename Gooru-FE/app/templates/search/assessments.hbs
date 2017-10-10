@@ -1,0 +1,11 @@
+<div class="standards-list">
+  {{taxonomy.gru-taxonomy-tag-list tags=selectedTags isInSearch=true onRemove=(action 'removeTag')}}
+</div>
+{{collection-results
+  term=searchController.term
+  collectionResults=assessmentResults
+  profile=profile
+}}
+{{#if showMoreResultsButton}}
+  <span class="show-more-results" {{action 'showMoreResults'}}>{{t "common.show-more-results"}}</span>
+{{/if}}

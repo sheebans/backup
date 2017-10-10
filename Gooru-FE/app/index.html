@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Gooru</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link href='https://www.gooru.org/css?family=Lato:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
+    <link href="https://www.gooru.org/icon?family=Material+Icons" rel="stylesheet">
+
+    {{content-for 'head'}}
+
+    <link rel="stylesheet" href="{{rootURL}}assets/vendor.css">
+    <link rel="stylesheet" href="{{rootURL}}assets/gooru-web.css">
+
+    {{content-for 'head-footer'}}
+  </head>
+  <body id="gooru-application-container">
+    {{content-for 'body'}}
+
+    <script src="{{rootURL}}assets/vendor.js"></script>
+    <script src="{{rootURL}}assets/gooru-web.js"></script>
+
+
+    {{content-for 'body-footer'}}
+  </body>
+</html>

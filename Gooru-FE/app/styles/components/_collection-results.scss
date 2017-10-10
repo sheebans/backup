@@ -1,0 +1,44 @@
+.collection-results {
+  .search-results {
+    height: 35px;
+  }
+  .label a {
+    text-decoration: none;
+    color: $white;
+  }
+  .results {
+    margin: 18px auto;
+    float: none;
+  }
+  .gru-collection-card {
+    display: inline-block;
+    margin: 10px;
+    text-align: left;
+  }
+  .no-results-found {
+    width: 292px;
+    height: 362px;
+    display: inline-block;
+    border-radius: 6px;
+    .panel-body {
+      height: inherit;
+      @include flexbox;
+      @include align-items(center);
+    }
+    .no-results-content {
+      margin: 0 auto;
+      vertical-align: middle;
+      > * {
+        display: block;
+      }
+      i {
+        font-size: 86px;
+        color: $gray-dark;
+        margin: 25px 0;
+      }
+      .title {
+        font-size: 18px;
+      }
+    }
+  }
+}

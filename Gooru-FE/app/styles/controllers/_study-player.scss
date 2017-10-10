@@ -1,0 +1,24 @@
+.study-player {
+  .player-container {
+    .gru-take-tour {
+      top: 60px;
+      z-index: 1100;
+    }
+  }
+
+  .qz-player {
+    overflow: auto;
+    height: 100vh;
+    .player {
+      overflow: auto;
+    }
+  }
+  .no-confirmation {
+    .qz-player {
+      padding-top: 104px;
+      @media (max-width: $screen-sm) {
+        padding-top: 255px;
+      }
+    }
+  }
+}

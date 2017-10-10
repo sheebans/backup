@@ -1,0 +1,75 @@
+<div class="panel-heading">
+  <div class="actions">
+    {{#if (eq index 0)}}
+      {{#if visible}}
+        <span class='visibility-panel item-visible hidden-xs'>
+          {{gru-icon name='assignment_turned_in'}}
+        </span>
+      {{else}}
+        <span class='visibility-panel item-not-visible hidden-xs pointer'
+          {{action 'changeVisibility' classActivity.id}}
+              data-toggle="tooltip" data-html="true" data-placement="top"
+              title="{{t "common.assign"}}">
+          {{gru-icon name='assignment_turned_in'}}
+        </span>
+      {{/if}}
+      {{#if item.isAssessment}}
+        <button {{action 'goLive' item.id}}
+          data-toggle="tooltip" data-html="true" data-placement="bottom"
+          title="{{t "common.launch-on-air"}}"
+          class="on-air hidden-xs enabled">{{t "common.launch-on-air"}}
+        </button>
+      {{/if}}
+    {{else}}
+      <span class='visibility-panel item-not-visible hidden-xs'>
+        {{gru-icon name='assignment_turned_in'}}
+      </span>
+    {{/if}}
+  </div>
+  <div class="panel-title">
+    <div class="icon-container">
+      {{#if item.isAssessment}}
+        {{#if item.thumbnailUrl}}
+          <img class="img-rounded" src="{{item.thumbnailUrl}}" />
+        {{else}}
+          {{gru-icon name='playlist_add_check'}}
+        {{/if}}
+      {{ else }}
+        {{#if item.thumbnailUrl}}
+          <img class="img-rounded" src="{{item.thumbnailUrl}}" />
+        {{else}}
+          {{gru-icon name='view_comfy'}}
+        {{/if}}
+      {{/if}}
+    </div>
+    {{#link-to 'player' item.id (query-params type=item.collectionType role='teacher') class="title"}}
+        <div class="ellipsis text">{{item.title}}</div>
+        <div class="type">{{t (if item.isAssessment 'common.assessment' 'common.collection')}}</div>
+    {{/link-to}}
+  </div>
+  <div class="info">
+    <div class="content-count {{if (and item.questionCount item.resourceCount) 'mixed'}}">
+      {{#if item.isAssessment}}
+        {{#if item.questionCount}}
+          <span class="question-count"><b>{{item.questionCount}}</b> {{t "common.question-pl" count=item.questionCount}}</span>
+        {{/if}}
+      {{else}}
+        {{#if (or item.questionCount item.resourceCount)}}
+          {{#if item.resourceCount}}
+              <span class="resource-count"><b>{{item.resourceCount}}</b> {{t "common.resource-pl" count=item.resourceCount}}</span>
+          {{/if}}
+          {{#if item.questionCount}}
+              <span class="question-count"><b>{{item.questionCount}}</b> {{t "common.question-pl" count=item.questionCount}}</span>
+          {{/if}}
+        {{/if}}
+      {{/if}}
+    </div>
+
+    <div class="left-info">
+      <span class="score" style={{safe-html (concat "color:" (grade-color (if collectionPerformanceSummary.score collectionPerformanceSummary.score 'NA')))}}>
+        {{if collectionPerformanceSummary.score collectionPerformanceSummary.score '--'}}%
+      </span>
+      <button title="{{t 'common.remove'}}" class="btn no-bgd remove-item" {{action 'removeClassActivity' classActivity}} data-toggle="tooltip" data-placement="auto">{{gru-icon name="remove_circle"}}</button>
+    </div>
+  </div>
+</div>

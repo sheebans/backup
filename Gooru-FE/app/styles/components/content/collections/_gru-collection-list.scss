@@ -1,0 +1,485 @@
+.content.collections.gru-collection-list {
+  > .header {
+    margin-bottom: 15px !important;
+  }
+
+  .collection-list {
+    list-style: none;
+    margin-bottom: 0;
+    padding-left: 0;
+
+    .gru-collection-list-item {
+      padding: 10px 0;
+
+      > .panel {
+        > .panel-heading {
+          padding: 12px 10px 10px 25px;
+          h3 {
+            display: inline-block;
+            margin: 0;
+            padding: 0 10px 0 10px;
+            font-weight: bold;
+            line-height: 2.5;
+            vertical-align: top;
+          }
+        }
+        > .panel-body {
+          .submission-format {
+            .answer-types {
+              margin-top: 10px;
+              @include flexbox;
+              @include flex-direction(row);
+              @include flex-wrap(wrap);
+              .panel {
+                border-radius: 4px;
+                cursor: default;
+                float: left;
+                height: 120px;
+                text-align: center;
+                width: 160px;
+                .panel-body {
+                  border-top-left-radius: 4px;
+                  border-top-right-radius: 4px;
+                  background-color: $blue-400;
+                  padding: 22px 15px 13px;
+                  i {
+                    color: $white;
+                    font-size: $font-size-h2;
+                  }
+                }
+                .panel-footer {
+                  border-bottom-left-radius: 4px;
+                  border-bottom-right-radius: 4px;
+                  background-color: $blue-500;
+                  color: $white;
+                  padding: 5px 15px;
+                }
+              }
+            }
+          }
+
+          .feedback-grading {
+            margin: 40px 0 0;
+            .content {
+              .switch {
+                margin: 10px 0;
+                .switch-label {
+                  margin: 10px 0 0;
+                  min-width: 50px;
+                }
+              }
+              .add-rubric-container {
+                border: 2px dashed $gray-light;
+                height: 80px;
+                margin: 0 0 10px;
+                padding: 10px 0 0 14px;
+              }
+              .associated-rubric {
+                border: 1px solid $gray-lighter;
+                box-shadow: 0 1px 2px $gray;
+                padding: 12px 10px 8px;
+                margin: 0 0 30px 0;
+                .image {
+                  display: inline-block;
+                  padding: 5px 10px 0 0;
+                  img {
+                    border-radius: 4px;
+                    height: 35px;
+                    width: 35px;
+                  }
+                  .rubric-icon {
+                    background: url("gooru/images/rubric-green.svg");
+                    -webkit-background-size: 31px 30px;
+                    background-size: 31px 30px;
+                    border-radius: 4px;
+                    display: block;
+                    height: 30px;
+                    margin: 0 0 5px;
+                    width: 31px;
+                  }
+                }
+                .info {
+                  display: inline-block;
+                  vertical-align: top;
+                  border-left: 1px solid $gray-light;
+                  border-right: 1px solid $gray-light;
+                  width: 88%;
+                  h3 {
+                    margin: 13px 10px 14px;
+                  }
+                }
+                .actions {
+                  display: inline-block;
+                  float: initial;
+                  padding: 8px 0 0 8px;
+                  vertical-align: top;
+                  button {
+                    background-color: transparent;
+                    font-size: $font-size-h4;
+                    line-height: 1;
+                    margin: 0 2px 0 1px;
+                    padding: 0;
+                  }
+                }
+              }
+              .scoring-settings {
+                margin-top: 10px;
+                .setting {
+                  @include flexbox;
+                  float: left;
+                  width: 25%;
+                  .title {
+                    margin: 0 15px 0 0;
+                    width: auto;
+                  }
+                  .gru-select {
+                    padding: 8px 0 0;
+                    .bootstrap-select {
+                      border-bottom: 1px solid $gray;
+                      width: 50px;
+                      span {
+                        right: 0;
+                        text-align: center;
+                      }
+                      .dropdown-toggle {
+                        font-size: $font-size-h6;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+
+          .answers {
+            h3 {
+              display: inline-block;
+            }
+            .advanced-button {
+              float: right;
+            }
+            .instructions {
+              display: block;
+            }
+          }
+          .narration {
+            label {
+              width: 100%;
+            }
+          }
+
+          .add-image {
+            margin-top: 20px;
+          }
+
+          .content.gru-image {
+            margin-top: 35px;
+            max-height: 150px;
+            max-width: 125px;
+            img {
+              margin: 0 5px;
+              padding: 5px 0;
+              width: calc(100% - 10px);
+              max-height: 150px;
+            }
+          }
+
+          div.border-bottom {
+            padding-bottom: 15px;
+            border-bottom: 1px solid $gray-lighter;
+            margin-bottom: 15px;
+            margin-top: 15px;
+          }
+
+          .answers {
+            .missing-correct-answer,
+            .missing-images {
+              color: $brand-danger;
+            }
+
+            .questions.answers {
+              padding: 10px 0;
+              .panel {
+                border-radius: 6px;
+                margin-bottom: 30px;
+                textarea {
+                  line-height: 1;
+                }
+              }
+            }
+          }
+          .actions {
+            float: right;
+            clear: both;
+          }
+        }
+        &.expanded {
+          > .panel-heading {
+            border-bottom: 1px solid $gray-lighter;
+            i {
+              display: inline-block;
+              margin: 12px 0;
+              vertical-align: top;
+            }
+          }
+        }
+      }
+
+      > .panel.collapsed > .panel-body {
+        display: none;
+      }
+
+      .title,
+      .edit-title {
+        > i {
+          display: inline-block;
+          position: relative;
+          top: -3px;
+
+          &.video-icon {
+            background: url("gooru/images/video-resource-green.svg");
+            -webkit-background-size: 31px 30px;
+            background-size: 31px 30px;
+            height: 30px;
+            width: 31px;
+          }
+          &.webpage-icon {
+            background: url("gooru/images/website-resource-green.svg");
+            -webkit-background-size: 29px 30px;
+            background-size: 29px 30px;
+            height: 30px;
+            width: 29px;
+          }
+          &.interactive-icon {
+            background: url("gooru/images/interactive-resource-green.svg");
+            -webkit-background-size: 34px 30px;
+            background-size: 34px 30px;
+            height: 30px;
+            width: 34px;
+            vertical-align: top;
+            margin: 5px 0 0 0;
+          }
+          &.question-icon {
+            background: url("gooru/images/question-resource-green.svg");
+            -webkit-background-size: 30px 30px;
+            background-size: 30px 30px;
+            height: 30px;
+            width: 30px;
+          }
+          &.image-icon {
+            background: url("gooru/images/image-resource-green.svg");
+            -webkit-background-size: 30px 30px;
+            background-size: 30px 30px;
+            height: 30px;
+            width: 30px;
+          }
+          &.text-icon {
+            background: url("gooru/images/text-resource-green.svg");
+            -webkit-background-size: 31px 30px;
+            background-size: 31px 30px;
+            height: 30px;
+            width: 31px;
+          }
+          &.audio-icon {
+            background: url("gooru/images/audio-resource-green.svg");
+            -webkit-background-size: 34px 30px;
+            background-size: 34px 30px;
+            height: 30px;
+            width: 34px;
+          }
+        }
+
+        > div {
+          border-left: 1px solid $gray-light;
+          display: inline-block;
+          margin-left: 10px;
+          line-height: 1.4;
+          max-width: 35%;
+
+          @media (min-width: $screen-lg) {
+            max-width: 40%;
+          }
+
+          > strong {
+            color: $text-color;
+            display: block;
+            line-height: 1.2;
+            margin-bottom: 5px;
+            margin-left: 15px;
+            font-weight: normal;
+            font-size: 16px;
+            @include text-overflow();
+
+            > * {
+              margin: 0;
+              padding: 0;
+            }
+          }
+
+          > span {
+            color: $gray-light;
+            margin-left: 15px;
+            text-transform: capitalize;
+          }
+        }
+      }
+
+      .edit-title {
+        display: inline-block;
+        width: 50%;
+        @media (min-width: $screen-lg) {
+          width: 55%;
+        }
+        .input {
+          border-left: 1px solid $gray-light;
+          display: inline-block;
+          margin-left: 10px;
+          line-height: 1.4;
+          width: 85%;
+          max-width: 85%;
+          .gru-input {
+            display: inline-block;
+            width: 100%;
+            max-width: 100%;
+            .form-group {
+              width: 100%;
+              max-width: 100%;
+              border: 0;
+              margin-bottom: 10px;
+            }
+          }
+        }
+      }
+
+      .detail {
+        float: right;
+
+        > span {
+          vertical-align: middle;
+          margin-right: 2px;
+          margin-left: 2px;
+
+          &.btn {
+            margin: 0;
+            font-size: $font-size-small;
+            padding: 0 8px;
+
+            &.btn-default {
+              color: $white;
+              background-color: $dark-300;
+            }
+
+            &:hover {
+              cursor: default;
+            }
+          }
+        }
+
+        button.no-bgd {
+          background-color: transparent;
+          font-size: 24px;
+          line-height: 1;
+          padding: 7px 5px;
+
+          i {
+            color: $gray;
+          }
+        }
+
+        div {
+          display: inline-block;
+        }
+
+        .actions {
+          margin-left: 5px;
+
+          div:last-of-type {
+            border-left: 1px solid $gray-light;
+            margin-left: 5px;
+            padding-left: 10px;
+            &.no-border {
+              border: none;
+            }
+          }
+          div.tooltip {
+            border-left: 0;
+            margin: 0;
+            padding-left: 0;
+            z-index: $zindex-modal;
+          }
+          button.more-details {
+            border: 2px solid $light-500;
+            padding: 4px 7px;
+            i {
+              font-size: $font-size-h4;
+              margin: 0 5px 0 0;
+            }
+          }
+        }
+      }
+      .drag-icon {
+        i {
+          vertical-align: super;
+        }
+        color: $light-500;
+      }
+    }
+
+    > div {
+      border: 2px dashed $gray-light;
+      padding: 20px 20px 10px 20px;
+      border-radius: 6px;
+      margin-top: 10px;
+
+      button {
+        margin-bottom: 10px;
+
+        &:last-of-type {
+          margin-right: 20px;
+        }
+      }
+
+      > span {
+        display: none;
+        margin-bottom: 5px;
+        white-space: nowrap;
+
+        @media (min-width: $screen-md) {
+          display: inline-block;
+        }
+      }
+    }
+  }
+
+  .dropdown {
+    display: inline-block;
+    .dropdown-menu {
+      li {
+        > a {
+          padding: 10px 20px 10px 15px;
+          border-bottom: 1px solid $gray-lighter;
+        }
+
+        &:last-child > a {
+          border-bottom: 0 none;
+        }
+      }
+    }
+  }
+  .drag-options {
+    display: inline-block;
+    button {
+      font-size: 12px;
+      padding-top: 8px;
+      padding-bottom: 8px;
+    }
+  }
+  .sortable.sorting > li {
+    cursor: move;
+  }
+
+  .ui-sortable-helper {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}

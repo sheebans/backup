@@ -1,0 +1,94 @@
+<div class="panel">
+  {{#if isCourse}}
+    {{#link-to 'student.independent.course-map' location.courseId}}
+      <div class="panel-heading">
+        <i class="{{location.type}}"></i>
+        <div class="title">
+          <h5>{{location.title}}</h5>
+        </div>
+        {{#if performance.isCompleted}}
+          <span class="check">{{gru-icon name='check_circle'}}</span>
+        {{/if}}
+      </div>
+    {{/link-to}}
+  {{else}}
+    {{#link-to 'player' location.collectionId (query-params type=location.type role='student' source=source)}}
+      <div class="panel-heading">
+        <i class="{{location.type}}"></i>
+        <div class="title">
+          <h5>{{location.title}}</h5>
+        </div>
+        {{#if location.isCompleted}}
+          <span class="check">{{gru-icon name='check_circle'}}</span>
+        {{/if}}
+      </div>
+    {{/link-to}}
+  {{/if}}
+  <div class="panel-body border-between">
+    <div class="charts">
+      {{#if isCourse}}
+        <div class="performance">
+          {{charts.gru-bubble-chart
+            content=percentageToShow
+            color=(grade-color performance.scoreInPercentage)
+          }}
+          <span>{{t 'student-landing.class.performance'}}</span>
+        </div>
+        <div class="completed">
+          {{charts.gru-radial-chart
+            value=performance.completedCount
+            minValue=0
+            maxValue=performance.totalCount
+          }}
+          <span>{{t "common.completed"}}</span>
+        </div>
+      {{else if isAssessment}}
+        <div class="assessment-performance">
+          {{charts.gru-bubble-chart
+            content=percentageToShow
+            color=(grade-color performance.scoreInPercentage)
+          }}
+          <span>{{t 'student-landing.class.performance'}}</span>
+        </div>
+      {{else}}
+        <div class="time-spent">
+          {{charts.gru-bubble-chart content=(format-time performance.timeSpent) color=timeSpentColor}}
+          <span>{{t 'student-landing.course.total-time-spent'}}</span>
+        </div>
+      {{/if}}
+    </div>
+    <div class="information">
+      <div class="activity">
+        <span>{{t "student-landing.current-activity"}}</span>
+        {{#if isCourse}}
+          {{#if location.currentTitle}}
+            <div class="current-activity ellipsis">
+              <i class="{{if isCurrentAssessment 'assessment' 'collection'}}"></i>
+              <a {{action 'playCurrent'}}>
+                {{location.currentTitle}}
+              </a>
+            </div>
+          {{else}}
+            <div class="not-applicable">{{t 'common.not-applicable'}}</div>
+          {{/if}}
+        {{else}}
+          {{#if location.isCompleted}}
+            <div class="collection-report">
+              {{gru-icon name='graphic_eq'}}
+              <a class="report-link" {{action 'toReport'}}>
+                {{t 'student-landing.course.to-report'}}
+              </a>
+            </div>
+          {{else}}
+            <div class="not-applicable">{{t 'common.not-applicable'}}</div>
+          {{/if}}
+        {{/if}}
+      </div>
+      <div class="last-access">
+        {{#if location.lastAccessed}}
+          {{format-date location.lastAccessed 'h:mma MMM. D YYYY'}}
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</div>

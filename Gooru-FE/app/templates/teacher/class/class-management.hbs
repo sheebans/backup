@@ -1,0 +1,136 @@
+<div class="controller teacher class class-management">
+  <br>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="panel class-panel">
+        <div class="panel-header">
+          <h5>{{t "teacher-landing.class.class-management-tab.class-information"}}</h5>
+          <div class="actions">
+            <button class="btn btn-primary delete-btn" {{action 'deleteClass'}}>
+              <span>{{t 'teacher-landing.class.class-management-tab.delete-class'}}</span>
+            </button>
+            <button class="btn btn-primary archive-btn" {{action 'archiveClass'}}>
+              <span>{{t 'teacher-landing.class.class-management-tab.archive-class'}}</span>
+            </button>
+          </div>
+        </div>
+        <div class="panel-body">
+          <div class="class-name">
+            <p><{{t 'teacher-landing.class.class-management-tab.class-name'}}</p>
+            <div class="edit-text">
+              {{#unless editingTitle}}
+                <span class='class-title'>{{class.title}}</span>
+                <span class='edit-icon' {{action "editTitle" true}}>{{gru-icon name='edit'}}</span>
+              {{else}}
+                {{validation.gru-input model=tempClass valuePath='title' didValidate=didValidate onFocusOut="editTitle" autofocus=true maxLength=25}}
+              {{/unless}}
+            </div>
+          </div>
+          <div class="row class-code">
+            <div class="col-md-5 col-sm-5 col-xs-5">
+              <p><{{t 'teacher-landing.class.class-management-tab.class-code'}}</p>
+              <div class="input-group input-group-sm">
+                <input type="text" class="form-control" value="{{class.code}}" disabled aria-describedby="class-code-addon">
+                <div id="class-code-addon" class="input-group-addon">
+                  {{gru-copy-value value=class.code tooltipCode="teacher-landing.class.class-management-tab.click-to-copy-class-code"}}
+                </div>
+              </div>
+            </div>
+            <div class="col-md-7 col-sm-7 col-xs-7 out-of-scope">
+              <p><{{t 'teacher-landing.class.class-management-tab.attend-class-with-code'}}</p>
+              {{gru-switch switchOptions=switchOptions onOptionSwitch='updateClass' isChecked=isAttendClassWithCode}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="panel course-panel">
+        <div class="panel-header">
+          <h5>{{t "teacher-landing.class.class-management-tab.course-information"}}</h5>
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-6">
+              <div class="course-information">
+                <p>{{t 'teacher-landing.class.class-management-tab.assigned-course'}}</p>
+                {{#if course}}
+                  {{cards.gru-course-card course=course isEditEnabled=true isOwner=true isSmall=true}}
+                {{else}}
+                  --
+                {{/if}}
+              </div>
+            </div>
+
+            <div class="col-md-6 col-sm-6 col-xs-6">
+              <div class="assessment-min-score">
+                <p><{{t 'teacher-landing.class.class-management-tab.assessment-min-score'}}</p>
+                <div class="edit-text">
+                  {{#unless editingScore}}
+                    <span>{{if class.minScore class.minScore '--'}} % </span>
+                    <span {{action "editScore"}}>{{gru-icon name='edit'}}</span>
+                  {{else}}
+                    {{validation.gru-input-number model=tempClass valuePath='minScore' min=1 max=100 step=1 didValidate=didValidate onFocusOut="saveScore" onFocusIn="editScore" autofocus=true}}
+                  {{/unless}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <h5>{{t "teacher-landing.class.class-management-tab.students"}}</h5>
+    </div>
+    <div class="col-md-6">
+      <div class="pull-right hidden">
+        <button class="btn btn-primary">
+          {{t "teacher-landing.class.class-management-tab.import-roster"}}
+        </button>
+        <button class="btn btn-primary">
+          {{t "teacher-landing.class.class-management-tab.edit"}}
+        </button>
+        <button class="btn btn-primary">
+          {{t "teacher-landing.class.class-management-tab.download-roster"}}
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="panel students-panel">
+    <div class="panel-heading">
+      <div class='sortable first-name' {{action 'sortStudents' 'firstName'}}>
+        <span>{{t "teacher-landing.class.class-management-tab.first-name"}}</span>
+        {{gru-icon name='swap_vert'}}
+      </div>
+      <div class='sortable last-name' {{action 'sortStudents' 'lastName'}}>
+        <span>{{t "teacher-landing.class.class-management-tab.last-name"}}</span>
+        {{gru-icon name='swap_vert'}}
+      </div>
+      <div>
+        <span>{{t "teacher-landing.class.class-management-tab.student-id"}}</span>
+      </div>
+    </div>
+    <div class="panel-body">
+      <table>
+        <tbody>
+          {{#each sortedMembers as |student|}}
+            <tr class="student">
+              <td class="first-name border-right"><span>{{student.firstName}}</span></td>
+              <td class="last-name border-right"><span>{{student.lastName}}</span></td>
+              <td class="student-id"><span>{{student.studentId}}</span></td>
+              <td class="student-actions">
+              <button class="btn btn-default btn-sm delete-btn right" {{action 'removeStudent' student}}>
+                {{gru-icon name='delete'}}
+                {{t "teacher-landing.class.class-management-tab.delete"}}
+              </button>
+              </td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

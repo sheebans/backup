@@ -1,0 +1,48 @@
+<div class="unit" role="tab" id="{{elementId}}-heading">
+  <div class="panel-title">
+    <a class="collapsed title" role="button" data-toggle="collapse" href="#{{elementId}}-content"
+       aria-expanded="false" aria-controls="{{elementId}}-content" {{action "selectUnit" model.id}}>
+      <span class="title">
+        {{course-sections-prefix index=index type='unit' longName=true}}&period;&nbsp;&nbsp;{{model.title}}
+      </span>
+    </a>
+  </div>
+</div>
+
+<div id="{{elementId}}-content"
+     data-index="{{componentIndex}}"
+     class="panel-collapse collapse"
+     role="tabpanel"
+     aria-labelledby="{{elementId}}-heading">
+
+  <div class="panel-body">
+    <ol class="panel-group" role="tablist" aria-multiselectable="true">
+    {{#if loading}}
+      {{three-bounce-spinner}}
+    {{else}}
+      {{#each items as |lesson index|}}
+        {{class.overview.gru-accordion-lesson
+          currentClass=currentClass
+          currentCourse=currentCourse
+          classMembers=classMembers
+          unitId=model.id
+          model=lesson
+          index=index
+          onSelectResource=(action 'selectResource')
+          onStudyNow=(action 'studyNow')
+          onSelectLesson=(action 'updateLesson')
+          onLaunchOnAir=(action 'launchOnAir')
+          currentResource=currentResource
+          showLocation=showLocation
+          parsedLocation=parsedLocation
+          contentVisibility=contentVisibility
+          onUpdateContentVisibility="updateContentVisibility"
+          isTeacher=isTeacher
+          isNUCourse=isNUCourse}}
+        {{else}}
+          <li>{{t "common.contentUnavailable"}}</li>
+        {{/each}}
+      {{/if}}
+    </ol>
+  </div>
+</div>

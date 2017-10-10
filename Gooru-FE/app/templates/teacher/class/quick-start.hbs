@@ -1,0 +1,49 @@
+<div class="controller teacher quick-start">
+  <div class="quick-start-options">
+    <div class="panel panel-default new-course-container">
+      <div class="panel-body">
+        <p class="lead">
+          {{t "class.quick-start.new-course"}}
+        </p>
+        <p class="description">
+          {{t "class.quick-start.new-course-desc"}}
+        </p>
+        <div class="actions">
+            <button type="button" name="button" class="btn btn-primary new-course" {{action "showModal" "content.modals.gru-course-new" class}}><span>{{t "class.quick-start.course"}}</span></button>
+          <button type="button" name="button" class="btn btn-primary new-collection" {{action "showModal" "content.modals.gru-collection-new" class}}><span>{{t "class.quick-start.new-collection"}}</span></button>
+          <button type="button" name="button" class="btn btn-primary new-assessment" {{action "showModal" "content.modals.gru-assessment-new" class}}><span>{{t "class.quick-start.new-assessment"}}</span></button>
+        </div>
+      </div>
+    </div>
+    {{#if courses}}
+    <div class="panel panel-default existing-course-container">
+      <div class="panel-body">
+        <p class="lead">
+          {{t "class.quick-start.add-existing-course"}}
+        </p>
+        <p class="description">
+          {{t "class.quick-start.existing-course-desc"}}
+        </p>
+        <div class="actions">
+          <button type="button" name="button" class="btn btn-primary choose-course" {{action "showModal" "content.modals.gru-quick-course-search" modelForCoursesModal null "quick-course-search"}}>
+            <span>{{t "class.quick-start.choose-course"}}</span> {{gru-icon name= "keyboard_arrow_right" class=""}}
+          </button>
+        </div>
+      </div>
+    </div>
+    {{/if}}
+    <div class="panel panel-default remix-course-container hidden-xs">
+      <div class="panel-body">
+        <p class="lead">
+          {{t "class.quick-start.remix-from-course"}}
+        </p>
+        <p class="description">
+          {{t "class.quick-start.remix-desc"}}
+        </p>
+        <div class="actions">
+          <button type="button" name="button" class="btn btn-primary remix" {{action "loadFeaturedCourses"}}><span>{{t "class.quick-start.featured-course"}}</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

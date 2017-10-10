@@ -1,0 +1,32 @@
+.gru-timestamp-input {
+  background-color: $light-100;
+
+  span {
+    display: block;
+    margin-bottom: 14px;
+    i {
+      vertical-align: bottom;
+    }
+  }
+
+  .time-picker,
+  .date-picker {
+    padding: 0px;
+    input {
+      display: inline-block;
+      width: 74%;
+      @media (min-width: $screen-sm) {
+        width: 80%;
+      }
+    }
+    span {
+      display: inline-block;
+    }
+  }
+  .error-messages {
+    margin-top: -15px;
+    .error {
+      margin-left: 25px;
+    }
+  }
+}

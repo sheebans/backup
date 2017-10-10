@@ -1,0 +1,25 @@
+.gru-metrics-table {
+  .sub-header {
+    a,
+    i {
+      cursor: pointer;
+      color: $white;
+      opacity: 0.6;
+      &:hover,
+      &:visited {
+        text-decoration: none;
+        color: $white;
+        opacity: 0.6;
+      }
+    }
+    .metric-sub-header {
+      .gru-icon {
+        font-size: 13px;
+      }
+    }
+    .report {
+      opacity: 0.6;
+      text-align: center;
+    }
+  }
+}

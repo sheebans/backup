@@ -1,0 +1,26 @@
+.independent-results {
+  @include flexbox;
+  @include flex-wrap(wrap);
+  @include justify-content(space-between);
+  width: 100%;
+  margin: 15px 0;
+  .gru-independent-card {
+    @include flex-basis(100%);
+    @media (min-width: $screen-sm-max) {
+      @include flex-basis(50%);
+    }
+  }
+  .show-more-results {
+    width: 100%;
+  }
+  .no-results-content {
+    margin: 15px 0 50px;
+  }
+  &::after {
+    content: "";
+    @include flex-basis(0);
+    @media (min-width: $screen-sm-max) {
+      @include flex-basis(50%);
+    }
+  }
+}

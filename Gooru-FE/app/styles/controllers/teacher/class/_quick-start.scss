@@ -1,0 +1,53 @@
+.quick-start {
+  float: left;
+  width: 100%;
+
+  .header {
+    border-bottom: solid 2px $light-200;
+    padding-bottom: 28px;
+
+    > * {
+      display: inline-block;
+    }
+  }
+
+  .quick-start-options {
+    margin-top: 10px;
+  }
+
+  .actions {
+    line-height: 39px;
+
+    i {
+      margin-right: 5px;
+    }
+  }
+
+  .lead {
+    margin-bottom: 20px;
+  }
+}
+.quick-start-channel {
+  margin: 30px;
+  float: right;
+  width: 30%;
+  .header {
+    border-bottom: solid 2px $light-200;
+    padding-bottom: 35px;
+
+    > * {
+      display: inline-block;
+    }
+  }
+
+  .channel-chat-message-form {
+    .channel-chat-message {
+      margin-top: 10%;
+      height: 35px;
+      width: 83%;
+    }
+    .chat-send {
+      vertical-align: 3px;
+    }
+  }
+}

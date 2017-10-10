@@ -1,0 +1,47 @@
+.network {
+  @media (max-width: $screen-sm-max) {
+    .content-navigation .category-menu ul {
+      padding-left: 20px;
+      display: inline-block;
+      li {
+        margin: 0 10px;
+      }
+    }
+  }
+  .network-followers,
+  .network-followings {
+    padding: 30px 0 0 0;
+    text-align: center;
+    @media (min-width: $screen-sm) {
+      padding: 30px 0 0 30px;
+      text-align: left;
+    }
+    > .followers,
+    > .followings {
+      margin: 0 auto;
+      float: none;
+      padding: 0;
+    }
+  }
+
+  .card {
+    float: left;
+    margin: 0 20px 10px 20px;
+    @media (min-width: $screen-sm) {
+      margin: 0 20px 10px 0;
+    }
+    .gru-user-network-card {
+      button {
+        &:hover {
+          color: $white;
+        }
+      }
+    }
+  }
+
+  .panel.add-content {
+    margin-top: 60px !important;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

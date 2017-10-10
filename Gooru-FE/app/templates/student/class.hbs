@@ -1,0 +1,86 @@
+{{gru-take-tour steps=steps containerClass='class-view-tour'}}
+<div class="student class">
+  <div class="header clearfix">
+    <div class="go-back-container">
+      {{#link-to 'student-home' class="back-to"}}
+        {{gru-icon name='arrow_back'}}
+        {{t 'student-landing.class.back-to'}}
+      {{/link-to}}
+    </div>
+    <h1>{{class.title}}</h1>
+    <div class="code">{{class.code}}</div>
+    <div class="panel panel-default panel-primary classroom-information">
+      <div class="panel-heading">{{t 'student-landing.class.classroom'}}</div>
+      <div class="panel-body">
+        <div class="course-info">
+          <span class="legend">{{t 'student-landing.class.assigned-course'}}</span>
+          {{#if course}}
+            {{cards.gru-course-card course=course isSmall=true tagsVisible=3}}
+          {{/if}}
+        </div>
+        <div class="graphics">
+          <div class="graphic performance">
+            <span class="legend">{{t 'teacher-landing.class.performance'}}</span>
+            {{charts.gru-bubble-chart
+            content= (if class.performanceSummary (concat class.performanceSummary.score '%') '--')
+            color=(grade-color class.performanceSummary.score)
+            }}
+          </div>
+          <div class="graphic completed">
+            <span class="legend">{{t "common.completion"}}</span>
+            {{#if isNUCourse}}
+              {{charts.gru-radial-chart
+              value=class.courseCompetencyCompletion.completedCount
+              minValue=0
+              maxValue=class.courseCompetencyCompletion.totalCount}}
+            {{else}}
+              {{charts.gru-radial-chart
+              value=class.performanceSummary.totalCompleted
+              minValue=0
+              maxValue=class.performanceSummary.total}}
+            {{/if}}
+          </div>
+        </div>
+        <div class="students">
+          <div class="row">
+            <div class="col-md-6 instructor">
+              <span class="legend">{{t "common.instructor"}}</span>
+              {{#if class.owner}}
+                <img class="img-responsive" src="{{class.owner.avatarUrl}}">
+                <div class="owner">
+                  {{#if class.owner.firstName}}
+                    {{truncate text=class.owner.firstName maxLength=10}}&nbsp;{{truncate text=class.owner.lastName maxLength=10}}
+                  {{else}}
+                    {{class.owner.username}}
+                  {{/if}}
+                </div>
+              {{/if}}
+            </div>
+            <div class="col-md-6 members">
+              <span class="legend">{{t "common.enrolled-students"}}</span>
+              {{gru-icon name="people"}}
+              <span>{{class.countMembers}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{#if class}}
+    {{student.class.gru-class-navigation
+      class=class
+      onItemSelected="selectMenuItem"
+      onCollapseExpandClicked="toggleHeader"
+      selectedMenuItem=menuItem
+      expand=true}}
+  {{else}}
+  {{student.class.gru-class-navigation
+    class=class
+    onItemSelected="selectMenuItem"
+    onCollapseExpandClicked="toggleHeader"
+    selectedMenuItem=menuItem}}
+  {{/if}}
+  <div class="content">
+    {{outlet}}
+  </div>
+</div>

@@ -1,0 +1,39 @@
+<div class="controller analytics-performance-student">
+  <div class="navigation out-of-scope {{if isFullScreen 'hide' 'show'}}">
+    <ul class="nav nav-tabs" role="tablist">
+      <li role="presentation" class="active performance"><a href="#performance" aria-controls="performance" role="tab" data-toggle="tab"><span class="lead">{{t 'class.analytics.performance.title'}}</span></a></li>
+      <li role="presentation" class="mastery"><a href="#mastery" aria-controls="mastery" role="tab" data-toggle="tab"><span class="lead">{{t 'class.analytics.mastery.title'}}</span></a></li>
+    </ul>
+  </div>
+  <div class="student-actions">
+    {{class.analytics.performance.gru-actions-bar
+      mode='student'
+      onFilterSelected="selectFilterBy"
+      selectedFilterBy=filterBy
+      onToggleFullScreen=(action 'toggleFullScreen')
+      isFullScreen=isFullScreen
+    }}
+  </div>
+  <div class=" performance-picker visible-xs">
+    {{class.analytics.performance.gru-data-picker
+    onOptionsChange="optionsChange"}}
+  </div>
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane performance-content active" id="performance">
+        {{class.analytics.performance.student.gru-student-performance
+          performances=performances
+          classModel=classModel
+          userId=userId
+          selectedOption=selectedOption
+          selectedFilterBy=filterBy
+          onSelectResource="playResource"
+          onViewReport="viewReport"
+          onLocationUpdate=(action 'updateLocation')
+          selectedUnitId=unitId
+          selectedLessonId=lessonId
+          contentVisibility=contentVisibility
+        }}
+      </div>
+      <div role="tabpanel" class="tab-pane" id="mastery"></div>
+  </div>
+</div>

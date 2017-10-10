@@ -1,0 +1,29 @@
+<div class="controller manage-goals row">
+  <div class="greetings">
+    <div class="title">
+      <span>{{t 'goals.manage.title'}}</span>
+    </div>
+  </div>
+
+  <div class="goals-navigator">
+    <div class="pull-right">
+      <button {{action 'showNewGoalForm'}} class="btn add-goal">
+        {{t 'goals.manage.add-goal'}}
+      </button>
+    </div>
+  </div>
+
+  {{#if showForm}}
+    <div class="form-goal-container">
+      {{goal.gru-goal-form goal=goal onCreate='createGoal' onCancel='cancelCreation' didValidate=didValidate}}
+    </div>
+  {{/if}}
+
+  <div class="list-goals">
+    {{#each goals as |goal|}}
+      {{cards.gru-goal-card goal=goal onDelete='deleteGoal' onUpdate=(action 'updateGoal')}}
+    {{else}}
+      {{t 'goals.manage.goals-not-found'}}
+    {{/each}}
+  </div>
+</div>

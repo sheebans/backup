@@ -1,0 +1,117 @@
+.player.qz-free-response-viewer {
+  @include flexbox();
+  width: 100%;
+  height: 100%;
+  .rubric-response {
+    &.rubric {
+      width: 70%;
+      padding-right: 20px;
+    }
+    &.no-rubric {
+      width: 100%;
+    }
+
+    .prompt {
+      .panel-body {
+        @include flexbox();
+        padding: 0;
+      }
+      .icon {
+        border-right: 1px solid $light-300;
+        padding: 10px;
+        i {
+          display: block;
+          vertical-align: top;
+          margin: 5px 0 0;
+          background: url("quizzes-addon/quizzes/images/question-resource-green.svg");
+          -webkit-background-size: 30px 30px;
+          background-size: 30px 30px;
+          height: 30px;
+          width: 30px;
+        }
+      }
+      .question-text {
+        padding: 10px;
+        margin-bottom: 0;
+        @include flexbox();
+        @include flex-direction(column);
+        .title {
+          font-size: $font-size-large;
+        }
+        img.question-thumbnail {
+          max-width: 125px;
+          max-height: 150px;
+          margin: 30px 0 10px;
+        }
+      }
+    }
+    .question-response {
+      margin-bottom: 0;
+      .rich-editor {
+        height: 500px;
+        overflow: auto;
+      }
+    }
+    .actions {
+      margin-top: 15px;
+      @include flexbox();
+      @include justify-content(flex-end);
+      .save {
+        margin: 0 5px;
+      }
+    }
+  }
+
+  .rubric-information {
+    width: 30%;
+    background-color: $dark-400;
+    height: auto;
+    .header {
+      cursor: pointer;
+      background-color: $dark-500;
+      color: $white;
+      padding: 14px;
+
+      i {
+        font-size: $emotion-icon-size;
+      }
+      @include flexbox();
+      font-size: $font-size-large;
+    }
+    &.full-rubric {
+      width: 100%;
+      height: 150vh;
+
+      .categories {
+        max-width: 40%;
+      }
+    }
+    .categories {
+      color: $white;
+      font-size: $font-size-h6;
+      ul {
+        list-style: none;
+        padding: 0;
+        max-height: 325px;
+        overflow: auto;
+        li {
+          padding: 10px 30px;
+          border-bottom: 1px solid $gray;
+          &.total {
+            font-weight: bold;
+            border-bottom: 2px solid $gray;
+          }
+        }
+      }
+    }
+    .rubric-preview {
+      padding: 10px;
+      height: 85%;
+      .qz-url-resource {
+        iframe {
+          height: 100%;
+        }
+      }
+    }
+  }
+}

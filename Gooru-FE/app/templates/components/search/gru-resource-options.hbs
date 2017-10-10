@@ -1,0 +1,40 @@
+<section class="options">
+  <ul>
+    <li>
+      <button class="btn video btn-option {{if videoSelected 'selected'}}" {{action 'selectOption' 'video'}}>
+        <span class="icon-container"><span class="icon"></span></span>
+        <span class="text">{{t "resource.video"}}</span>
+      </button>
+    </li>
+    <li class="web-page">
+      <button class="btn web-page btn-option {{if webPageSelected 'selected'}}" {{action 'selectOption' 'webpage'}}>
+        <span class="icon-container"><span class="icon"></span></span>
+        <span class="text">{{t "resource.webpage"}}</span>
+      </button>
+    </li>
+    <li class="interactive">
+      <button class="btn interactive btn-option {{if interactiveSelected 'selected'}}" {{action 'selectOption' 'interactive'}}>
+        <span class="icon-container"><span class="icon"></span></span>
+        <span class="text">{{t "resource.interactive"}}</span>
+      </button>
+    </li>
+    <li>
+      <button class="btn image btn-option {{if imageSelected 'selected'}}" {{action 'selectOption' 'image'}}>
+        <span class="icon-container"><span class="icon"></span></span>
+        <span class="text">{{t "resource.image"}}</span>
+      </button>
+    </li>
+    <li>
+      <button class="btn text btn-option {{if textSelected 'selected'}}" {{action 'selectOption' 'text'}}>
+        <span class="icon-container"><span class="icon"></span></span>
+        <span class="text">{{t "resource.text"}}</span>
+      </button>
+    </li>
+    <li>
+      <button class="btn audio btn-option {{if audioSelected 'selected'}}" {{action 'selectOption' 'audio'}}>
+        <span class="icon-container"><span class="icon"></span></span>
+        <span class="text">{{t "resource.audio"}}</span>
+      </button>
+    </li>
+  </ul>
+</section>

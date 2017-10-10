@@ -1,0 +1,45 @@
+<header>
+    <div class="header-content">
+        <button type="button" class="btn-back" {{action "goBack"}}>
+          {{gru-icon name="keyboard_arrow_left"}}  {{t 'common.back'}}
+        </button>
+        <div class="heading">
+            <div class="information">
+                <h1 title="{{{question.title}}}">{{{question.title}}}</h1>
+                <div class="details">
+                    <div class="type">
+                        <i class="{{if (eq question.type 'T/F') 'T_F-icon' (concat question.type '-icon')}}"></i>
+                        <span>{{t (concat "common.question-type." question.type)}}</span>
+                    </div>
+                    <div class="tags">
+                      {{taxonomy.gru-taxonomy-tag-list tags=tags tagsVisible=3}}
+                    </div>
+                </div>
+            </div>
+            <div class="publisher">
+              {{#if question.owner}}
+                <span>
+                  {{#if question.sameOwnerAndCreator}}
+                    {{t "common.created-by"}}
+                  {{else}}
+                    {{t "common.remixed-by"}}
+                  {{/if}}
+                </span>
+                <img class="img-responsive" src="{{question.owner.avatarUrl}}">
+                {{#link-to 'profile.content.courses' question.owner.id class="pointer" tagName="div"}}
+                  <span class="owner">{{question.owner.displayName}}</span>
+                {{/link-to}}
+              {{/if}}
+            </div>
+        </div>
+    </div>
+</header>
+
+<div id="content" class="player">
+  {{player.gru-question-viewer
+  submitted=false
+  question=playerQuestion
+  questionResult=questionResult
+  onSubmitQuestion="submitQuestion"
+  }}
+</div>

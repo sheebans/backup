@@ -1,0 +1,71 @@
+<div class="xs-design hidden-md hidden-lg">
+    <div class="class-info">
+        <div class="class-name">
+            <h4>{{class.title}}</h4>
+        </div>
+      <div class="navigation-active">
+            <div class="greetings">
+                <button data-toggle="collapse" data-target=".description" aria-expanded="false" aria-controls="description"{{action 'showDescription'}}>{{gru-icon name='textsms'}}</button>
+                <div class="arrow-up"></div>
+            </div>
+            <div class="btn-group drop-menu">
+                <button class="btn dropdown-toggle" data-toggle="dropdown">{{gru-icon name=iconClassMenuItem}}{{gru-icon name='keyboard_arrow_down'}}</button>
+                <ul class="dropdown-menu">
+                    <li class="class-menu-item close"> <button class="btn dropdown-toggle" data-toggle="dropdown">{{gru-icon name='close'}}</button></li>
+                    <li class="class-menu-item overview" {{action 'selectItem' 'overview'}}>
+                        <h6>{{t "class.gru-class-navigation.overview"}}</h6>{{gru-icon name='dashboard'}}
+                    </li>
+                    <li class="class-menu-item analytics performance" {{action 'selectItem' 'analytics.performance'}}>
+                        <h6>{{t "class.gru-class-navigation.analytics"}}</h6>{{gru-icon name='graphic_eq'}}
+                    </li>
+                    <li class="class-menu-item teams out-of-scope" {{action 'selectItem' 'teams'}}>
+                        <h6>{{t "class.gru-class-navigation.teams"}} <sup>{{t "common.beta"}}</sup></h6>{{gru-icon name='group'}}
+                    </li>
+                    <li class="class-menu-item info" {{action 'selectItem' 'info'}}>
+                        <h6>{{t "class.gru-class-navigation.information"}}</h6>{{gru-icon name='info'}}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="description collapse">
+      {{class.greeting}}
+    </div>
+    <div class="class-details">
+        <div class="active-dates out-of-scope">
+          <span>{{format-date class.startDate 'MMMM DD, YYYY'}}</span>
+        </div>
+        <div class="members">{{gru-icon name='group'}}{{t 'common.numberStudents' count=class.countMembers}}</div>
+    </div>
+</div>
+<div class="md-design hidden-xs hidden-sm">
+  <div class="class-info">
+    <div class="class-name">
+      <h4>{{class.title}}</h4></div>
+    <div class="code">{{class.code}}</div>
+    <div class="active-dates out-of-scope">
+        <ul>
+            <li>{{format-date class.startDate 'MMMM DD, YYYY'}}</li>
+        </ul>
+     </div>
+    <div class="members">
+      <p class="lead">{{t 'common.numberStudents' count=class.countMembers}}</p>
+    </div>
+    <div class="greetings">
+      <p class="lead">{{t "class.gru-class-navigation.greetings"}}</p>{{gru-icon name='mode_edit' class="out-of-scope"}}
+    </div>
+    <div class="greetings-description">
+      <p>{{class.greeting}}</p>
+    </div>
+  </div>
+  <div class="class-menu">
+    <ul class="list-group">
+      <li class="list-group-item class-menu-item overview" {{action 'selectItem' 'overview'}}><h6>{{t "class.gru-class-navigation.overview"}}</h6>{{gru-icon name='dashboard'}}</li>
+      <li class="list-group-item class-menu-item analytics performance" {{action 'selectItem' 'analytics.performance'}}><h6>{{t "class.gru-class-navigation.analytics"}}</h6>{{gru-icon name='graphic_eq'}}</li>
+      <li class="list-group-item class-menu-item teams out-of-scope"><h6>
+        <a target="_blank" href="{{teamsURL}}">{{t "class.gru-class-navigation.teams"}} <sup>{{t "common.beta"}}</sup></a>
+      </h6>{{gru-icon name='group'}}</li>
+      <li class="list-group-item class-menu-item info" {{action 'selectItem' 'info'}}><h6>{{t "class.gru-class-navigation.information"}}</h6>{{gru-icon name='info'}}</li>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,209 @@
+<div class="container-fluid {{if searchInputDirty 'search-input-dirty'}}">
+  <div class="row">
+    <div class="col-xs-12">
+      <nav class="navbar navbar-default row">
+        <div class="navbar-header">
+          {{#if session.isAnonymous}}
+            <a aria-label="{{t "common.home"}}" href="{{marketingSiteUrl}}" target="_blank" class="navbar-brand home-link"></a>
+          {{else}}
+            {{#link-to 'index' class="navbar-brand home-link"}}  {{/link-to}}
+          {{/if}}
+        </div>
+        <div class="search-navbar-form {{if session.isAnonymous 'anonymous' 'authenticated'}}">
+          <form {{action "searchTerm" on="submit"}} class="form-inline">
+            <div class="form-group">
+              <label for="searchId" class="out-of-scope">{{t "common.search"}}</label>
+              <span>{{gru-icon name='search'}}</span>
+              <div class="input-group validation {{if searchErrorMessage 'has-error'}}">
+                {{input type="text" class="form-control search-input"
+                  value=tempTerm
+                  placeholder=(t "common.search-placeholder")
+                  spellcheck="true"
+                  focus-out="inputValueChange"
+                  id="searchId"
+                }}
+                {{#if searchErrorMessage}}
+                  <span class="error">
+                    {{t "common.search-error-message"}}
+                  </span>
+                {{/if}}
+                {{#if isInvalidSearchTerm}}
+                  <span class="error">
+                    {{t "common.search-400-error-message"}}
+                  </span>
+                {{/if}}
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="navbar-collapse">
+          <ul class="nav navbar-nav menu-navbar">
+            {{#if session.isAnonymous}}
+              <li class="navbar-nav-list visible-md visible-lg library-link">
+                {{#link-to 'library'}}
+                  <span>{{t "common.library"}}</span>
+                {{/link-to}}
+              </li>
+              <li class="navbar-nav-list visible-md visible-lg">
+                {{#link-to 'sign-in' class="btn btn-info sign-in-button" tagName='button'}} {{t "common.login"}} {{/link-to}}
+              </li>
+              <li class="navbar-nav-list visible-md visible-lg no-hover">
+                {{#link-to 'sign-up' class="btn btn-primary sign-up-button" tagName='button'}} {{t "common.signUp"}} {{/link-to}}
+              </li>
+              <li class="navbar-nav-list hidden-md hidden-lg dropdown xs-design">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true">{{gru-icon name='menu'}}</a>
+                <ul class="dropdown-menu" role="menu">
+                  <li class="navbar-nav-list close-menu">
+                     <button class="btn dropdown-toggle" data-toggle="dropdown">{{gru-icon name='close'}}</button>
+                  </li>
+                  <li class="navbar-nav-list">
+                    {{#link-to 'library'}} {{t "common.library"}} {{/link-to}}
+                  </li>
+                    <li class="navbar-nav-list">
+                      {{#link-to 'sign-in' class="navbar-link sign-in-link" }} {{t "common.login"}} {{/link-to}}
+                    </li>
+                    <li class="navbar-nav-list">
+                        {{#link-to 'sign-up' class="navbar-link sign-up-link" }} {{t "common.signUp"}} {{/link-to}}
+                    </li>
+                </ul>
+              </li>
+            {{else}}
+              {{#unless profile.isTeacher}}
+                <li class="navbar-nav-list visible-md visible-lg study-link">
+                  {{#link-to 'student-home'}}
+                    <span>{{t "student-landing.my-study"}}</span>
+                  {{/link-to}}
+                </li>
+              {{else}}
+                <li class="navbar-nav-list visible-md visible-lg classrooms-link">
+                  {{#link-to 'teacher-home'}}
+                    <span>{{t "user.classrooms"}}</span>
+                  {{/link-to}}
+                </li>
+                <li class="navbar-nav-list visible-md visible-lg tools-link dropdown">
+                  <a class="dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="tools">{{t "common.tools"}}{{gru-icon name='arrow_drop_down'}}</span>
+                  </a>
+                  <ul class="tools-menu dropdown-menu pull-left" role="menu" id="tools">
+                    <li class="navbar-nav-list assessments-link out-of-scope">
+                      <a class="navbar-link">
+                        {{t "common.live-assessments"}}
+                      </a>
+                    </li>
+                    <li class="navbar-nav-list content-link">
+                      {{#link-to 'profile.content.courses' session.userData.gooruUId}}
+                        <a class="navbar-link">
+                          {{t "common.content-manager"}}
+                        </a>
+                      {{/link-to}}
+                    </li>
+                    <li class="navbar-nav-list performance-dashboard-link out-of-scope">
+                      <a class="navbar-link">
+                        {{t "common.performance-dashboard"}}
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+              {{/unless}}
+              <li class="navbar-nav-list visible-md visible-lg library-link">
+                {{#link-to 'library'}}
+                  <span>{{t "common.library"}}</span>
+                {{/link-to}}
+              </li>
+              {{#unless profile.isTeacher}}
+                <li class="navbar-nav-list visible-md visible-lg performance-link out-of-scope">
+                  {{#link-to 'student.performance'}}
+                    <span>{{t "student-landing.class.performance"}}</span>
+                  {{/link-to}}
+                </li>
+                <li class="navbar-nav-list visible-md visible-lg community-link out-of-scope">
+                  <a>
+                    <span>{{t "common.community"}}</span>
+                  </a>
+                </li>
+                <li class="navbar-nav-list visible-md visible-lg notifications-link out-of-scope">
+                  <a>
+                    {{gru-icon name='notifications'}}
+                  </a>
+                </li>
+              {{/unless}}
+                <li class="navbar-nav-list visible-md visible-lg profile-link">
+                {{#link-to 'profile.content.courses' session.userData.gooruUId class="profile"}}
+                  <div class="img-container pull-left">
+                    <img class="img-responsive" src="{{session.userData.avatarUrl}}"/>
+                  </div>
+                  <span class="username">{{truncate text=session.userData.username maxLength=18}}</span>
+                {{/link-to}}
+              </li>
+              <li class="navbar-nav-list visible-md visible-lg dropdown">
+                <a class="profile-more dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                  {{gru-icon name='more_vert'}}
+                </a>
+                <ul class="dropdown-menu pull-right" role="menu" id="profile-more">
+                  <li class="navbar-nav-list">
+                    <a href="{{supportSiteUrl}}" target="_blank" class="navbar-link">
+                      {{t "common.support"}}
+                    </a>
+                  </li>
+                  <li class="navbar-nav-list">
+                    <a class="navbar-link" {{action "logout"}}> {{t "common.logout"}}</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="navbar-nav-list hidden-md hidden-lg dropdown xs-design">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true">{{gru-icon name='menu'}}</a>
+                <ul class="dropdown-menu" role="menu">
+                  <li class="navbar-nav-list close-menu">
+                    <button class="btn dropdown-toggle" data-toggle="dropdown">{{gru-icon name='close'}}</button>
+                  </li>
+                  {{#unless profile.isTeacher}}
+                    <li class="navbar-nav-list">
+                      {{#link-to 'student-home'}}
+                        <span>{{t "student-landing.my-study"}}</span>
+                      {{/link-to}}
+                    </li>
+                  {{else}}
+                    <li class="navbar-nav-list">
+                      {{#link-to 'teacher-home'}}
+                        <span>{{t "user.classrooms"}}</span>
+                      {{/link-to}}
+                    </li>
+                  {{/unless}}
+                  <li class="navbar-nav-list">
+                    {{#link-to 'library'}}
+                      <span>{{t "common.library"}}</span>
+                    {{/link-to}}
+                  </li>
+                  {{#unless profile.isTeacher}}
+                    <li class="navbar-nav-list">
+                      {{#link-to 'student.performance'}}
+                        <span>{{t "student-landing.class.performance"}}</span>
+                      {{/link-to}}
+                    </li>
+                    <li class="navbar-nav-list">
+                      <a>
+                        <span>{{t "common.community"}}</span>
+                      </a>
+                    </li>
+                  {{/unless}}
+                  <li class="navbar-nav-list">
+                    {{#link-to 'profile.content.courses' session.userData.gooruUId class="navbar-link"}}
+                      <span class="">{{t "common.profile"}}</span>
+                    {{/link-to}}
+                  </li>
+                  <li class="navbar-nav-list">
+                    <a href="{{supportSiteUrl}}" target="_blank" class="navbar-link">
+                      <span>{{t "common.support"}}</span>
+                    </a>
+                  </li>
+                  <li class="navbar-nav-list">
+                    <a class="navbar-link" {{action "logout"}}> {{t "common.logout"}}</a>
+                  </li>
+                </ul>
+              </li>
+            {{/if}}
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,71 @@
+<div class="xs-design hidden-md hidden-lg">
+  <div class="profile-bar">
+    <div class="navigation-active">
+      <div class="btn-group drop-menu">
+        <button class="btn dropdown-toggle" data-toggle="dropdown">{{gru-icon name='person'}}{{gru-icon name='keyboard_arrow_down'}}</button>
+        <ul class="dropdown-menu">
+          <li class="profile-menu-item close"> <button class="btn dropdown-toggle" data-toggle="dropdown">{{gru-icon name='close'}}</button></li>
+          <li class="profile-menu-item content" {{action 'selectItem' 'content'}}>
+            {{#if isMyProfile}}
+              <h6>{{t "profile.gru-navigation.my-content"}}</h6>
+            {{else}}
+              <h6>{{t "profile.gru-navigation.content"}}</h6>
+            {{/if}}
+            <i class="gru-icon material-icons content"></i>
+          </li>
+          <li class="profile-menu-item about" {{action 'selectItem' 'about'}}>
+            {{#if isMyProfile}}
+              <h6>{{t "profile.gru-navigation.about-me"}}</h6>
+            {{else}}
+              <h6>{{t "profile.gru-navigation.about"}}</h6>
+            {{/if}}
+            {{gru-icon name='person'}}
+          </li>
+          <li class="profile-menu-item network" {{action 'selectItem' 'network'}}>
+            <h6>{{t "profile.gru-navigation.followers"}}</h6><i class="gru-icon material-icons network"></i>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="profile-info clearfix">
+  {{cards.gru-profile-card
+    profile=profile
+    class="clearfix"}}
+    <div class="actions">
+      {{#if isMyProfile}}
+      {{#link-to 'profile.edit' tagName="button" class="edit btn btn-default btn-lg"}}{{t "common.edit"}}{{/link-to}}
+      {{else}}
+      <button class="btn btn-default btn-lg {{if profile.isFollowing 'unfollow' 'follow'}}" {{action 'toggleFollowingStatus'}}>
+        {{if profile.isFollowing (t "common.unfollow") (t "common.follow")}}
+      </button>
+      {{/if}}
+    </div>
+  </div>
+
+  <div class="md-design hidden-xs hidden-sm">
+    <ul class="profile-menu list-group">
+      <li class="list-group-item profile-menu-item content" {{action 'selectItem' 'content'}}>
+        {{#if isMyProfile}}
+          <h6>{{t "profile.gru-navigation.my-content"}}</h6>
+        {{else}}
+          <h6>{{t "profile.gru-navigation.content"}}</h6>
+        {{/if}}
+        <i class="gru-icon material-icons content"></i>
+      </li>
+      <li class="list-group-item profile-menu-item about" {{action 'selectItem' 'about'}}>
+        {{#if isMyProfile}}
+          <h6>{{t "profile.gru-navigation.about-me"}}</h6>
+        {{else}}
+          <h6>{{t "profile.gru-navigation.about"}}</h6>
+        {{/if}}
+        {{gru-icon name='person'}}
+      </li>
+      <li class="list-group-item profile-menu-item network" {{action 'selectItem' 'network'}}>
+        <h6>{{t "profile.gru-navigation.followers"}}</h6>
+        <i class="gru-icon material-icons network"></i>
+      </li>
+    </ul>
+  </div>

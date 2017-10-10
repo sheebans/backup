@@ -1,0 +1,76 @@
+.student.course-map {
+  .actions {
+    display: inline-block;
+    text-align: right;
+    float: right;
+    margin: 20px 0 0;
+    button {
+      padding: 3px 10px 3px 3px;
+      i {
+        color: $white;
+        font-size: $font-size-h5;
+        width: 18px;
+      }
+      &.locate {
+        i {
+          font-size: $font-size-lead;
+          width: 24px;
+        }
+      }
+    }
+    .min-score {
+      margin-right: 13px;
+      vertical-align: text-top;
+      i {
+        background: url("gooru/images/trophy-dark.svg");
+        background-size: 20px 20px;
+        height: 20px;
+        width: 20px;
+        display: inline-block;
+        vertical-align: text-bottom;
+      }
+    }
+  }
+  .gru-accordion {
+    clear: both;
+    .panel-heading {
+      padding: 8px 5px;
+      margin: 0;
+      background-color: $white;
+      @media (min-width: $screen-lg) {
+        padding: 8px 20px 8px 20px;
+      }
+
+      .panel-title {
+        > a {
+          width: 95%;
+          max-width: 95%;
+        }
+      }
+    }
+    .panel-heading.study-active {
+      background-color: $blue-400;
+      color: $white;
+      .panel-title {
+        .title {
+          .type {
+            color: $white;
+          }
+        }
+      }
+      .info {
+        .content-count.mixed {
+          > span:first-child {
+            border-right: 1px solid $white;
+          }
+        }
+        .gru-user-icons .item {
+          color: $white;
+        }
+      }
+    }
+    .panel-group .panel + .panel {
+      margin-top: 10px;
+    }
+  }
+}

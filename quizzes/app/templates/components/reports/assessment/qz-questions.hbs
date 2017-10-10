@@ -1,0 +1,99 @@
+<div class="questions-header">
+  <div class="title">
+      <h4>{{title}}</h4>
+  </div>
+  {{#unless isOpenEnded}}
+    {{#if isAnswerKeyHidden}}
+      <em>{{t "common.answer-key-was-hidden"}}</em>
+    {{else}}
+      <div class="btn-group" role="group">
+        <button type="button" {{action 'selectPerformanceOption' true}} class="performance btn {{if showPerformance 'btn-primary' 'btn-info'}}">{{t "common.performance"}}</button>
+        <button type="button" {{action 'selectPerformanceOption' false}} class="correct-answer btn {{unless showPerformance 'btn-primary' 'btn-info' }}">{{t "common.show-correct-answer"}}</button>
+      </div>
+    {{/if}}
+  {{/unless}}
+</div>
+<table class="hidden-xs">
+  <thead>
+  <tr>
+    <th class="header number">
+      {{t "common.number"}}
+    </th>
+    <th class="header question top-left">
+      {{t "common.question"}}
+    </th>
+    <th class="header answer top-left">
+      {{t "common.answer"}}
+    </th>
+    {{#if showScore}}
+      <th class="header score {{if showPerformance 'visible' 'hide'}}">
+        {{t "common.score"}}
+      </th>
+    {{/if}}
+    <th class="header time-spent {{if showPerformance 'visible' 'hide'}}">
+      {{t "common.timeSpent"}}
+     </th>
+    <th class="header reaction {{if showPerformance 'visible' 'hide'}}">
+      {{t "common.reaction"}}
+    </th>
+    {{#unless isAnswerKeyHidden}}
+      <th class="header correct-answer top-left {{if showPerformance 'hide' 'visible'}}">
+        {{t "common.correct-answer"}}
+      </th>
+    {{/unless}}
+  </tr>
+  </thead>
+  <tbody>
+  {{#each results as |result|}}
+    <tr class="tr-number-{{result.question.sequence}}">
+      <td class="number-question top-left">
+          {{result.question.sequence}}
+      </td>
+      <td class="question-text top-left">
+        <div class="text">
+          {{gru-math-text text=result.question.description}}
+          {{#if result.question.hasMedia}}
+              <img class="img-responsive" src="{{result.question.mediaUrl}}"/>
+          {{/if}}
+        </div>
+      </td>
+      <td class="question-answer top-left">
+        {{#if result.started}}
+          {{{component (qz-question-config result.question.type 'component.answer') question=result}}}
+        {{/if}}
+      </td>
+      {{#if showScore}}
+        <td class="question-score {{if showPerformance 'visible' 'hide'}}">
+          <span class="{{if result.started (if result.correct 'correct' 'incorrect') 'not-started'}}">
+            {{gru-icon name='radio_button_checked'}}
+          </span>
+        </td>
+      {{/if}}
+      <td class="question-time {{if showPerformance 'visible' 'hide'}}">
+        {{format-time result.timeSpent}}
+      </td>
+      <td class="question-reaction {{if showPerformance 'visible' 'hide'}}">
+        {{qz-reaction-icon result.reaction}}
+      </td>
+      {{#unless isAnswerKeyHidden}}
+        <td class="correct-answer top-left {{if showPerformance 'hide' 'visible'}}">
+          {{{component (qz-question-config result.question.type 'component.answer') question=result showCorrect=true}}}
+        </td>
+      {{/unless}}
+    </tr>
+  {{/each}}
+  </tbody>
+</table>
+<div class="question-cards visible-xs">
+  <div class="header">
+    <span class="question-number">{{t "common.number"}}</span>
+    <span class="question-text">{{t "common.question"}}</span>
+  </div>
+  <ul class="question-cards-list">
+    {{#each results as |result|}}
+      <li>
+        {{reports.assessment.qz-questions-xs result=result showPerformance=showPerformance}}
+      </li>
+    {{/each}}
+  </ul>
+</div>

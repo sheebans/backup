@@ -1,0 +1,114 @@
+.gru-goal-card {
+  height: 120px;
+  @media (min-width: $screen-xs) {
+    height: 105px;
+  }
+
+  &.expanded {
+    height: 320px;
+
+    @media (min-width: $screen-sm) {
+      height: 310px;
+    }
+  }
+
+  &.edit-view {
+    height: 400px;
+  }
+
+  border-top: 1px solid $gray-light;
+  border-bottom: 1px solid $gray-light;
+  > div {
+    float: left;
+    height: 100%;
+    display: block;
+    &.collapse {
+      background-color: $blue-400;
+      width: 4%;
+      cursor: pointer;
+    }
+    &.panel {
+      padding: 5px;
+      width: 94%;
+      background-color: $white;
+      margin: 0;
+      line-height: $font-size-large;
+      @media (min-width: $screen-xs) {
+        padding: 10px 15px;
+      }
+      .panel-heading {
+        padding: 0;
+        @include flexbox();
+        .icon {
+          display: inline-block;
+          color: $gray-light;
+        }
+        .title {
+          padding: 5px 0 0 5px;
+          display: inline-block;
+          margin: 0 0 0 5px;
+          max-height: 40px;
+          overflow-y: auto;
+          overflow-x: hidden;
+        }
+      }
+      .panel-body {
+        padding: 10px 0 0 20px;
+        .date {
+          display: inline-block;
+          margin: 0 0 0 10px;
+          @media (min-width: $screen-lg) {
+            width: 45%;
+          }
+        }
+        .status {
+          display: inline-block;
+          margin: 0 0 0 15px;
+          @media (min-width: $screen-lg) {
+            width: 45%;
+            margin: 0;
+          }
+        }
+        .reflection {
+          margin: 10px 0 0 10PX;
+          min-height: 50px;
+          height: 190px;
+          overflow-y: auto;
+          overflow-x: hidden;
+        }
+      }
+      .panel-footer {
+        background-color: $white;
+        color: $gray-light;
+        padding: 3px 0 0 0;
+        height: 25px;
+        .expand-collapse {
+          width: 50%;
+          text-align: right;
+          float: left;
+          height: inherit;
+          i {
+            cursor: pointer;
+            font-size: $expand-arrow-size;
+          }
+        }
+        .actions {
+          float: right;
+          button {
+            background-color: $white;
+            padding: 0;
+            margin: 0;
+            i {
+              color: $blue-400;
+              font-size: $font-size-lead;
+            }
+          }
+        }
+      }
+    }
+    &.status {
+      background-color: $yellow-400;
+      width: 2%;
+    }
+  }
+}

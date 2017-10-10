@@ -1,0 +1,16 @@
+<div class="resource-results">
+    <div class="results">
+      {{#if resourceResults}}
+        {{#each resourceResults as |resource|}}
+          {{new-cards.gru-resource-card
+            resource=resource
+            profile=profile
+            onRemixQuestion="remixQuestion"
+            onPlayResource="playQuestion"
+          }}
+        {{/each}}
+      {{else}}
+        {{partial 'partials/no-results-found'}}
+      {{/if}}
+    </div>
+</div>

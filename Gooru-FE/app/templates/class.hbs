@@ -1,0 +1,15 @@
+<div class="controller class row ">
+
+  <div class="navigation {{if isFullScreen 'hide' 'show'}}">
+    {{class.gru-class-navigation class=class
+    onItemSelected="selectMenuItem" selectedMenuItem=menuItem }}</div>
+
+  <div class="content {{if isFullScreen 'full-screen'}}">
+    {{outlet}}
+  </div>
+
+  <div class="channel">
+  {{class.community-channel class=class channels=channels isFullScreen=false showChannel=true messages=messages currentUser=userInfo}}
+  </div>
+
+</div>

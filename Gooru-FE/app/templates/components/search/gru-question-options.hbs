@@ -1,0 +1,58 @@
+<section class="options">
+  <ul>
+    <li>
+      <button class="btn multiple-choice btn-option {{if multipleChoiceSelected 'selected'}}" {{action 'selectOption' questionTypes.multipleChoice this}}>
+        <span class="icon"></span>
+        <span class="text">{{t "search-filter.question-types.MC"}}</span>
+      </button>
+    </li>
+    <li>
+      <button class="btn multiple-answer btn-option {{if multipleAnswerSelected 'selected'}}" {{action 'selectOption' questionTypes.multipleAnswer this}}>
+        <span class="icon"></span>
+        <span class="text">{{t "search-filter.question-types.MA"}}</span>
+      </button>
+    </li>
+    <li>
+      <button class="btn true-false btn-option {{if trueFalseSelected 'selected'}}" {{action 'selectOption' questionTypes.trueFalse this}}>
+        <span class="icon"></span>
+        <span class="text">{{t "search-filter.question-types.T/F"}}</span>
+      </button>
+    </li>
+    <li>
+      <button class="btn fib btn-option {{if fibSelected 'selected'}}" {{action 'selectOption' questionTypes.fib this}}>
+        <span class="icon"></span>
+        <span class="text">{{t "search-filter.question-types.FIB"}}</span>
+      </button>
+    </li>
+    <li>
+      <button class="btn ht-reorder btn-option {{if htReorderSelected 'selected'}}" {{action 'selectOption' questionTypes.hotTextReorder this}}>
+        <span class="icon"></span>
+        <span class="text">{{t "search-filter.question-types.HT_RO"}}</span>
+      </button>
+    </li>
+    <li>
+      <button class="btn ht-highlight btn-option {{if htHighlightSelected 'selected'}}" {{action 'selectOption' questionTypes.hotTextHighlight this}}>
+        <span class="icon"></span>
+        <span class="text">{{t "search-filter.question-types.HT_HL"}}</span>
+      </button>
+    </li>
+    <li>
+      <button class="btn hs-text btn-option {{if hsTextSelected 'selected'}}" {{action 'selectOption' questionTypes.hotSpotText this}}>
+        <span class="icon"></span>
+        <span class="text">{{t "search-filter.question-types.HS_TXT"}}</span>
+      </button>
+    </li>
+    <li>
+      <button class="btn hs-images btn-option {{if hsImagesSelected 'selected'}}" {{action 'selectOption' questionTypes.hotSpotImage this}}>
+        <span class="icon"></span>
+        <span class="text">{{t "search-filter.question-types.HS_IMG"}}</span>
+      </button>
+    </li>
+      <li>
+          <button class="btn free-response btn-option {{if freeResponseSelected 'selected'}}" {{action 'selectOption' questionTypes.openEnded this}}>
+              <span class="icon"></span>
+              <span class="text">{{t "search-filter.question-types.OE"}}</span>
+          </button>
+      </li>
+  </ul>
+</section>

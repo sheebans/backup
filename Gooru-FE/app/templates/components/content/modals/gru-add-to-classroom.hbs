@@ -1,0 +1,34 @@
+<div class="modal-header">
+  <span class="modal-title">
+      {{t 'gru-add-to.add-to-existing-classroom'}}
+  </span>
+</div>
+<div class="modal-body">
+  <div class="lead">
+    <span>
+        {{t 'gru-add-to.add-to-existing-classroom-lead'}}
+    </span>
+  </div>
+  <div class="list">
+    {{#each model.classroomList as |classroom|}}
+      <div class="panel panel-default {{if (eq classroom selectedClassroom) 'active'}}"
+      {{action "selectClassroom" classroom}}>
+        <div class="panel-heading">{{classroom.title}}</div>
+        <div class="panel-body">
+          {{gru-icon name="group"}} <span>{{t "cards.gru-class-card.student"
+            count=classroom.studentCount}}</span>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+</div>
+<div class="modal-footer">
+  <div>
+    <button type="button" class="btn btn-default cancel" data-dismiss="modal"
+    aria-label="{{t 'common.close'}}">
+      <span aria-hidden="true">{{t 'common.cancel'}}</span>
+    </button>
+    <button disabled={{if selectedClassroom false true}} type="button"
+    class="btn btn-primary add-to" {{action "addTo"}}>{{t 'common.add'}}</button>
+  </div>
+</div>

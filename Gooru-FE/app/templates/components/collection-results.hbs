@@ -1,0 +1,21 @@
+<div class="collection-results">
+    <div class="row">
+        <div class="text-center">
+            <div class="results col-md-10 col-sm-12 col-xs-12">
+                {{#if collectionResults}}
+                  {{#each collectionResults as |collection|}}
+                    {{new-cards.gru-collection-card
+                      content=collection
+                      profile=profile
+                      onOpenContentPlayer="openContentPlayer"
+                      onOpenIndependentPlayer="onIndependentPlayer"
+                      onBookmarkContent="onBookmarkContent"
+                      }}
+                  {{/each}}
+                {{else}}
+                  {{partial 'partials/no-results-found'}}
+                {{/if}}
+            </div>
+        </div>
+    </div>
+</div>

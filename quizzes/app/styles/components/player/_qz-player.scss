@@ -1,0 +1,37 @@
+.qz-player {
+  min-height: 100%;
+  overflow: hidden;
+  height: 100%;
+  .player {
+    @include flexbox;
+    @include flex-direction(row);
+    @include align-content(flex-start);
+    height: 100%;
+  }
+  .qz-aside {
+    @include flex-shrink(0);
+    height: 100%;
+    min-height: 400px;
+    background: #eeeeee;
+    width: 60px;
+    z-index: 20;
+  }
+
+  .qz-main {
+    @include flexbox;
+    @include flex-direction(column);
+    width: 100%;
+    height: 100%;
+    min-height: 400px;
+  }
+  .qz-main.submission-confirm {
+    @include align-items(center);
+    margin: 27px;
+  }
+
+  &.confirmation {
+    @include flexbox;
+    @include justify-content(center);
+    margin-top: 20px;
+  }
+}

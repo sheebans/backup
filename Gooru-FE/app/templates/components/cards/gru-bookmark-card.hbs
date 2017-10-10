@@ -1,0 +1,16 @@
+<div class="panel bookmark">
+  <div class="panel-heading">
+    <div class="icon">
+      <i class="{{bookmark.contentType}}"></i>
+    </div>
+    <button class="pull-right btn unBookmark-btn no-bgd" title="{{t 'common.click-unBookmark'}}"
+      {{action 'removeBookmark'}} data-toggle="tooltip" data-placement="auto" data-trigger="hover">
+      {{gru-icon name="bookmark"}}
+    </button>
+  </div>
+  <div class="panel-body">
+    <div class="title pointer" {{action 'click'}}>
+      {{truncate text=bookmark.title maxLength=15}}
+    </div>
+  </div>
+</div>

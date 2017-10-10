@@ -1,0 +1,39 @@
+<div class="controller reports collection">
+
+  <div class="header {{if anonymous 'anonymous'}}">
+    <div class="title">
+      <i class="on-air">{{t 'common.launch-on-air'}}</i>
+      <span>{{t 'common.launch-on-air'}}: {{reportData.collection.title}}</span>
+    </div>
+
+    {{#if anonymous}}
+
+      <div class="mode">
+        {{gru-icon name='visibility_off'}}
+        <span>{{t "common.anonymous_mode"}}</span>
+      </div>
+
+    {{else}}
+
+      <div class="actions">
+        <button {{action "goBack"}} class="btn btn-info back">
+          <span>{{gru-icon name='keyboard_arrow_left'}}{{t "common.back"}}</span>
+        </button>
+        <button {{action "launchAnonymous"}} class="btn btn-info anonymous">
+          <span>{{gru-icon name='visibility_off'}}{{t "common.launch-anonymous"}}</span>
+        </button>
+      </div>
+
+    {{/if}}
+  </div>
+
+  <div class="controller class-assessment">
+    {{reports.qz-class-assessment-report
+      reportData=reportData
+      anonymous=anonymous
+      isRealTime=isRealTime
+      showAttempts=showAttempts
+    }}
+  </div>
+
+</div>

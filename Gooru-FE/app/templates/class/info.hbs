@@ -1,0 +1,95 @@
+<div class="container-fluid">
+  <div class="controller info">
+     <div class="class-details row">
+         <div class="class-info">
+            <h3>{{t "class.info.class-info"}}</h3>
+            <p>
+              <h5>{{t 'class.gru-class-navigation.greetings'}}</h5>
+              {{#if class.greeting}}
+                <span class="info-details truncate">{{class.greeting}}</span>
+              {{else}}
+                <span class="info-details">{{t 'common.nothing-to-display'}}</span>
+              {{/if}}
+
+            </p>
+         </div>
+         <div class="info-btns">
+            <div class="code">
+                <span class="class-code">{{class.code}}</span>
+            </div>
+            <div class="edit-actions-section {{if isStudent 'hide' 'show'}}">
+              {{#link-to 'class.edit' class="edit-btn btn btn-primary" tagName='button'}} {{t "class.info.edit-info"}} {{/link-to}}
+              <li class="info-actions navbar-nav-list dropdown btn-info btn">
+                <a class="profile dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                  {{gru-icon name='more_vert'}}
+                </a>
+                <ul class="dropdown-menu pull-right" role="menu" id="profile-dropdown">
+                  <div class="arrow-up"></div>
+                  <li class="navbar-nav-list">
+                    <button class="btn btn-default btn-info delete-btn" {{action 'deleteClass'}}>{{t 'class.info.delete'}}</button>
+                  </li>
+                </ul>
+              </li>
+            </div>
+         </div>
+     </div>
+      <div class="row">
+         <div class="teachers-section col-md-12 col-sm-12 col-xs-12">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-6">
+                  <h5>{{t "class.info.teachers"}} ({{class.countTeachers}})</h5>
+                </div>
+                <div class="invite-collaborator col-md-6 col-sm-6 col-xs-6 {{if isStudent 'hide' 'show'}}">
+                    <button class="btn btn-primary btn-teacher out-of-scope">
+                      {{t "class.info.invite-co-teachers"}}
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <hr>
+                </div>
+            </div>
+             <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <ul class="teachers">
+                     {{#each class.teachers as |teacher|}}
+                       <li class="profile-card {{if isStudent 'student-view' ''}}">
+                         {{cards.gru-user-card user=teacher }}
+                       </li>
+                     {{/each}}
+                    </ul>
+                </div>
+             </div>
+         </div>
+         <div class="students-section col-md-12 col-sm-12 col-xs-12">
+             <div class="row">
+                 <div class="col-md-6 col-sm-6 col-xs-6">
+                     <h5>{{t "class.info.students"}} ({{class.countMembers}})</h5>
+                 </div>
+                 <div class="invite-student col-md-6 col-sm-6 col-xs-6 {{if isStudent 'hide' 'show'}}">
+                     <button class="btn btn-primary btn-teacher out-of-scope">
+                       {{t "class.info.add-students"}}
+                     </button>
+                 </div>
+             </div>
+             <div class="row">
+                  <div class="col-md-12 col-sm-12 col-xs-12">
+                      <hr>
+                  </div>
+             </div>
+             <div class="row">
+                 <div class="col-md-12 col-sm-12 col-xs-12">
+                    <ul class="students">
+                      {{#each class.members as |member|}}
+                          <li class="profile-card">
+                            {{cards.gru-user-card user=member isStudent=isStudent isStudentCard=true classId=class.id onRemoveStudent=(action 'removeStudent')}}
+                          </li>
+                      {{/each}}
+                    </ul>
+                 </div>
+             </div>
+         </div>
+     </div>
+  </div>
+</div>

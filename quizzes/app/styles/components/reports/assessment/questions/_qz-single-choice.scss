@@ -1,0 +1,40 @@
+.reports.assessment.questions.qz-single-choice {
+  ul {
+    display: inline-block;
+    padding-left: 0px;
+    li {
+      list-style: none;
+      position: relative;
+      display: flex;
+
+      span.correct {
+        color: $brand-success;
+      }
+      span.incorrect {
+        color: $brand-incorrect;
+      }
+      span.incorrect.anonymous,
+      span.correct.anonymous {
+        color: $brand-anonymous;
+      }
+    }
+    span.answer-text {
+      margin-left: 2.5em;
+      margin-top: 0.4em;
+      display: inherit;
+      > span {
+        margin: 0 0 0 5px;
+      }
+      p {
+        display: inline-block;
+        margin: 0;
+        padding: 0;
+      }
+    }
+  }
+  li span i {
+    position: absolute;
+    top: 0.2em;
+    left: 0;
+  }
+}

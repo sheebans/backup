@@ -1,0 +1,38 @@
+.controller.content-questions {
+  padding: 20px 0px;
+  .questions {
+    @include flexbox;
+    @include flex-wrap(wrap);
+    @include justify-content(center);
+    .card {
+      margin: 0 12px;
+      margin-bottom: 2em;
+      float: left;
+      .gru-resource-card {
+        .panel-heading {
+          .resource-info {
+            width: 70%;
+          }
+        }
+      }
+    }
+  }
+
+  .show-more-results {
+    margin-top: 20px;
+  }
+
+  .no-content {
+    margin-top: 5px;
+
+    .panel-body {
+      @include flexbox;
+      @include flex-direction(row);
+      @include justify-content(space-between);
+
+      p {
+        margin-left: 5px;
+      }
+    }
+  }
+}

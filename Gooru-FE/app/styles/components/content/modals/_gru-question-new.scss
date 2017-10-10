@@ -1,0 +1,15 @@
+.content.modals.gru-question-new {
+  @media (max-width: $screen-xs-max) {
+    width: 100%;
+    max-width: 100%;
+  }
+  .type {
+    padding: 0 0 0 20px;
+  }
+  .actions.question-new {
+    margin-top: 10px;
+  }
+  .panel.active {
+    opacity: 0.6;
+  }
+}

@@ -1,0 +1,28 @@
+.controller.content-assessments {
+  .assessments {
+    @include flexbox;
+    @include flex-wrap(wrap);
+    @include justify-content(center);
+    .new-cards.gru-collection-card {
+      .panel-heading {
+        .collection-info {
+          width: 58%;
+        }
+      }
+    }
+  }
+
+  .no-content {
+    margin-top: 25px;
+
+    .panel-body {
+      @include flexbox;
+      @include flex-direction(row);
+      @include justify-content(space-between);
+
+      p {
+        margin-left: 5px;
+      }
+    }
+  }
+}
