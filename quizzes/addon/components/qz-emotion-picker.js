@@ -109,12 +109,15 @@ export default Ember.Component.extend({
   // Methods
 
   selectEmotion: function(emotionValue) {
+    let selectedAttr = this.$('.emotions-list li').find('.active svg use').attr('xlink:href');
+    this.$('.emotions-list li').find('.active svg use').attr('xlink:href', selectedAttr + '-inactive');
     this.$('.emotions-list li').find('.active').removeClass('active');
     this.set('selectedEmotion', 0);
-
     if (emotionValue) {
       this.set('selectedEmotion', emotionValue);
       this.$(`.emotion-${emotionValue}`).toggleClass('active');
+      let emotion = this.get('emotionValues').findBy('value', emotionValue);
+      this.$('.emotions-list li').find('.active svg use').attr('xlink:href', '/assets/quizzes-addon/emoji-one/emoji.svg#' + emotion.unicode);
     }
   }
 });

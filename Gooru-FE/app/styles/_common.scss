@@ -173,12 +173,6 @@ span.validation.warning {
     height: 100%;
     pointer-events: none;
   }
-  &:hover {
-    @include scale(1.25);
-  }
-  &.active {
-    @include scale(1.4);
-  }
 }
 
 .ellipsis {

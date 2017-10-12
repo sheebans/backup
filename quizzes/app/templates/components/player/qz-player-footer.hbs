@@ -1,3 +1,55 @@
-<div>
-    
+<div class="nav-player-container">
+  <div class="prev">
+    {{gru-icon name="ic_skip_previous"}}
+    <span>Previous</span>
+  </div>
+  <div class="player-container">
+    <div class="player-info">
+      <div class="list-resource-nav pull-left">
+        {{gru-icon name="ic_keyboard_arrow_down"}}
+      </div>
+      <div class="pull-left">
+        <i class="{{resource.format}} resource-icon"></i>
+      </div>
+      <div class="pull-left">
+        <span class="resource-title ellipsis">{{resource.title}}</span>
+      </div>
+    </div>
+    <div class="reaction-bar pull-right">
+      {{qz-emotion-picker startEmotion=ratingScore onChangeEmotion="changeEmotion" readOnly=submitted}}
+    </div>
+    <div class="list-resources">
+      <ul class="list-group resources {{if isNavigationDisabled 'disabled' }}">
+          {{#each resourceItems as |item index|}}
+            <li class="list-group-item {{if item.started 'started'}} {{if item.selected 'selected'}}"
+                {{action 'selectItem' item}}>
+              <div class="resources-info">
+                <i class="resource-icon {{item.resource.format}} pull-left"></i>
+                <span class="title ellipsis pull-left">
+                  {{no-tags text=item.resource.title}}
+                </span>
+                <span class="score pull-left">
+                    {{gru-icon name='radio_button_checked'}}
+                </span>
+                <span class="selected-reaction pull-left">
+                  <svg>
+                      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/quizzes-addon/emoji-one/emoji.svg#1f641"></use>
+                  </svg>
+                </span>
+                {{#if (and showFeedback (not item.resource.isOpenEnded))}}
+                  {{#if item.started}}
+                    <span class="score {{if item.isCorrect 'correct' 'incorrect'}}">
+                      {{gru-icon name='radio_button_checked'}}
+                    </span>
+                  {{/if}}
+                {{/if}}
+              </div>
+            </li>
+          {{/each}}
+      </ul>
+    </div>
+  </div>
+  <div class="next">
+    <span>Next</span> {{gru-icon name="ic_skip_next"}}
+  </div>
 </div>

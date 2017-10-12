@@ -34,9 +34,15 @@
     }
   }
   .qz-content.question {
+    margin-top: 20px;
     height: auto;
   }
   .qz-content.resource {
     height: 85%;
+  }
+  .qz-resource-viewer-panel {
+    .narration {
+      margin-top: 20px;
+    }
   }
 }

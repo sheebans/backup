@@ -23,13 +23,6 @@
         height: 64px;
         background-color: $blue-400;
       }
-      @media (max-width: $screen-xs-max) {
-        > [class*="col"] {
-          border-bottom: 2px solid $light-200;
-          height: 64px;
-          background-color: $blue-400;
-        }
-      }
     }
 
     .suggest-player {
@@ -106,7 +99,9 @@
         @include ellipsis($font-size: 16px, $line-height: $line-height, $lines-to-show: 2, $excerpt-bg: $blue-400);
       }
       .no-suggestion-title {
-        margin-bottom: 0px;
+        p {
+          margin-bottom: 0px;
+        }
         position: absolute;
         @include translateY(-50%);
         top: 50%;

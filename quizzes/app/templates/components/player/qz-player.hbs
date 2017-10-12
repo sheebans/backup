@@ -11,6 +11,7 @@
               lesson=lesson
               classId=classId
               course=course
+              onRemixCollection="remixCollection"
             }}
           </div>
       {{/unless}}
@@ -31,7 +32,21 @@
                 onPreviousResource="previousResource"
                 onSubmitQuestion="submitQuestion"}}
                 {{player.qz-player-footer
+                  resource=resource
+                  isNavigationDisabled=isNavigationDisabled
+                  isTeacher=isTeacher
+                  submitted=contextResult.submitted
                   collection=collection
+                  resourceResults=resourcesPlayer
+                  selectedResourceId=resourceId
+                  showFeedback=showFeedback
+                  ratingScore=resourceResult.reaction
+                  readOnly=contextResult.submitted
+                  onChangeEmotion="changeEmotion"
+                  onFinishCollection="submitAll"
+                  showFinishConfirmation=showFinishConfirmation
+                  onItemSelected="selectNavigatorItem"
+                  onCloseNavigator="closeNavigator"
                 }}
               {{/if}}
             {{/if}}

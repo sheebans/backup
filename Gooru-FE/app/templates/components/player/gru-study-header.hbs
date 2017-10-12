@@ -1,8 +1,8 @@
 <div class="header-panel row">
-  <div class="col-sm-3 col-xs-12 course-info">
+  <div class="col-xs-3 course-info">
     <p class="title">{{courseTitle}}</p>
   </div>
-  <div class="col-sm-6 col-xs-12 suggest-player">
+  <div class="col-xs-6 suggest-player">
     {{#if hasSuggestedResources}}
       <div class="row">
         <div class="col-md-12">
@@ -27,15 +27,15 @@
             {{gru-icon name="ic_keyboard_arrow_right"}}
         </a>
     {{else}}
-      <div class="col-sm-12 no-suggestion-title">
+      <div class="col-xs-12 no-suggestion-title">
         <p>We're working on the best suggestions to support your learning</p>
       </div>
     {{/if}}
   </div>
 
-    <div class="col-sm-3 col-xs-12 performance-completion-info">
+    <div class="col-xs-3 performance-completion-info">
       <div class="row">
-        <div class="col-sm-6 completion">
+        <div class="col-xs-6 completion">
           {{#if isNUCourse}}
             {{#if class.courseCompetencyCompletion}}
               <span class="score">{{class.courseCompetencyCompletion.completedCount}}/{{class.courseCompetencyCompletion.totalCount}}</span>
@@ -48,7 +48,7 @@
             {{/if}}
           {{/if}}
         </div>
-        <div class="col-sm-6 performance" style="background-color:{{if class.performanceSummary (grade-color class.performanceSummary.score) defaultBarColor}}" >
+        <div class="col-xs-6 performance" style="background-color:{{if class.performanceSummary (grade-color class.performanceSummary.score) defaultBarColor}}" >
           <span class="score">
             {{#if class.performanceSummary}}
               {{class.performanceSummary.score}}%

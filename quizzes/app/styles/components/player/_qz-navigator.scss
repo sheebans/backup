@@ -9,11 +9,13 @@
     width: 100%;
     min-height: 105px;
     color: $white;
+
     .sub-header {
       height: 50px;
       border-bottom: 1px solid #979797;
       width: 100%;
       overflow: hidden;
+
       .title {
         float: left;
         text-align: center;
@@ -30,11 +32,13 @@
       width: 60px;
       height: inherit;
       float: left;
+
       i {
         position: relative;
         top: 15px;
         left: 20px;
       }
+
       .short-title {
         display: block;
         text-align: center;
@@ -49,6 +53,7 @@
     .course-unit {
       height: 60px;
       opacity: 0.5;
+
       .title {
         @include ellipsis($font-size: 16px, $line-height: 1.3, $lines-to-show: 2, $excerpt-bg: $dark-400);
       }
@@ -65,16 +70,19 @@
 
     .collection {
       height: 60px;
+
       .title {
         @include ellipsis($font-size: 16px, $line-height: 1.3, $lines-to-show: 2, $excerpt-bg: $dark-400);
       }
+
       i {
-        background: url(gooru/images/navigation_collection_selected.svg);
+        background: url("gooru/images/navigation_collection_selected.svg");
         display: inline-block;
         width: 20px;
         height: 15px;
         margin-bottom: 5px;
       }
+
       &.assessment {
         i {
           background: url('gooru/images/navigation_assessment_selected.svg');
@@ -84,12 +92,13 @@
 
     .back-to-collection {
       cursor: pointer;
-      i {
-        left: 15px;
+      .nav-icon-container {
+        i {
+          left: 15px;
+        }
       }
     }
   }
-
 
   &:hover {
     width: 300px;

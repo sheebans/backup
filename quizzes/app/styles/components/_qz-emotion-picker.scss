@@ -2,13 +2,6 @@
   padding: 15px;
   text-align: center;
   width: 100%;
-
-  .legend {
-    float: left;
-    line-height: $emotion-icon-size;
-    margin-right: 20px;
-  }
-
   .emotions-list {
     line-height: 1;
     list-style: none;
@@ -40,8 +33,5 @@
   }
   @media (min-width: $screen-sm) {
     text-align: left;
-  }
-  @media (min-width: $screen-md) {
-    padding: 0;
   }
 }
