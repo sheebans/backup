@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import { EMOTION_VALUES } from 'quizzes-addon/config/quizzes-config';
 
 /**
  * Player navigation
@@ -38,13 +39,54 @@ export default Ember.Component.extend({
     },
 
     /**
+     * Action triggered when the user close the navigator panel
+     */
+    closeNavigator: function() {
+
+    },
+
+    /**
      *
      * Triggered when an item is selected
      * @param item
      */
     selectItem: function(item) {
       this.selectItem(item.resource);
-    }
+    },
+
+    /**
+     * Action triggered when the user wants to finish the collection
+     */
+    finishCollection: function() {
+      this.sendAction('onFinishCollection');
+    },
+
+    /**
+     * Action triggered when the user clicks at see usage report
+     */
+    seeUsageReport: function() {
+      this.sendAction('onFinishCollection');
+    },
+   /***
+     * Return to previous resource
+     * @param {Resource} question
+     */
+    previousResource: function() {
+      const component = this;
+      component.$('.content').scrollTop(0);
+      component.sendAction('onPreviousResource', component.get('resource'));
+    },
+
+    /***
+      * Return to previous resource
+      * @param {Resource} question
+      */
+      nextResource: function() {
+       const component = this;
+       component.$('.content').scrollTop(0);
+       component.sendAction('onNextResource', component.get('resource'));
+     }
+
   },
 
   // -------------------------------------------------------------------------
@@ -116,11 +158,13 @@ export default Ember.Component.extend({
       const resourceResults = component.get('resourceResults');
       return resourceResults.map(function(resourceResult) {
         const resourceId = resourceResult.get('resource.id');
+        const ratingScore = resourceResult.get('reaction');
         return {
           resource: collection.getResourceById(resourceId),
           started: resourceResult.get('started'),
           isCorrect: resourceResult.get('isCorrect'),
-          selected: resourceId === component.get('selectedResourceId')
+          selected: resourceId === component.get('selectedResourceId'),
+          unicode: component.selectedEmotionUnicode(ratingScore)
         };
       });
     }
@@ -132,10 +176,6 @@ export default Ember.Component.extend({
    */
   isNavigationDisabled: false,
 
-  /**
-   * @property {string} on finish collection, having type = 'collection'
-   */
-  onFinishCollection: null,
 
   // -------------------------------------------------------------------------
   // Methods
@@ -149,8 +189,18 @@ export default Ember.Component.extend({
       if (this.get('onItemSelected')) {
         this.sendAction('onItemSelected', resource);
       }
-      this.sendAction('onCloseNavigator');
     }
-  }
+  },
 
+  /**
+   * Find selected emotion unicode from rating score
+   * @type {{String}}
+   */
+   selectedEmotionUnicode: function(ratingScore) {
+      if (ratingScore) {
+        let selectedEmotion = EMOTION_VALUES.findBy('value', ratingScore);
+        return selectedEmotion.unicode;
+      }
+      return null;
+   }
 });

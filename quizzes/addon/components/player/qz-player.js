@@ -98,13 +98,27 @@ export default Ember.Component.extend(ModalMixin, {
     },
 
     /**
-     * Handle onPreviousResource event from qz-question-viewer
-     * @see components/player/qz-question-viewer.js
+     * Handle onPreviousResource event from qz-player-footer
+     * @see components/player/qz-player-footer.js
      * @param {Resource} question
      */
     previousResource: function(resource) {
       const component = this;
       const next = component.get('collection').prevResource(resource);
+      if (next) {
+        Ember.$(window).scrollTop(0);
+        component.moveToResource(next);
+      }
+    },
+
+    /**
+     * Handle onNextResource event from qz-player-footer
+     * @see components/player/qz-player-footer.js
+     * @param {Resource} question
+     */
+    nextResource: function(resource) {
+      const component = this;
+      const next = component.get('collection').nextResource(resource);
       if (next) {
         Ember.$(window).scrollTop(0);
         component.moveToResource(next);
@@ -326,11 +340,22 @@ export default Ember.Component.extend(ModalMixin, {
   showPrevious: Ember.computed('resource', 'isNavigationDisabled', function() {
     const resource = this.get('resource');
     return (
-      this.get('isAssessment') &&
       !!this.get('collection').prevResource(resource) &&
       !this.get('isNavigationDisabled')
     );
   }),
+
+  /**
+   * If the next button should be shown
+   * @property {boolean}
+   */
+   showNext: Ember.computed('resource', 'isNavigationDisabled', function() {
+      const resource = this.get('resource');
+      return (
+        !!this.get('collection').nextResource(resource) &&
+        !this.get('isNavigationDisabled')
+      );
+    }),
 
   /**
    * Indicates if the report should be displayed

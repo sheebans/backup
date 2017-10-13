@@ -27,9 +27,7 @@
                 resource=resource
                 resourceResult=resourceResult
                 role=role
-                showPrevious=showPrevious
                 submitted=contextResult.submitted
-                onPreviousResource="previousResource"
                 onSubmitQuestion="submitQuestion"}}
                 {{player.qz-player-footer
                   resource=resource
@@ -46,7 +44,10 @@
                   onFinishCollection="submitAll"
                   showFinishConfirmation=showFinishConfirmation
                   onItemSelected="selectNavigatorItem"
-                  onCloseNavigator="closeNavigator"
+                  showPrevious=showPrevious
+                  showNext=showNext
+                  onPreviousResource="previousResource"
+                  onNextResource="nextResource"
                 }}
               {{/if}}
             {{/if}}
