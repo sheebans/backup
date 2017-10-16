@@ -1,19 +1,35 @@
 {{player.gru-study-header
-  onToggleHeader='toggleHeader'
   classId=classId
   collection=collection
   courseId=course.id
   courseTitle=course.title
   resource=resource
   resourceSequence=resource.sequence
-  breadcrumbs=breadcrumbs
   collectionUrl=collectionUrl
   courseVersion=courseVersion
 }}
-<div class="resource-player {{if toggleState 'expanded' 'collapsed'}}">
-  {{#if isDone}}
-    {{player.gru-player-done classId=classId}}
-  {{else}}
-    {{partial 'partials/qz-resource-player'}}
-  {{/if}}
+<div class="player-container">
+    <div class="player">
+      <div class="qz-aside">
+        {{player.qz-navigator
+        isTeacher=isTeacher
+        collection=collection
+        unit=unit
+        lesson=lesson
+        classId=classId
+        course=course
+        onRemixCollection="remixCollection"
+        showBackToCourseMap=showBackToCourseMap
+        showBackToCollection=showBackToCollection
+        collectionUrl=collectionUrl
+      }}
+      </div>
+      <div class="qz-main" role="main">
+        {{#if isDone}}
+          {{player.gru-player-done classId=classId}}
+        {{else}}
+          {{partial 'partials/qz-resource-player'}}
+        {{/if}}
+      </div>
+    </div>
 </div>

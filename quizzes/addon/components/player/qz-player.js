@@ -334,6 +334,16 @@ export default Ember.Component.extend(ModalMixin, {
   showFeedback: Ember.computed.alias('collection.immediateFeedback'),
 
   /**
+   * @property {String} It decide to show the back to collection or not.
+   */
+  showBackToCollection: true,
+
+  /**
+   * @property {String} It decide to show the back to course map or not.
+   */
+  showBackToCourseMap: true,
+
+  /**
    * If the previous button should be shown
    * @property {boolean}
    */

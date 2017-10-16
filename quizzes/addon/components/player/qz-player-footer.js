@@ -28,21 +28,29 @@ export default Ember.Component.extend({
      * @see qz-emotion-picker
      */
     changeEmotion: function(emotionScore) {
+      let component = this;
+      let resource = component.get('resource');
+      let unicode = component.selectedEmotionUnicode(emotionScore);
+      component.$('#resource-' + resource.id).find('svg use').attr('xlink:href', '/assets/quizzes-addon/emoji-one/emoji.svg#' + unicode);
       this.sendAction('onChangeEmotion', emotionScore);
     },
 
     /**
      * Action triggered when the user open the navigator panel
      */
-    openNavigator: function() {
-
+    onOpenNavigator: function() {
+      let component = this;
+      component.set('isNavigatorOpen', true);
+      component.$(".list-resources").slideDown();
     },
 
     /**
      * Action triggered when the user close the navigator panel
      */
-    closeNavigator: function() {
-
+    onCloseNavigator: function() {
+      let component = this;
+      component.set('isNavigatorOpen', false);
+      component.$(".list-resources").slideUp();
     },
 
     /**
@@ -176,6 +184,12 @@ export default Ember.Component.extend({
    */
   isNavigationDisabled: false,
 
+  /**
+   * It will maintain the state of navigator pull up
+   * @property {boolean}
+   */
+  isNavigatorOpen: false,
+
 
   // -------------------------------------------------------------------------
   // Methods
@@ -201,6 +215,6 @@ export default Ember.Component.extend({
         let selectedEmotion = EMOTION_VALUES.findBy('value', ratingScore);
         return selectedEmotion.unicode;
       }
-      return null;
+      return 'no-reaction';
    }
 });

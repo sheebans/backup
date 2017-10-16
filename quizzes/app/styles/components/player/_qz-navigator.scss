@@ -1,21 +1,32 @@
 .player .qz-navigator {
-  overflow: hidden;
   height: 100%;
   width: 60px;
-  transition: width 1s;
   background-color: $dark-400;
 
-  .navigator-header {
+  .navigator-panel {
     width: 100%;
-    min-height: 105px;
     color: $white;
+
+    .nav-menu-icons {
+      width: 60px;
+      height: 100vh;
+      float: left;
+    }
+
+    .nav-menu-titles {
+      float: left;
+      width: 240px;
+      background-color: #37424b;
+      height: 100vh;
+      position: absolute;
+      z-index: -1;
+      left: -300px;
+    }
 
     .sub-header {
       height: 50px;
       border-bottom: 1px solid #979797;
       width: 100%;
-      overflow: hidden;
-
       .title {
         float: left;
         text-align: center;
@@ -53,7 +64,13 @@
     .course-unit {
       height: 60px;
       opacity: 0.5;
-
+      i {
+        background: url("gooru/images/unit.svg") no-repeat;
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        margin-bottom: 5px;
+      }
       .title {
         @include ellipsis($font-size: 16px, $line-height: 1.3, $lines-to-show: 2, $excerpt-bg: $dark-400);
       }
@@ -62,7 +79,13 @@
     .course-lesson {
       height: 60px;
       opacity: 0.5;
-
+      i {
+        background: url("gooru/images/lesson.svg") no-repeat;
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        margin-bottom: 5px;
+      }
       .title {
         @include ellipsis($font-size: 16px, $line-height: 1.3, $lines-to-show: 2, $excerpt-bg: $dark-400);
       }
@@ -98,9 +121,15 @@
         }
       }
     }
-  }
 
-  &:hover {
-    width: 300px;
+    .remix {
+      cursor: pointer;
+      .nav-icon-container {
+        i {
+          left: 0px;
+          margin-left: -56px;
+        }
+      }
+    }
   }
 }

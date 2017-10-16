@@ -83,11 +83,7 @@
 
 .resource-player {
   .qz-resource-viewer-panel {
-    max-width: 70%;
-    margin: 0 0 0 15%;
-    @media (max-width: $screen-xs-max) {
-      max-width: 80%;
-      margin: 0 0 0 15px;
-    }
+    height: 85%;
+    margin-top: 20px;
   }
 }

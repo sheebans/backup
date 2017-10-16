@@ -143,13 +143,18 @@ export default PlayerController.extend({
   courseVersion: Ember.computed.alias('course.version'),
 
   /**
+   * @property {String} It decide to show the back to course map or not.
+   */
+  showBackToCourseMap: true,
+
+  /**
    * Resets to default values
    */
   resetValues: function() {
     //TODO: call the parent reset values method
     this.setProperties({
       showSuggestion: true,
-      toggleState: true,
+      showBackToCourseMap: false,
       classId: null,
       unitId: null,
       lessonId: null,

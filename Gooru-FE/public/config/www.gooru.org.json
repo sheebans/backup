@@ -1,0 +1,16 @@
+{
+  "endpoint": {
+    "url": "",
+    "secureUrl": "https://www.gooru.org",
+    "tenantUrl": "https://s3-us-west-1.amazonaws.com/nile-tenants/prod"
+  },
+  "realTime": {
+    "webServiceUrl": "",
+    "webServiceUri": "/nucleus/realtime",
+    "webSocketUrl": "https://rt.gooru.org",
+    "webSocketUri": "/ws/realtime"
+  },
+  "teams": {
+    "url": "http://teams.gooru.org"
+  }
+}

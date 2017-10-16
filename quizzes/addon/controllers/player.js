@@ -54,6 +54,16 @@ export default Ember.Controller.extend({
   /**
    * @property {class} class
    */
-  course: null
+  course: null,
+
+  /**
+   * @property {String} It decide to show the back to collection or not.
+   */
+  showBackToCollection: false,
+
+  /**
+   * @property {String} It decide to show the back to course map or not.
+   */
+  showBackToCourseMap: false
 
 });
