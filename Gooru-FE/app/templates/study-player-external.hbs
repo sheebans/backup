@@ -3,34 +3,48 @@ classId=classId
 collection=collection
 courseId=course.id
 courseTitle=course.title
-breadcrumbs=breadcrumbs
-onToggleHeader='toggleHeader'
 resourceSequence=resource.sequence
 actualResource=resource
 isExternalAssessment=true
 courseVersion=courseVersion
 }}
-<div class="player-container  external-assessment {{if toggleState 'expanded' 'collapsed'}}">
-  <div class="panel panel-default external-resource">
-    <div class="panel-header">
-      <p class="title">
-        {{t 'player.gru-viewer.not-iframe-url.header_external_assessment_1'}}<br>
-        {{t 'player.gru-viewer.not-iframe-url.header_2'}}
-      </p>
+<div class="player-container  external-assessment">
+  <div class="player">
+    <div class="qz-aside">
+      {{player.qz-navigator
+      isTeacher=isTeacher
+      collection=collection
+      unit=unit
+      lesson=lesson
+      classId=classId
+      course=course
+      onRemixCollection="remixCollection"
+      showBackToCourseMap=showBackToCourseMap
+      showBackToCollection=showBackToCollection
+      collectionUrl=collectionUrl
+    }}
     </div>
-    <div class="panel-body">
-      {{cards.gru-resource-card allowProfileNavigation=allowProfileNavigation resource=content externalAssessment=true editEnabled=false}}
-    </div>
-    <div class="panel-footer">
-      <p class="title">
-        {{t 'player.gru-viewer.not-iframe-url.footer_1'}}
-      </p>
-      <p class="description">
-        {{t 'player.gru-viewer.not-iframe-url.footer_2'}}<br>
-        {{t 'player.gru-viewer.not-iframe-url.footer_3'}}<br>
-        {{t 'player.gru-viewer.not-iframe-url.footer_4'}}
-      </p>
+    <div class="qz-main" role="main">
+      <div class="panel panel-default external-resource">
+        <div class="panel-header">
+          <p class="title">
+            {{t 'player.gru-viewer.not-iframe-url.header_external_assessment_1'}}<br> {{t 'player.gru-viewer.not-iframe-url.header_2'}}
+          </p>
+        </div>
+        <div class="panel-body">
+          {{cards.gru-resource-card allowProfileNavigation=allowProfileNavigation resource=content externalAssessment=true editEnabled=false}}
+        </div>
+        <div class="panel-footer">
+          <p class="title">
+            {{t 'player.gru-viewer.not-iframe-url.footer_1'}}
+          </p>
+          <p class="description">
+            {{t 'player.gru-viewer.not-iframe-url.footer_2'}}<br> {{t 'player.gru-viewer.not-iframe-url.footer_3'}}
+            <br> {{t 'player.gru-viewer.not-iframe-url.footer_4'}}
+          </p>
+        </div>
+      </div>
+      <button class="btn btn-primary btn-next" {{action 'next'}}><span>{{t "common.next"}}</span></button>
     </div>
   </div>
-  <button class="btn btn-primary btn-next" {{action 'next'}}><span>{{t "common.next"}}</span></button>
 </div>

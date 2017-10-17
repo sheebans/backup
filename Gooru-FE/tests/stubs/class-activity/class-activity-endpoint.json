@@ -1,0 +1,52 @@
+[
+  {
+    "description": "Get class activities by user - any class and any user",
+    "request": {
+      "url": "^/api/nucleus/v2/classes/(.+)/contents$",
+      "method": "GET",
+      "headers": {
+        "Authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "File not found!",
+      "file": "find-class-activities-by-user-200-response.json"
+    }
+  },
+  {
+    "description": "Add content to class",
+    "request": {
+      "url": "^/api/nucleus/v2/classes/(.+)/contents",
+      "method": "POST",
+      "headers": {
+        "Authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 201,
+      "headers": {
+        "Content-Type": "text/plain"
+      }
+    }
+  },
+  {
+    "description": "remove class activity",
+    "request": {
+      "url": "/api/nucleus/v2/classes/(.+)/contents/(.+)",
+      "method": "DELETE",
+      "headers": {
+        "authorization": "Token (.+)"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      }
+    }
+  }
+]

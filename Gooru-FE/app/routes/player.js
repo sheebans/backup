@@ -200,6 +200,7 @@ export default QuizzesPlayer.extend(
     },
 
     setupController(controller, model) {
+      console.log(model);
       this._super(...arguments);
       const isAnonymous = model.isAnonymous;
       const isTeacher = this.get('profile.role') === ROLES.TEACHER;

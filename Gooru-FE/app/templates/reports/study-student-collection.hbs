@@ -3,14 +3,12 @@
   collection=collection
   courseId=course.id
   courseTitle=course.title
-  breadcrumbs=breadcrumbs
   showConfirmation=false
-  onToggleHeader='toggleHeader'
   fromReport=true
   courseVersion=courseVersion
 }}
 
-<div class="report-container {{if toggleState 'expanded' 'collapsed'}}">
+<div class="report-container">
   {{#if hasAnySuggestion}}
     {{#if hasBackFillSuggestions}}
       <div class="suggestion-panel">

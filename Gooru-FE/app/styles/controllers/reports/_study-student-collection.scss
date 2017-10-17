@@ -10,24 +10,8 @@
   }
 
   .report-container {
-    &.expanded {
-      margin-top: 275px;
-      @media (min-width: $screen-sm) {
-        margin-top: 155px;
-      }
-      @media (min-width: $screen-md) {
-        margin-top: 130px;
-      }
-    }
-    &.collapsed {
-      margin-top: 40px;
-      @media (min-width: $screen-sm) {
-        margin-top: 65px;
-      }
-      @media (min-width: $screen-md) {
-        margin-top: 40px;
-      }
-    }
+
+    padding-top: 104px;
     .suggestion-panel {
       padding: 20px 20px;
       @media (min-width: $screen-sm) {

@@ -159,7 +159,6 @@ export default PlayerRoute.extend(PrivateRouteMixin, {
         params.type =
           mapLocation.get('context.itemType') ||
           mapLocation.get('context.collectionType');
-
         if (params.type === CONTENT_TYPES.EXTERNAL_ASSESSMENT) {
           route.transitionTo('study-player-external');
         }

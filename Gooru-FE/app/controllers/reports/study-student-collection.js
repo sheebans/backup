@@ -85,11 +85,6 @@ export default StudentCollection.extend({
    */
   collection: null,
 
-  /**
-   * Shows the performance information
-   * @property {Boolean} toggleState
-   */
-  toggleState: true,
 
   /**
    *Back fill backfill suggestion

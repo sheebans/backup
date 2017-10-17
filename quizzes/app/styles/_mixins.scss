@@ -375,3 +375,10 @@
   ); /* Chrome10-25,Safari5.1-6 */
   background: linear-gradient(-90deg, $startColor 0%, $endColor 100%);
 }
+
+@mixin translateY($value) {
+  -webkit-transform: translateY($value);
+  -ms-transform: translateY($value);
+  -o-transform: translateY($value);
+  transform: translateY($value);
+}

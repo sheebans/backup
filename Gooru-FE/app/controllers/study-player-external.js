@@ -59,16 +59,15 @@ export default Ember.Controller.extend({
   collectionId: null,
 
   /**
-   * Shows the performance information
-   * @property {Boolean} toggleState
-   */
-  toggleState: true,
-
-  /**
    * Indicates if it should show the back button
    * @property {boolean}
    */
   showBackButton: false,
+
+  /**
+   * @property {String} It decide to show the back to course map or not.
+   */
+  showBackToCourseMap: true,
 
   /**
    * Current map location
@@ -82,7 +81,6 @@ export default Ember.Controller.extend({
   resetValues: function() {
     //TODO: call the parent reset values method
     this.setProperties({
-      toggleState: true,
       collectionId: null,
       resourceId: null,
       type: null
